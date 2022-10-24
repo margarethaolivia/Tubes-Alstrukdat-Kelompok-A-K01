@@ -6,6 +6,10 @@ int main(int argc, char const *argv[])
     Matrix map;
     setNama(&sim);
     displayNama(sim);
-    initiatePoint(map,sim);
+    readMatrixFile(&map,"map.txt");
+    map=matrixtoMap(map);
+    displayMap(map);
+    initiatePoint(map,&sim);
+    printPoint(sim.currentPos);
     return 0;
 }
