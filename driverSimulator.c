@@ -8,7 +8,7 @@ int main(int argc, char const *argv[])
     displayNama(sim);
     readMatrixFile(&map,"map.txt");
     map=matrixtoMap(map);
-    displayMap(map);
+    displayMatrix(map);
     initiatePoint(map,&sim);
     printPoint(sim.currentPos);
     return 0;
