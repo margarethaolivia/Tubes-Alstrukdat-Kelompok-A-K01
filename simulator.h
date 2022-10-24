@@ -4,12 +4,13 @@
 #include "boolean.h"
 #include "point.h"
 #include "matrix.h"
+#include "mesinkata.h"
 
 typedef struct 
 {
     // prioQueue invent[100];
     point currentPos;
-    char nama[100];
+    Kata nama;
 
 } simulator;
 #define nama(simulator) simulator.nama

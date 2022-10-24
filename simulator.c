@@ -3,19 +3,20 @@
 #include "mesinkata.c"
 
 void createSim(simulator *sim){
-    *sim->nama='\0';
+    (sim)->nama.buffer[0]='\0';
     // *sim->currentPos=NULL;
 }
 
 void setNama(simulator *sim){
-    startKata(*sim->nama,false);
+    startKata("",false);
+    (sim)->nama=currentKata;
 }
 
 void displayNama(simulator sim){
     int i=0;
-    while (sim.nama[i]!='\0' || sim.nama[i]!='\n')
+    while (i<sim.nama.length)
     {
-        printf("%c",sim.nama[i]);
+        printf("%c",sim.nama.buffer[i]);
         i++;
     }
     printf("\n");
