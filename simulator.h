@@ -2,16 +2,17 @@
 #define SIMULATOR_H
 
 #include "boolean.h"
-#include "point.c"
-#include "matrix.c"
+#include "point.h"
+#include "matrix.h"
 
 typedef struct 
 {
     // prioQueue invent[100];
     point currentPos;
-    char* nama;
+    char nama[100];
 
 } simulator;
+#define nama(simulator) simulator.nama
 
 void createSim(simulator *sim);
 void setNama(simulator *sim);

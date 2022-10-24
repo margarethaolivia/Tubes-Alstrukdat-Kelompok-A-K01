@@ -3,7 +3,7 @@
 #define MATRIX_H
 
 #include "boolean.h"
-#include "simulator.c"
+// #include "simulator.h"
 
 #define ROW_CAP 100
 #define COL_CAP 100

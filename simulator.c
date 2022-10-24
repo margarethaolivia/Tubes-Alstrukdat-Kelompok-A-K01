@@ -1,9 +1,9 @@
 #include "simulator.h"
 #include <stdio.h>
-#include "mesinkata.h"
+#include "mesinkata.c"
 
 void createSim(simulator *sim){
-    *sim->nama=NULL;
+    *sim->nama='\0';
     // *sim->currentPos=NULL;
 }
 
@@ -13,9 +13,9 @@ void setNama(simulator *sim){
 
 void displayNama(simulator sim){
     int i=0;
-    while (sim.nama[i]!=NULL)
+    while (sim.nama[i]!='\0' || sim.nama[i]!='\n')
     {
-        printf(sim.nama[i]);
+        printf("%c",sim.nama[i]);
         i++;
     }
     printf("\n");
