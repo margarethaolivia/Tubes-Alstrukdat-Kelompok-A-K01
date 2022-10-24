@@ -4,7 +4,8 @@ int main(int argc, char const *argv[])
 {
     Matrix m;
     Matrix map;
-    readMatrix(&m,10,10);
+    readMatrixFile(&m,"map.txt");
+    displayMatrix(m);
     map=matrixtoMap(m);
     displayMap(map);
     return 0;

@@ -3,7 +3,6 @@
 #define MATRIX_H
 
 #include "boolean.h"
-// #include "simulator.h"
 
 #define ROW_CAP 100
 #define COL_CAP 100
@@ -60,4 +59,5 @@ Matrix matrixtoMap(Matrix m);
 // void moveSim(simulator sim, Matrix map,char command);
 // boolean adjacentCheck(simulator sim, Matrix map,char thing);
 // boolean checkWASD(simulator sim, Matrix map,char direction);
+void readMatrixFile(Matrix *m, char* path);
 #endif

@@ -1,6 +1,6 @@
 #include "simulator.h"
 #include <stdio.h>
-#include "mesinkata.c"
+#include "mesinkata.h"
 
 void createSim(simulator *sim){
     (sim)->nama.buffer[0]='\0';
@@ -20,5 +20,26 @@ void displayNama(simulator sim){
         i++;
     }
     printf("\n");
+    
+}
+
+void initiatePoint(Matrix map, simulator *sim){
+    int i=0;
+    int j=0;
+    while (i<ROW_EFF(map))
+    {
+        j=0;
+        while (j<COL_EFF(map))
+        {
+            if (ELMT(map,i,j)=='S')
+            {
+                (sim)->currentPos.x=j-1;
+                (sim)->currentPos.y=i-1;
+            }
+            
+            j++;
+        }
+        i++;
+    }
     
 }
