@@ -22,6 +22,9 @@ void displayNama(simulator sim);
 
 void initiatePoint(Matrix map, simulator *sim);
 
-
+void moveKanan(simulator *sim, Matrix *map);
+void moveKiri(simulator *sim, Matrix *map);
+void moveAtas(simulator *sim, Matrix *map);
+void moveBawah(simulator *sim, Matrix *map);
 
 #endif

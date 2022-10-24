@@ -11,5 +11,18 @@ int main(int argc, char const *argv[])
     displayMatrix(map);
     initiatePoint(map,&sim);
     printPoint(sim.currentPos);
+    printf("kanan");
+    moveKanan(&sim,&map);
+    displayMatrix(map);
+    printf("kiri");
+    moveKiri(&sim,&map);
+    displayMatrix(map);
+    printf("bawah");
+    moveBawah(&sim,&map);
+    displayMatrix(map);
+    printf("atas\n");
+    moveAtas(&sim,&map);
+    displayMatrix(map);
+    printPoint(sim.currentPos);
     return 0;
 }
