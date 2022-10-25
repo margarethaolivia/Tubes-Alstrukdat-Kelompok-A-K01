@@ -37,3 +37,8 @@ void advKata(){
         salinKata();
     }
 }
+
+void shutdown(){
+    QUIT();
+    advKata();
+}

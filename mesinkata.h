@@ -41,4 +41,7 @@ void salinKata();
           buffer kata mungkin kosong
           */
 
+void shutdown();
+   //berhenti membaca IO terminal
+
 #endif
