@@ -26,5 +26,6 @@ void moveKanan(simulator *sim, Matrix *map);
 void moveKiri(simulator *sim, Matrix *map);
 void moveAtas(simulator *sim, Matrix *map);
 void moveBawah(simulator *sim, Matrix *map);
+boolean isAdjacentTo(simulator sim, char object,Matrix map);
 
 #endif

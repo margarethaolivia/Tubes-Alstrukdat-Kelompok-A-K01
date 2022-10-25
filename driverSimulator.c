@@ -15,8 +15,8 @@ int main(int argc, char const *argv[])
     moveKanan(&sim,&map);
     displayMatrix(map);
     printf("kiri");
-    moveKiri(&sim,&map);
-    displayMatrix(map);
+    // moveKiri(&sim,&map);
+    // displayMatrix(map);
     printf("bawah");
     moveBawah(&sim,&map);
     displayMatrix(map);
@@ -24,5 +24,10 @@ int main(int argc, char const *argv[])
     moveAtas(&sim,&map);
     displayMatrix(map);
     printPoint(sim.currentPos);
+    if (isAdjacentTo(sim,'T',map))
+    {
+        printf("papope");
+    }
+    
     return 0;
 }

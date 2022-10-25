@@ -94,3 +94,24 @@ void moveBawah(simulator *sim, Matrix *map){
         printf("ada rintangan\n");
     }
 }
+
+boolean isAdjacentTo(simulator sim, char object,Matrix map){
+    boolean isAdjacent=false;
+    int i=sim.currentPos.y;
+    int j=sim.currentPos.x;
+    while (i<sim.currentPos.y+3 && !isAdjacent)
+    {
+        j=sim.currentPos.x;
+        while (j<sim.currentPos.x+3 && !isAdjacent)
+        {
+            if (ELMT(map,i,j)==object)
+            {
+                isAdjacent=true;
+            }
+            j++;
+        }
+        
+        i++;
+    }
+    return isAdjacent;
+}
