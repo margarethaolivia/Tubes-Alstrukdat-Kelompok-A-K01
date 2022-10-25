@@ -28,5 +28,5 @@ int main(){
     }
     else{
         printf("not ok\n");
-    }   
+    }
 }

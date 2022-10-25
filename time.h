@@ -19,5 +19,6 @@ void nextMin(time *t); // Menjalankan waktu sebanyak 1 menit
 void prevMin(time *t); // Mengurangi waktu sebanyak 1 menit
 void printTime(time t); // Mencetak waktu pada layar
 boolean isTimeValid(time t); // Mengecek apakah waktu tersebut bernilai valid atau tidak
-
+int timeToMin(time t); // Mengubah time menjadi menit 
+time minToTime(int min); // Mengubah menit menjadi time
 #endif

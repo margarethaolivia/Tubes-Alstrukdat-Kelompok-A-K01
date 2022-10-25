@@ -24,3 +24,11 @@ void printTime(time t){
 boolean isTimeValid(time t){
     return(day(t)<32 && day(t)>0 && hour(t)>=0 && hour(t) < 24  && minute(t) >= 0 && minute(t) < 60);
 }
+int timeToMin(time t){
+    return(1440*day(t) + 60*hour(t) + minute(t));
+}
+time minToTime(int min){
+    time T;
+    createTime(&T,min/24/60,min/60%24,min%60);
+    return T;
+}
