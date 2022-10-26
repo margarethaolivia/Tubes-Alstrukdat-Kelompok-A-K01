@@ -34,34 +34,32 @@ typedef struct{
 #define Queue(m) (m).queue
 #define IdxHead(m) (m).idxHead
 #define IdxTail(m) (m).idxTail
-#define Size(m) (m).size
+#define SizePQueue(m) (m).size
 #define Head(m) (m).queue[IdxHead(m)]
-#define Elmt(m,i) (m).queue[i]
+#define ElmtPQueue(m,i) (m).queue[i]
 
 void createPQueue(PQueue* p, int nMax);
 
-boolean isEmpty(PQueue p);//head tail idx undef
-boolean isFull(PQueue p);//queue penuh
+boolean isEmptyPQueue(PQueue p);//head tail idx undef
+boolean isFullPQueue(PQueue p);//queue penuh
 
 void enqueue(PQueue* p, ElTypePQueue val);//enqueue sperti prioqueue berdasar priority
 void dequeue(PQueue* p, ElTypePQueue* val);//pop head(?)
 
-boolean removeFromQueue(PQueue* p, lambdaPQ fx, CompareType val);//search Elmt yang sesuai dengan
+boolean removeFromQueue(PQueue* p, lambdaPQ fx, CompareType val);//search ElmtPQueue yang sesuai dengan
                                                             //fungsi lambda boolean dan value
                                                             //*lihat driver untuk lebih memahami
                                                             //return true bila ada yg dihapus
 
-int length(PQueue p); //return len
+int lengthPQueue(PQueue p); //return len
 
-void resize(PQueue* p); //resize
+void resizePQueue(PQueue* p); //resizePQueue
 
-ElTypePQueue getElmt(PQueue p, int idx); //getElmt pass by value
+ElTypePQueue getElmtPQueue(PQueue p, int idx); //getElmtPQueue pass by value
 
-ElTypePQueue* getElmtRef(PQueue* p, int idx); //passby referens untuk otak atik data elmt queue
+void destroyPQueue(PQueue* p); //free()
 
-void destroy(PQueue* p); //free()
-
-void updateElmtPriority(PQueue* p, int amount);
+void updateElmtPQueuePriority(PQueue* p, int amount);
 
 
 #endif

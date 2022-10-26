@@ -37,17 +37,17 @@ void p(){
             removeFromQueue(&q,fx,input);
         }
         if(opsi==4){
-            updateElmtPriority(&q,-1);
+            updateElmtPQueuePriority(&q,-1);
         }
 
         int i;
-        for(i=0;i<length(q);i++){
-            printf("%d",getElmt(q,i));
+        for(i=0;i<lengthPQueue(q);i++){
+            printf("%d",getElmtPQueue(q,i));
         }
         printf("\n");
 
     }while(opsi!=5);
-    destroy(&q);
+    destroyPQueue(&q);
 }
 
 int main(){
