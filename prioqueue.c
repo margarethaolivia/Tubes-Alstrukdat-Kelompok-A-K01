@@ -7,7 +7,6 @@ void createPQueue(PQueue* p, int nMax){
     IdxHead(*p) = IDX_UNDEFF;
     IdxTail(*p) = IDX_UNDEFF; //blablabla init
     Size(*p) = nMax;
-    Length(*p) = 0;
 
 }
 
@@ -28,7 +27,6 @@ void enqueue(PQueue* p, ElTypePQueue val){
         Elmt(*p,0) = val;
         IdxTail(*p) = 0;            //is empty? enqu
         IdxHead(*p) = 0;
-        Length(*p) = 1;
     }
     else if(!isFull(*p)){
         int startTraversal = IdxHead(*p);
@@ -49,7 +47,6 @@ void enqueue(PQueue* p, ElTypePQueue val){
         Elmt(*p,i%Size(*p)) = val;
         
         IdxTail(*p) = (endTraversal+1)%Size(*p);
-        Length(*p)++;
     }
     else if(isFull(*p)){
         resize(p);                  //full? resize
@@ -67,7 +64,6 @@ void dequeue(PQueue* p, ElTypePQueue* val){
             IdxTail(*p)=IDX_UNDEFF;
         }
         
-        Length(*p)--;
     }
 }
 
@@ -87,7 +83,6 @@ boolean removeFromQueue(PQueue* p, lambdaPQ fx, CompareType val){
                 Elmt(*p,i%Size(*p)) = Elmt(*p,(i+1)%Size(*p));
             }
             IdxTail(*p) = (IdxTail(*p)-1)%Size(*p);               //ser geser
-            Length(*p)--;
 
             return true;
         }
@@ -100,10 +95,6 @@ ElTypePQueue getElmt(PQueue p, int idx){
     return Elmt(p,(IdxHead(p)+idx)%Size(p));
 }
 
-ElTypePQueue* getElmtRef(PQueue* p, int idx){
-    return &(Elmt(*p,(IdxHead(*p)+idx)%Size(*p)));
-}
-
 void resize(PQueue* p){
     Queue(*p) = (ElTypePQueue*)realloc(Queue(*p),Size(*p)*2*sizeof(ElTypePQueue));
     Size(*p)*=2;
@@ -111,4 +102,20 @@ void resize(PQueue* p){
 
 void destroy(PQueue* p){
     free(Queue(*p));
+}
+
+int length(PQueue p){
+    if(IdxHead(p)<=IdxTail(p)){
+        return IdxTail(p)-IdxHead(p)+1;
+    } else {
+        return IdxTail(p)+Size(p)-IdxHead(p)+1;
+    }
+}
+
+void updateElmtPriority(PQueue* p, int amount){
+    int i;
+    for(i=0;i<length(*p);i++){
+        ElTypePQueue* x = (ElTypePQueue*)(&(Elmt(*p,(IdxHead(*p)+i)%Size(*p))));
+        GetPrio(*x) += amount;
+    }
 }

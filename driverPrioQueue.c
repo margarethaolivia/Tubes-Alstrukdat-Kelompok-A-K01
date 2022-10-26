@@ -37,15 +37,11 @@ void p(){
             removeFromQueue(&q,fx,input);
         }
         if(opsi==4){
-            int i;
-            for(i=0;i<Length(q);i++){
-                ElTypePQueue* x = getElmtRef(&q,i);
-                GetPrio(*x)--;
-            }
+            updateElmtPriority(&q,-1);
         }
 
         int i;
-        for(i=0;i<Length(q);i++){
+        for(i=0;i<length(q);i++){
             printf("%d",getElmt(q,i));
         }
         printf("\n");

@@ -24,7 +24,6 @@ typedef struct{
     int idxHead;
     int idxTail;
     int size;
-    int length;
 } PQueue;
 
 #define IDX_UNDEFF -1
@@ -36,7 +35,6 @@ typedef struct{
 #define IdxHead(m) (m).idxHead
 #define IdxTail(m) (m).idxTail
 #define Size(m) (m).size
-#define Length(m) (m).length
 #define Head(m) (m).queue[IdxHead(m)]
 #define Elmt(m,i) (m).queue[i]
 
@@ -53,6 +51,8 @@ boolean removeFromQueue(PQueue* p, lambdaPQ fx, CompareType val);//search Elmt y
                                                             //*lihat driver untuk lebih memahami
                                                             //return true bila ada yg dihapus
 
+int length(PQueue p); //return len
+
 void resize(PQueue* p); //resize
 
 ElTypePQueue getElmt(PQueue p, int idx); //getElmt pass by value
@@ -60,6 +60,8 @@ ElTypePQueue getElmt(PQueue p, int idx); //getElmt pass by value
 ElTypePQueue* getElmtRef(PQueue* p, int idx); //passby referens untuk otak atik data elmt queue
 
 void destroy(PQueue* p); //free()
+
+void updateElmtPriority(PQueue* p, int amount);
 
 
 #endif
