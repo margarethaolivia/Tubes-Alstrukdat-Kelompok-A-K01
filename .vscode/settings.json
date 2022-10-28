@@ -3,6 +3,7 @@
         "**/src/**/*.js": "javascriptreact",
         "**/src/**/*.jsx": "javascriptreact",
         "*.js": "javascriptreact",
-        "makanan.h": "c"
+        "makanan.h": "c",
+        "stack.h": "c"
     }
 }
