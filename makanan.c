@@ -4,7 +4,7 @@
 #include "boolean.h"
 
 /* *** Konstruktor membentuk Makanan *** */
-void createMakanan(Makanan *m, int id, Kata nama, time expired, Kata aksi, time delivTime)
+void createMakanan(Makanan *m, int id, Kata nama, time expired, char aksi, time delivTime)
 {
     Id(*m) = id;
     Nama(*m) = nama;

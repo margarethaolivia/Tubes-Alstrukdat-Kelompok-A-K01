@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "**/src/**/*.js": "javascriptreact",
+        "**/src/**/*.jsx": "javascriptreact",
+        "*.js": "javascriptreact",
+        "makanan.h": "c"
+    }
+}

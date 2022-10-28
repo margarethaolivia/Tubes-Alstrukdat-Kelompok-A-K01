@@ -11,7 +11,7 @@ int main()
     Makanan m;
     time exp, deliv;
     Kata nama;
-    Kata aksi;
+    char aksi;
 
     // const char *PATH = "tes.txt";
     // startKata(PATH, true);
@@ -19,7 +19,7 @@ int main()
     startKata("", false);
     nama = currentKata;
     advKata();
-    aksi = currentKata;
+    aksi = 'B';
 
     createTime(&exp, 0, 0, 5);
     createTime(&deliv, 0, 0, 12);

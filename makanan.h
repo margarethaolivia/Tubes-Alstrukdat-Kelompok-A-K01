@@ -13,7 +13,7 @@ typedef struct
     int id;         /* id makanan   */
     Kata nama;      /* nama makanan */
     time expired;   /* waktu kadaluwarsa */
-    Kata aksi;      /* aksi */
+    char aksi;      /* aksi */
     time delivTime; /* lama pengiriman */
 } Makanan;
 
@@ -27,7 +27,7 @@ typedef struct
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 
 /* *** Konstruktor membentuk Makanan *** */
-void createMakanan(Makanan *m, int id, Kata nama, time expired, Kata aksi, time delivTime);
+void createMakanan(Makanan *m, int id, Kata nama, time expired, char aksi, time delivTime);
 // membentuk sebuah Makanan dari komponen-komponennya
 
 /* *** I/O Makanan *** */
