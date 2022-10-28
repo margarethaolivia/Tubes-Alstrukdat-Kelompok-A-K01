@@ -22,6 +22,6 @@ This is a project in order to fulfill the requirements of the study of Alstrukda
 
 ## Program Installation
 
-### How to Compile
+## How to Compile
 
 ## How to Run
