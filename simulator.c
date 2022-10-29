@@ -11,8 +11,8 @@ void createSim(simulator *sim){
     
 }
 
-void setNama(simulator *sim){
-    startKata("",false);
+void setNama(simulator *sim,Kata currentKata){
+    // startKata("",false);
     (sim)->nama=currentKata;
 }
 

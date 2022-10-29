@@ -17,7 +17,7 @@ typedef struct
 #define nama(simulator) simulator.nama
 
 void createSim(simulator *sim);
-void setNama(simulator *sim);
+void setNama(simulator *sim,Kata currentKata);
 
 void displayNama(simulator sim);
 
