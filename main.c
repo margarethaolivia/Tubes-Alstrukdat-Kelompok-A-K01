@@ -47,7 +47,7 @@ int main()
         if (strcmp(currentKata.buffer,"MOVE"))
         {
             advKata();
-            printf("%s\n",currentKata.buffer);
+            // printf("%s\n",currentKata.buffer);
             if (strcmp(currentKata.buffer,"EAST"))
             {
                 moveKiri(&sim,&map);
