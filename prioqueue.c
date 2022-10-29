@@ -95,6 +95,10 @@ ElTypePQueue getElmtPQueue(PQueue p, int idx){
     return ElmtPQueue(p,(IdxHead(p)+idx)%SizePQueue(p));
 }
 
+ElTypePQueue* getElmtPQueueReff(PQueue* p, int idx){
+    return &(ElmtPQueue(*p,(IdxHead(*p)+idx)%SizePQueue(*p)));
+}
+
 void resizePQueue(PQueue* p){
     Queue(*p) = (ElTypePQueue*)realloc(Queue(*p),SizePQueue(*p)*2*sizeof(ElTypePQueue));
     SizePQueue(*p)*=2;
@@ -109,13 +113,5 @@ int lengthPQueue(PQueue p){
         return IdxTail(p)-IdxHead(p)+1;
     } else {
         return IdxTail(p)+SizePQueue(p)-IdxHead(p)+1;
-    }
-}
-
-void updateElmtPQueuePriority(PQueue* p, int amount){
-    int i;
-    for(i=0;i<lengthPQueue(*p);i++){
-        ElTypePQueue* x = (ElTypePQueue*)(&(ElmtPQueue(*p,(IdxHead(*p)+i)%SizePQueue(*p))));
-        // GetPrio(*x) += amount;
     }
 }

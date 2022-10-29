@@ -11,11 +11,11 @@
 //silahkan edit typdef dan define sesuai keperluan tipe elemen
 //-------------------------------------------------------------
 
-typedef Makanan ElTypePQueue;
-//typedef int ElTypePQueue;
+//typedef Makanan ElTypePQueue;
+typedef int ElTypePQueue;
 
-typedef Kata CompareType;
-//typedef int CompareType;
+//typedef Kata CompareType;
+typedef int CompareType;
 
 typedef boolean (*lambdaPQ)(ElTypePQueue,CompareType);
 
@@ -28,8 +28,8 @@ typedef struct{
 
 #define IDX_UNDEFF -1
 
-#define GetPrio(m) timeToMin(Expired(m))
-//#define GetPrio(m) (m)
+//#define GetPrio(m) timeToMin(Expired(m))
+#define GetPrio(m) (m)
 
 #define Queue(m) (m).queue
 #define IdxHead(m) (m).idxHead
@@ -57,9 +57,9 @@ void resizePQueue(PQueue* p); //resizePQueue
 
 ElTypePQueue getElmtPQueue(PQueue p, int idx); //getElmtPQueue pass by value
 
-void destroyPQueue(PQueue* p); //free()
+ElTypePQueue* getElmtPQueueReff(PQueue* p, int idx); //getElmtPQueue pass by refference
 
-void updateElmtPQueuePriority(PQueue* p, int amount);
+void destroyPQueue(PQueue* p); //free()
 
 
 #endif

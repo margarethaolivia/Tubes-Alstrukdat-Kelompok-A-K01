@@ -8,10 +8,13 @@
 // #define GetPrio(m) (m)
 
 
-boolean fx(ElTypePQueue x, Kata a){
-    return strcmp(Nama(x).buffer,a.buffer);
-}
+// boolean fx(ElTypePQueue x, Kata a){
+//     return strcmp(Nama(x).buffer,a.buffer);
+// }
 
+boolean fx(ElTypePQueue x, int a){
+    return x==a;
+}
 
 void p(){
 
@@ -38,7 +41,12 @@ void p(){
             removeFromQueue(&q,fx,input);
         }
         if(opsi==4){
-            updateElmtPQueuePriority(&q,-1);
+            int i;
+            for(i=0;i<lengthPQueue(q);i++){
+                ElTypePQueue* p = getElmtPQueueReff(&q,i);
+                //Expired(*p) = minToTime(timeToMin(Expired(*p))-1);
+                *p = *p - 1;
+            }
         }
 
         int i;

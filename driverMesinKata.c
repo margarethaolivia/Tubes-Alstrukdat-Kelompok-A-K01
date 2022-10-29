@@ -30,7 +30,7 @@ void p(){
             startKata("",false,' ','\n');
             otherKata = currentKata;
             QUIT();
-            startKata(otherKata.buffer,true,"",'\n');
+            startKata(otherKata.buffer,true,"","");
             while(currentKata.length!=0){
                 printf(currentKata.buffer);
                 advKata();
