@@ -22,7 +22,7 @@ void p(){
             printf("\n");
         } else if(opsi == 2) {
             printf("tulis nama file\n");
-            startKata("",false);
+            startKata("",false,' ','\n');
             QUIT();
             START(currentKata.buffer,true);
             while(!EOP){

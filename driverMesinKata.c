@@ -15,22 +15,22 @@ void p(){
         scanf(" %d",&opsi);
         if(opsi==1){
             printf("ketik \"EXIT\" untuk berhenti.\n");
-            startKata("",false);
+            startKata("",false,' ','\n');
             while(currentKata.length!=0){
                 printf(currentKata.buffer);
                 printf("\n");
                 if(strcmp(currentKata.buffer,"EXIT")){
-                    QUIT();
+                    shutdownKata();
                 }
                 advKata();
             }
         }
         if(opsi==2){
             printf("tulis nama file\n");
-            startKata("",false);
+            startKata("",false,' ','\n');
             otherKata = currentKata;
             QUIT();
-            startKata(otherKata.buffer,true);
+            startKata(otherKata.buffer,true,"",'\n');
             while(currentKata.length!=0){
                 printf(currentKata.buffer);
                 advKata();

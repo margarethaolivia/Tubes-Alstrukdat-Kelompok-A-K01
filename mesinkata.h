@@ -17,15 +17,18 @@ typedef struct
 
 /* State Mesin Word */
 extern Kata currentKata;
+extern char MARK;
 
 void ignoreBlanks();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
-void startKata(const char* PATH,boolean rFile);
+void startKata(const char* PATH,boolean rFile,char endOfKataMark1,char endOfKataMark2);
 /* I.S. : currentChar sembarang
    F.S. : buffer kata terisi kata atau kosong*/
+   //isi empty string saja jika hanya ingin MARK = \n, atau isi salah satu dengan MARK
+   //yang diingingkan dan empty string untuk yg lainnya
 
 void advKata();
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
@@ -41,7 +44,7 @@ void salinKata();
           buffer kata mungkin kosong
           */
 
-void shutdown();
+void shutdownKata();
    //berhenti membaca IO terminal
 
 #endif

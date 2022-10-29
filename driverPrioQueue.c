@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "prioqueue.h"
+#include "utility.h"
 
 //untuk menjalankan driver ini mohon ubah hal brkt:
 // typedef int ElTypePQueue;
@@ -7,8 +8,8 @@
 // #define GetPrio(m) (m)
 
 
-boolean fx(ElTypePQueue x, int a){
-    return x == a;
+boolean fx(ElTypePQueue x, Kata a){
+    return strcmp(Nama(x).buffer,a.buffer);
 }
 
 
