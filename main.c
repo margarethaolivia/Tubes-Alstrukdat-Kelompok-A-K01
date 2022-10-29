@@ -39,7 +39,7 @@ int main()
         displayMatrix(map);
         printf("Enter command: \n");
         startKata("",false);
-        printf("a\n");
+        // printf("a\n");
         if (strcmp(currentKata.buffer,"EXIT"))
         {
             isRun=false;
