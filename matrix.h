@@ -8,10 +8,10 @@
 #define COL_CAP 100
 
 typedef int IdxType; 
-typedef char ElType;
+typedef char EltypeMatrix;
 typedef struct
 {
-   ElType mem[ROW_CAP][COL_CAP];
+   EltypeMatrix mem[ROW_CAP][COL_CAP];
    int rowEff; 
    int colEff; 
 } Matrix;
