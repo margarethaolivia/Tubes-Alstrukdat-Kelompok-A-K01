@@ -120,13 +120,13 @@ boolean isAdjacentTo(simulator sim, char object,Matrix map){
     return isAdjacent;
 }
 
-void displayInvent(simulator sim){
-    int l=lengthPQueue(sim.inventory);
-    int i=0;
-    while (i<l)
-    {
-        printMakanan(sim.inventory.queue[i]);
-        i++;
-    }
+// void displayInvent(simulator sim){
+//     int l=lengthPQueue(sim.inventory);
+//     int i=0;
+//     while (i<l)
+//     {
+//         printMakanan(sim.inventory.queue[i]);
+//         i++;
+//     }
     
-}
+// }

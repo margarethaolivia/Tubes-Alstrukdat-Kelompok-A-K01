@@ -17,7 +17,8 @@ int main()
     simulator sim;
     Matrix map;
     
-    startKata("",false);
+    startKata("",false,' ','\n');
+    printf("%s\n",currentKata.buffer);
     if (strcmp(currentKata.buffer,"START"))
     {
         isRun=true;
@@ -27,7 +28,7 @@ int main()
         initiatePoint(map,&sim);
         printf("selamat datang di bnmo\n");
         printf("masukkan nama:\n");
-        startKata("",false);
+        startKata("",false,' ','\n');
         setNama(&sim,currentKata);
     }
     
@@ -38,16 +39,18 @@ int main()
         printf("\n");
         displayMatrix(map);
         printf("Enter command: \n");
-        startKata("",false);
+        startKata("",false,' ','\n');
+        printf("%s\n",currentKata.buffer);
         // printf("a\n");
         if (strcmp(currentKata.buffer,"EXIT"))
         {
             isRun=false;
+            printf("END");
         }
-        if (strcmp(currentKata.buffer,"MOVE"))
+        else if (strcmp(currentKata.buffer,"MOVE"))
         {
             advKata();
-            // printf("%s\n",currentKata.buffer);
+            printf("%s\n",currentKata.buffer);
             if (strcmp(currentKata.buffer,"EAST"))
             {
                 moveKiri(&sim,&map);

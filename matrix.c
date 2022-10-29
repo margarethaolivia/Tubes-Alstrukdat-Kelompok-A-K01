@@ -187,7 +187,7 @@ Matrix matrixtoMap(Matrix m){
 void readMatrixFile(Matrix *m, char* path){
     int i=0;
     int j=0;
-    startKata(path,true);
+    startKata(path,true,' ','\n');
     int k=0;
     int row=0;
     while (k<currentKata.length)
