@@ -5,6 +5,10 @@
 void createSim(simulator *sim){
     (sim)->nama.buffer[0]='\0';
     // *sim->currentPos=NULL;
+    PQueue q;
+    createPQueue(&q,1);
+    (sim)->inventory=q;
+    
 }
 
 void setNama(simulator *sim){
@@ -114,4 +118,15 @@ boolean isAdjacentTo(simulator sim, char object,Matrix map){
         i++;
     }
     return isAdjacent;
+}
+
+void displayInvent(simulator sim){
+    int l=lengthPQueue(sim.inventory);
+    int i=0;
+    while (i<l)
+    {
+        printMakanan(sim.inventory.queue[i]);
+        i++;
+    }
+    
 }

@@ -5,10 +5,11 @@
 #include "point.h"
 #include "matrix.h"
 #include "mesinkata.h"
+#include "prioqueue.h"
 
 typedef struct 
 {
-    // prioQueue invent[100];
+    PQueue inventory;
     point currentPos;
     Kata nama;
 
@@ -27,5 +28,6 @@ void moveKiri(simulator *sim, Matrix *map);
 void moveAtas(simulator *sim, Matrix *map);
 void moveBawah(simulator *sim, Matrix *map);
 boolean isAdjacentTo(simulator sim, char object,Matrix map);
+void displayInvent(simulator sim);
 
 #endif

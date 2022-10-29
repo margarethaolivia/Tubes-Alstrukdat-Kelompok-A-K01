@@ -116,6 +116,6 @@ void updateElmtPQueuePriority(PQueue* p, int amount){
     int i;
     for(i=0;i<lengthPQueue(*p);i++){
         ElTypePQueue* x = (ElTypePQueue*)(&(ElmtPQueue(*p,(IdxHead(*p)+i)%SizePQueue(*p))));
-        GetPrio(*x) += amount;
+        // GetPrio(*x) += amount;
     }
 }
