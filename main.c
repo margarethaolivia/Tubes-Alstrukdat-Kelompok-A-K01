@@ -3,6 +3,7 @@
 #include "utility.h"
 #include "simulator.h"
 #include "matrix.h"
+#include "point.h"
 
 
 int main()
@@ -32,13 +33,39 @@ int main()
     
     while (isRun)
     {
-        displayNama(sim);
+        printf("BNMO di posisi: ");
+        printPoint(sim.currentPos);
+        printf("\n");
+        displayMatrix(map);
+        printf("Enter command: \n");
         startKata("",false);
         printf("a\n");
         if (strcmp(currentKata.buffer,"EXIT"))
         {
             isRun=false;
         }
+        if (strcmp(currentKata.buffer,"MOVE"))
+        {
+            advKata();
+            printf("%s\n",currentKata.buffer);
+            if (strcmp(currentKata.buffer,"EAST"))
+            {
+                moveKiri(&sim,&map);
+            }
+            else if (strcmp(currentKata.buffer,"WEST"))
+            {
+                moveKanan(&sim,&map);
+            }
+            else if (strcmp(currentKata.buffer,"NORTH"))
+            {
+                moveAtas(&sim,&map);
+            }
+            else if (strcmp(currentKata.buffer,"SOUTH"))
+            {
+                moveBawah(&sim,&map);
+            }
+        }
+        
     }
     
     return 0;
