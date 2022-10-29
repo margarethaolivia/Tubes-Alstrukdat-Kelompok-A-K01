@@ -7,13 +7,13 @@ extern char CC;
 extern boolean EOP;
 
 void ignoreBlanks(){
-    while((CC==' '||CC=='\n')&&!EOP){
+    while((CC=='\n')&&!EOP){
         ADV();  //ignor bleng
     }
 }
 
 void salinKata(){
-    while(CC!=' '&&CC!='\n'&&!EOP){
+    while(CC!='\n'&&!EOP){
         currentKata.buffer[currentKata.length] = CC;
         currentKata.length++;       //salin char ke buffer
         ADV();
