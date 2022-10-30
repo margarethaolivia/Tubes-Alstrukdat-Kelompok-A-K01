@@ -15,7 +15,7 @@ int main()
     int len, i;
 
     printf("Masukkan nama makanan : ");
-    startKata("", false, ' ', '\n');
+    startKata("", false, '\0', '\n');
     createKata(&nama, currentKata.buffer);
 
     aksi = 'B';
