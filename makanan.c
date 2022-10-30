@@ -4,18 +4,10 @@
 #include "boolean.h"
 
 /* *** Konstruktor membentuk Makanan *** */
-void createMakanan(Makanan *m, int id, Kata nama[], int lenNama, time expired, char aksi, time delivTime)
+void createMakanan(Makanan *m, int id, Kata nama, time expired, char aksi, time delivTime)
 {
-    int i;
-
     Id(*m) = id;
-
-    for (i = 0; i < lenNama; i++)
-    {
-        Nama(*m, i) = nama[i];
-    }
-
-    LenNama(*m) = lenNama;
+    Nama(*m) = nama;
     Expired(*m) = expired;
     Aksi(*m) = aksi;
     DelivTime(*m) = delivTime;
@@ -32,7 +24,8 @@ void readMakanan(Makanan *m)
 // menuliskan makanan ke layar dengan format "nama - durasi kedaluwarsa - aksi yang diperlukan - delivery time"
 void printMakanan(Makanan m)
 {
-    printNama(m);
+    // printNama(m);
+    printf("%s ", Nama(m));
     printf("-");
     printTimeHJM(Expired(m));
     printf(" - ");
@@ -42,15 +35,14 @@ void printMakanan(Makanan m)
 }
 
 // mencetak nama makanan
-void printNama(Makanan m)
-{
-    int i, j;
-    for (i = 0; i < LenNama(m); i++)
-    {
-        printf(Nama(m, i).buffer);
-        printf(" ");
-    }
-}
+// void printNama(Makanan m)
+// {
+//     int i;
+//     for (i = 0; i < Nama(m).length; i++)
+//     {
+//         printf("%c", Nama(m).buffer[i]);
+//     }
+// }
 
 void printAksi(char c)
 {

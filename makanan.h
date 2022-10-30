@@ -8,17 +8,13 @@
 #include "time.h"
 #include "mesinkata.h"
 
-/*  Kamus Umum */
-#define CAPACITY 100
-
 typedef struct
 {
-    int id;              /* id makanan   */
-    Kata nama[CAPACITY]; /* nama makanan */
-    int lenNama;         /* jumlah kata nama makanan */
-    time expired;        /* waktu kadaluwarsa */
-    char aksi;           /* aksi */
-    time delivTime;      /* lama pengiriman */
+    int id;         /* id makanan   */
+    Kata nama;      /* nama makanan */
+    time expired;   /* waktu kadaluwarsa */
+    char aksi;      /* aksi */
+    time delivTime; /* lama pengiriman */
 } Makanan;
 
 typedef struct
@@ -31,8 +27,7 @@ typedef struct
 
 /* *** Notasi Akses: Selektor Makanan *** */
 #define Id(m) (m).id
-#define Nama(m, i) (m).nama[(i)]
-#define LenNama(m) (m).lenNama
+#define Nama(m) (m).nama
 #define Expired(m) (m).expired
 #define Aksi(m) (m).aksi
 #define DelivTime(m) (m).delivTime
@@ -50,7 +45,7 @@ void createListMakanan(listMakanan *l, int size);
 // terbentuk listMakanan l kosong dengan ukuran size
 
 /* *** Konstruktor membentuk Makanan *** */
-void createMakanan(Makanan *m, int id, Kata nama[], int lenNama, time expired, char aksi, time delivTime);
+void createMakanan(Makanan *m, int id, Kata nama, time expired, char aksi, time delivTime);
 // membentuk sebuah Makanan dari komponen-komponennya
 
 void addMakanan(Makanan *m, listMakanan *l);
