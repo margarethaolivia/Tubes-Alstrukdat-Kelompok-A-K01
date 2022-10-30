@@ -15,6 +15,9 @@ typedef struct
    int length;
 } Kata;
 
+void createKata(Kata* s,const char* string);
+//membuat kata atau string;
+
 /* State Mesin Word */
 extern Kata currentKata;
 extern char MARK;

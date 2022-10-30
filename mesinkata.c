@@ -9,6 +9,16 @@ extern boolean EOP;
 char MARK1;
 char MARK2;
 
+void createKata(Kata* s,const char* string){
+    int len = 0;
+    while(string[len]!='\0'){
+        s->buffer[len] = string[len];
+        len++;
+    }
+    s->buffer[len] = '\0';
+    s->length = len;
+}
+
 void ignoreBlanks(){
     while((CC==MARK1||CC==MARK2)&&!EOP){
         ADV();  //ignor bleng
