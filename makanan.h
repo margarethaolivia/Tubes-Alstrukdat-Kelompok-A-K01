@@ -17,6 +17,13 @@ typedef struct
     time delivTime; /* lama pengiriman */
 } Makanan;
 
+typedef struct {
+    Makanan* content;        //Nanti pake listdinamis, masih bingung
+    int capacity;
+    int nEff;
+    int lastIdx;
+} listMakanan;
+
 /* *** Notasi Akses: Selektor Makanan *** */
 #define Id(m) (m).id
 #define Nama(m) (m).nama
@@ -24,11 +31,30 @@ typedef struct
 #define Aksi(m) (m).aksi
 #define DelivTime(m) (m).delivTime
 
+#define LASTIDX(l) (l).lastIdx
+#define MAKANAN(l, i) (l).content[i]
+
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
+
+void createListMakanan(listMakanan *l, int size);
+//Buat listMakanan kosong, sizenya baca dari file, lastIdx awal IDX_UNDEF
+    //I.S:
+    //sembarang, size dari baca file
+    //F.S:
+    //terbentuk listMakanan l kosong dengan ukuran size
 
 /* *** Konstruktor membentuk Makanan *** */
 void createMakanan(Makanan *m, int id, Kata nama, time expired, char aksi, time delivTime);
 // membentuk sebuah Makanan dari komponen-komponennya
+
+
+void addMakanan(Makanan *m, listMakanan *l);
+    //Masukin makanan ke listMakanan
+    //I.S:
+    //Makanan m dan listMakanan l terdefinisi
+    //F.S:
+    //m dimasukan ke l
+
 
 /* *** I/O Makanan *** */
 
