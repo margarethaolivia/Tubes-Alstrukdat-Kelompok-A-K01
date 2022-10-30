@@ -10,21 +10,30 @@ int main()
 {
     Makanan m;
     time exp, deliv;
-    Kata nama;
+    Kata nama[CAPACITY];
     char aksi;
+    int len, i;
 
-    // const char *PATH = "tes.txt";
-    // startKata(PATH, true);
+    startKata("", false, ' ', '\n');
 
-    startKata("", false);
-    nama = currentKata;
-    advKata();
+    len = 0;
+    i = 0;
+    while (CC != '\n')
+    {
+        nama[i] = currentKata;
+        i += 1;
+        len += 1;
+        advKata();
+    }
+    nama[i] = currentKata;
+    len += 1;
+
     aksi = 'B';
 
     createTime(&exp, 0, 0, 5);
     createTime(&deliv, 0, 0, 12);
 
-    createMakanan(&m, 0, nama, exp, aksi, deliv);
+    createMakanan(&m, 0, nama, len, exp, aksi, deliv);
     printMakanan(m);
     return 0;
 }
