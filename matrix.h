@@ -34,7 +34,7 @@ boolean isMatrixIdxValid(int i, int j);
 IdxType getLastIdxRow(Matrix m);
 
 IdxType getLastIdxCol(Matrix m);
-boolean isIdxEff(Matrix m, IdxType i, IdxType j);
+boolean isIdxEffMatrix(Matrix m, IdxType i, IdxType j);
 
 
 void copyMatrix(Matrix mIn, Matrix *mOut);
