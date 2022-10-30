@@ -3,8 +3,8 @@
 /* Penempatan elemen selalu rapat kiri */
 /* Banyaknya elemen didefinisikan secara implisit, memori list statik */
 
-#ifndef LISTSTATIK_H
-#define LISTSTATIK_H
+#ifndef LISTMAKANAN_H
+#define LISTMAKANAN_H
 
 #include "boolean.h"
 
