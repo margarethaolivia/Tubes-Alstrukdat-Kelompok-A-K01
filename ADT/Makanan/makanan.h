@@ -4,7 +4,7 @@
 #ifndef MAKANAN_H
 #define MAKANAN_H
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "time.h"
 #include "mesinkata.h"
 

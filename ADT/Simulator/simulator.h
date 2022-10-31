@@ -1,7 +1,7 @@
 #ifndef SIMULATOR_H
 #define SIMULATOR_H
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "point.h"
 #include "matrix.h"
 #include "mesinkata.h"

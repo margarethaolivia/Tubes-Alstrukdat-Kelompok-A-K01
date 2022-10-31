@@ -4,7 +4,7 @@
 #ifndef __MESIN_KAR_H_
 #define __MESIN_KAR_H_
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 
 /* State Mesin */
 extern char CC;

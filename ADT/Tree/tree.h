@@ -2,7 +2,7 @@
 #define TREE_H
 
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "makanan.h"
 
 typedef struct node *tree;

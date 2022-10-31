@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 
 boolean strcmp(const char* s1, const char* s2);
 //komparasi string 1 dengan string lainnya, bisa untuk komparasi buffer kata dengan

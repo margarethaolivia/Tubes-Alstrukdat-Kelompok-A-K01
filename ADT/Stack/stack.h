@@ -1,7 +1,7 @@
 #ifndef stackt_H
 #define stackt_H
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "simulator.h"
 
 #define Nil -1

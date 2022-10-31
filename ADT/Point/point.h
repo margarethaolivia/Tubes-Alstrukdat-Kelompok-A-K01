@@ -1,7 +1,7 @@
 #ifndef POINT_H
 #define POINT_H
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 
 typedef struct
 {
