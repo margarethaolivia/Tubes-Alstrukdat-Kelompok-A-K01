@@ -2,6 +2,7 @@
 #include "utility.h"
 #include "prioqueue.h"
 #include "liststatik.h"
+#include "stack.h"
 
 void INVERTORY(PQueue daftarInvertory)
 {
@@ -123,6 +124,36 @@ void catalog(listMakanan lm)
         printf("%d. ", i + 1);
         printMakanan(MAKANAN(lm, i));
         printf("\n");
+    }
+}
+
+boolean undo(Stack *stackSim, Stack *stackSimState)
+{
+    simulator x;
+
+    if (IsEmptyStack(*stackSim))
+    {
+        printf("Undo gagal dilakukan (sudah berada di kondisi awal)");
+    }
+    else
+    {
+        Pop(stackSim, &x);
+        Push(stackSimState, x);
+    }
+}
+
+boolean redo(Stack *stackSim, Stack *stackSimState)
+{
+    simulator x;
+
+    if (IsEmptyStack(*stackSimState))
+    {
+        printf("Redo gagal dilakukan (sudah berada di kondisi akhir)");
+    }
+    else
+    {
+        Pop(stackSimState, &x);
+        Push(stackSim, x);
     }
 }
 
