@@ -2,10 +2,10 @@
 #define SIMULATOR_H
 
 #include "../Boolean/boolean.h"
-#include "point.h"
-#include "matrix.h"
-#include "mesinkata.h"
-#include "prioqueue.h"
+#include "../Point/point.h"
+#include "../Matrix/matrix.h"
+#include "../Mesin_Kata/mesinkata.h"
+#include "../PrioQueue/prioqueue.h"
 
 typedef struct 
 {

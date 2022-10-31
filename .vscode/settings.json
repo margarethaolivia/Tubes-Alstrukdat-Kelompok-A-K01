@@ -5,6 +5,8 @@
         "*.js": "javascriptreact",
         "makanan.h": "c",
         "stack.h": "c",
-        "boolean.h": "c"
+        "boolean.h": "c",
+        "time.h": "c",
+        "mesinkata.h": "c"
     }
 }

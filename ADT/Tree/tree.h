@@ -3,7 +3,7 @@
 
 
 #include "../Boolean/boolean.h"
-#include "makanan.h"
+#include "../Makanan/makanan.h"
 
 typedef struct node *tree;
 

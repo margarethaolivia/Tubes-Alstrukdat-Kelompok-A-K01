@@ -2,7 +2,7 @@
 #define stackt_H
 
 #include "../Boolean/boolean.h"
-#include "simulator.h"
+#include "../Simulator/simulator.h"
 
 #define Nil -1
 #define MaxEl 100
