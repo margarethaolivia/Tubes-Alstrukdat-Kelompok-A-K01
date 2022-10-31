@@ -64,5 +64,6 @@ void CopyWord2();
           currentChar = BLANK atau currentChar = MARK;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
-
+void ADVWORD1();
+void ADVWORD2();
 #endif
