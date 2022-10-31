@@ -7,6 +7,7 @@
 #include "../Boolean/boolean.h"
 #include "../Time/time.h"
 #include "../Mesin_Kata/mesinkata.h"
+#include "../PrioQueue/prioqueue.h"
 
 typedef struct
 {
@@ -17,13 +18,15 @@ typedef struct
     time delivTime; /* lama pengiriman */
 } Makanan;
 
+#define IDX_UNDEF -1
+
 typedef struct
 {
-    Makanan *content; // Nanti pake listdinamis, masih bingung
+    Makanan *content;        
     int capacity;
     int nEff;
     int lastIdx;
-} listMakanan;
+} listMakanan
 
 /* *** Notasi Akses: Selektor Makanan *** */
 #define Id(m) (m).id
@@ -34,26 +37,14 @@ typedef struct
 
 #define LASTIDX(l) (l).lastIdx
 #define MAKANAN(l, i) (l).content[i]
+#define CAPACITY(l) (l).capacity
+#define CONTENT(l) (l).content
 
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
-
-void createListMakanan(listMakanan *l, int size);
-// Buat listMakanan kosong, sizenya baca dari file, lastIdx awal IDX_UNDEF
-// I.S:
-// sembarang, size dari baca file
-// F.S:
-// terbentuk listMakanan l kosong dengan ukuran size
 
 /* *** Konstruktor membentuk Makanan *** */
 void createMakanan(Makanan *m, int id, Kata nama, time expired, char aksi, time delivTime);
 // membentuk sebuah Makanan dari komponen-komponennya
-
-void addMakanan(Makanan *m, listMakanan *l);
-// Masukin makanan ke listMakanan
-// I.S:
-// Makanan m dan listMakanan l terdefinisi
-// F.S:
-// m dimasukan ke l
 
 /* *** I/O Makanan *** */
 

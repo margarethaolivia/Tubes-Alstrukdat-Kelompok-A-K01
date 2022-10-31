@@ -8,5 +8,6 @@
         "boolean.h": "c",
         "time.h": "c",
         "mesinkata.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

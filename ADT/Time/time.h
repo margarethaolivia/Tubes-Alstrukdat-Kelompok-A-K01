@@ -2,6 +2,7 @@
 #define TIME_H
 
 #include "../Boolean/boolean.h"
+#include "../Mesin_Kata/mesinkata.h"
 
 typedef struct{
     int DD;
@@ -21,4 +22,5 @@ void printTime(time t); // Mencetak waktu pada layar
 boolean isTimeValid(time t); // Mengecek apakah waktu tersebut bernilai valid atau tidak
 int timeToMin(time t); // Mengubah time menjadi menit 
 time minToTime(int min); // Mengubah menit menjadi time
+void BacaTIME (time * T);
 #endif
