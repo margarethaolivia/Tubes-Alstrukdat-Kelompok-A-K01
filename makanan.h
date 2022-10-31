@@ -17,8 +17,9 @@ typedef struct
     time delivTime; /* lama pengiriman */
 } Makanan;
 
-typedef struct {
-    Makanan* content;        //Nanti pake listdinamis, masih bingung
+typedef struct
+{
+    Makanan *content; // Nanti pake listdinamis, masih bingung
     int capacity;
     int nEff;
     int lastIdx;
@@ -37,24 +38,22 @@ typedef struct {
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 
 void createListMakanan(listMakanan *l, int size);
-//Buat listMakanan kosong, sizenya baca dari file, lastIdx awal IDX_UNDEF
-    //I.S:
-    //sembarang, size dari baca file
-    //F.S:
-    //terbentuk listMakanan l kosong dengan ukuran size
+// Buat listMakanan kosong, sizenya baca dari file, lastIdx awal IDX_UNDEF
+// I.S:
+// sembarang, size dari baca file
+// F.S:
+// terbentuk listMakanan l kosong dengan ukuran size
 
 /* *** Konstruktor membentuk Makanan *** */
 void createMakanan(Makanan *m, int id, Kata nama, time expired, char aksi, time delivTime);
 // membentuk sebuah Makanan dari komponen-komponennya
 
-
 void addMakanan(Makanan *m, listMakanan *l);
-    //Masukin makanan ke listMakanan
-    //I.S:
-    //Makanan m dan listMakanan l terdefinisi
-    //F.S:
-    //m dimasukan ke l
-
+// Masukin makanan ke listMakanan
+// I.S:
+// Makanan m dan listMakanan l terdefinisi
+// F.S:
+// m dimasukan ke l
 
 /* *** I/O Makanan *** */
 
@@ -63,6 +62,12 @@ void readMakanan(Makanan *m);
 
 void printMakanan(Makanan m);
 // menuliskan makanan ke layar dengan format "nama - durasi kedaluwarsa - aksi yang diperlukan - delivery time"
+
+void printNama(Makanan m);
+// mencetak nama makanan
+
+void printAksi(char c);
+// mencetak aksi
 
 void printTimeHJM(time t);
 // mencetak waktu dengan format .. hari .. jam .. menit

@@ -39,34 +39,26 @@ int main()
         printf("\n");
         displayMatrix(map);
         printf("Enter command: \n");
-        startKata("",false,' ','\n');
-        printf("%s\n",currentKata.buffer);
+        startKata("",false,'\0','\n');
+        // printf("%s\n",currentKata.buffer);
         // printf("a\n");
         if (strcmp(currentKata.buffer,"EXIT"))
         {
             isRun=false;
             printf("END");
         }
-        else if (strcmp(currentKata.buffer,"MOVE"))
+        else if (strcmp(currentKata.buffer,"MOVE WEST"))
         {
-            advKata();
-            printf("%s\n",currentKata.buffer);
-            if (strcmp(currentKata.buffer,"EAST"))
-            {
-                moveKiri(&sim,&map);
-            }
-            else if (strcmp(currentKata.buffer,"WEST"))
-            {
-                moveKanan(&sim,&map);
-            }
-            else if (strcmp(currentKata.buffer,"NORTH"))
-            {
-                moveAtas(&sim,&map);
-            }
-            else if (strcmp(currentKata.buffer,"SOUTH"))
-            {
-                moveBawah(&sim,&map);
-            }
+            moveKiri(&sim,&map);
+        }
+        else if(strcmp(currentKata.buffer,"MOVE EAST")){
+            moveKanan(&sim,&map);
+        }
+        else if(strcmp(currentKata.buffer,"MOVE NORTH")){
+            moveAtas(&sim,&map);
+        }
+        else if(strcmp(currentKata.buffer,"MOVE SOUTH")){
+            moveBawah(&sim,&map);
         }
         
     }

@@ -12,19 +12,19 @@ int main()
     time exp, deliv;
     Kata nama;
     char aksi;
+    int len, i;
 
-    // const char *PATH = "tes.txt";
-    // startKata(PATH, true);
+    printf("Masukkan nama makanan : ");
+    startKata("", false, '\0', '\n');
+    createKata(&nama, currentKata.buffer);
 
-    startKata("", false);
-    nama = currentKata;
-    advKata();
     aksi = 'B';
 
     createTime(&exp, 0, 0, 5);
     createTime(&deliv, 0, 0, 12);
 
     createMakanan(&m, 0, nama, exp, aksi, deliv);
+
     printMakanan(m);
     return 0;
 }

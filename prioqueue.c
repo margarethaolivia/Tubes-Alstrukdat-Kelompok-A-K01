@@ -109,6 +109,8 @@ void destroyPQueue(PQueue* p){
 }
 
 int lengthPQueue(PQueue p){
+    if(IdxHead(p)==IDX_UNDEFF){return 0;}
+
     if(IdxHead(p)<=IdxTail(p)){
         return IdxTail(p)-IdxHead(p)+1;
     } else {
