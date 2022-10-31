@@ -95,6 +95,11 @@ boolean fx(ElTypePQueue x, Kata a){
     return strcmp(Nama(x).buffer,a.buffer);
 }
 
+void wait(time *current_time, int jam, int menit){
+    int n = timeToMin(*current_time) + jam*60 + menit;
+    *current_time = minToTime(n);
+}
+
 int main(){
     PQueue daftarInvertory;
     createPQueue(&daftarInvertory,7);
