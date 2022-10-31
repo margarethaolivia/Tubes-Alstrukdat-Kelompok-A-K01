@@ -23,17 +23,10 @@ void pesan_(PQueue* bufferPesanan, Makanan makanan){
 
 int updateInvertory_(PQueue* bufferInvertory, PQueue* bufferNotifikasi){
     int jumlahKadaluwarsa = 0;
-    int i;
-    for(i=0;i<lengthPQueue(*bufferInvertory);i++){
-        ElTypePQueue* currentItem;
-        currentItem = getElmtPQueueReff(bufferInvertory,i);
-
-        Expired(*currentItem) = minToTime(timeToMin(Expired(*currentItem)) - 1);
-    }
 
     ElTypePQueue makananKadaluwarsa;
 
-    while(timeToMin(Expired(Head(*bufferInvertory)))==0&&lengthPQueue(*bufferInvertory)>0){
+    while((timeToMin(Expired(Head(*bufferInvertory)))==0) && lengthPQueue(*bufferInvertory)>0){
         dequeue(bufferInvertory,&makananKadaluwarsa);
         enqueue(bufferNotifikasi,makananKadaluwarsa);
         jumlahKadaluwarsa++;
@@ -44,17 +37,10 @@ int updateInvertory_(PQueue* bufferInvertory, PQueue* bufferNotifikasi){
 
 int updateDelivery_(PQueue* bufferInvertory, PQueue* bufferDelivery, PQueue* bufferNotifikasi){
     int jumlahDelivered = 0;
-    int i;
-    for(i=0;i<lengthPQueue(*bufferDelivery);i++){
-        ElTypePQueue* currentItem;
-        currentItem = getElmtPQueueReff(bufferDelivery,i);
-
-        DelivTime(*currentItem) = minToTime(timeToMin(DelivTime(*currentItem)) - 1);
-    }
 
     ElTypePQueue makananDelivered;
 
-    while(timeToMin(DelivTime(Head(*bufferDelivery)))==0&&lengthPQueue(*bufferDelivery)>0){
+    while(timeToMin(DelivTime(Head(*bufferDelivery)))==0 && lengthPQueue(*bufferDelivery)>0){
         dequeue(bufferDelivery,&makananDelivered);
         enqueue(bufferInvertory,makananDelivered);
         enqueue(bufferNotifikasi,makananDelivered);
@@ -67,24 +53,39 @@ int updateDelivery_(PQueue* bufferInvertory, PQueue* bufferDelivery, PQueue* buf
 void printNotifikasi_(PQueue* bufferNotifikasi, int jumlahKadaluwarsa, int jumlahDelivered){
     ElTypePQueue bufferMakanan;
     int i;
-    for(i=0;i<jumlahDelivered;i++){
-        dequeue(bufferNotifikasi,&bufferMakanan);
-        printf("    %d. ",i+1);
-        printf(Nama(bufferMakanan).buffer);
-        printf(" sudah diterima oleh BNMO!\n");
-    }
-    for(;i<jumlahDelivered+jumlahKadaluwarsa;i++){
+    for(i=0;i<jumlahKadaluwarsa;i++){
         dequeue(bufferNotifikasi,&bufferMakanan);
         printf("    %d. ",i+1);
         printf(Nama(bufferMakanan).buffer);
         printf(" Kedaluwarsa.. : (\n");
     }
+    for(i=jumlahKadaluwarsa;i<jumlahDelivered+jumlahKadaluwarsa;i++){
+        dequeue(bufferNotifikasi,&bufferMakanan);
+        printf("    %d. ",i+1);
+        printf(Nama(bufferMakanan).buffer);
+        printf(" sudah diterima oleh BNMO!\n");
+    }
 }
 
 void UPDATE_INVERTORY_DELIVERY(PQueue* bufferInvertory, PQueue* bufferDelivery, PQueue* bufferNotifikasi){
+    int i;
+    for(i=0;i<lengthPQueue(*bufferDelivery);i++){
+        ElTypePQueue* currentItem;
+        currentItem = getElmtPQueueReff(bufferDelivery,i);
 
-    int jumlahkadaluwarsa = updateInvertory_(bufferInvertory,bufferNotifikasi);
+        DelivTime(*currentItem) = minToTime(timeToMin(DelivTime(*currentItem)) - 1);
+    }
+
+    for(i=0;i<lengthPQueue(*bufferInvertory);i++){
+        ElTypePQueue* currentItem;
+        currentItem = getElmtPQueueReff(bufferInvertory,i);
+
+        Expired(*currentItem) = minToTime(timeToMin(Expired(*currentItem)) - 1);
+    }
+
+
     int jumlahDelivered = updateDelivery_(bufferInvertory,bufferDelivery,bufferNotifikasi);
+    int jumlahkadaluwarsa = updateInvertory_(bufferInvertory,bufferNotifikasi);
     
     printNotifikasi_(bufferNotifikasi,jumlahkadaluwarsa,jumlahDelivered);
 
@@ -128,6 +129,7 @@ int main(){
 
     enqueue(&daftarDeliv,man);
     enqueue(&daftarDeliv,man);
+    enqueue(&daftarDeliv,man1);
 
     UPDATE_INVERTORY_DELIVERY(&daftarInvertory,&daftarDeliv,&daftarNotif);
 
