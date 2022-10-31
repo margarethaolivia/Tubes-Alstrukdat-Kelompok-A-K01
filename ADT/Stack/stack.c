@@ -1,5 +1,5 @@
 #include "stack.h"
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */

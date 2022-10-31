@@ -1,6 +1,6 @@
 #include "simulator.h"
 #include <stdio.h>
-#include "mesinkata.h"
+#include "../Mesin_Kata/mesinkata.h"
 
 void createSim(simulator *sim){
     (sim)->nama.buffer[0]='\0';
