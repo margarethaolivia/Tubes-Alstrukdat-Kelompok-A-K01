@@ -2,7 +2,7 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 
 #define ROW_CAP 100
 #define COL_CAP 100
