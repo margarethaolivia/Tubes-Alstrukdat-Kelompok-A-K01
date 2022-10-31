@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "time.h"
+#include "../Time/time.h"
 #include "makanan.h"
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 
 /* *** Konstruktor membentuk Makanan *** */
 void createMakanan(Makanan *m, int id, Kata nama, time expired, char aksi, time delivTime)

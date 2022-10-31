@@ -5,7 +5,7 @@
 #define MAKANAN_H
 
 #include "../Boolean/boolean.h"
-#include "time.h"
+#include "../Time/time.h"
 #include "mesinkata.h"
 
 typedef struct
