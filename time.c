@@ -9,10 +9,11 @@ void createTime(time *t, int day, int hour, int minute){
 }
 
 void advTime(time *t, int day, int hour, int minute){
-    createTime(t,t->DD+day,t->HH+hour,t->MM+minute);
+    int n = timeToMin(*t) + day*1440 + hour*60 + minute;
+    *t = minToTime(n);
 }
 
-void nextMin(time *t){
+void nextMin(time *t){  
     advTime(t,t->DD,t->HH,1);
 }
 void prevMin(time *t){

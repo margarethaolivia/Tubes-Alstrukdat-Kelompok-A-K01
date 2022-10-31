@@ -14,7 +14,7 @@ typedef struct{
 #define minute(time) time.MM
 
 void createTime(time *t, int day, int hour, int minute); // Menginisiasi waktu
-void advTime(time *t, int day, int hour, int minute); // Mengubah value dari waktu
+void advTime(time *t, int day, int hour, int minute); // Mengubah value dari waktu, kasih tanda (-) di day, hour, sama minute kalo mau ngurangin
 void nextMin(time *t); // Menjalankan waktu sebanyak 1 menit
 void prevMin(time *t); // Mengurangi waktu sebanyak 1 menit
 void printTime(time t); // Mencetak waktu pada layar
