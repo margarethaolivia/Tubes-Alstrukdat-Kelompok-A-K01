@@ -2,7 +2,7 @@
 #ifndef PQUEUE_H
 #define PQUEUE_H
 
-#include "makanan.h"
+#include "../Makanan/makanan.h"
 #include "../Boolean/boolean.h"
 #include <stdio.h>
 #include <stdlib.h>

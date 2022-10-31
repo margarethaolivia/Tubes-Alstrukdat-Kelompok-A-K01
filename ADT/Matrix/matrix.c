@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "matrix.h"
 // #include "mesinkarakter.h"
-#include "mesinkata.h"
+#include "../Mesin_Kata/mesinkata.h"
 
 
 void createMatrix(int nRows, int nCols, Matrix *m)

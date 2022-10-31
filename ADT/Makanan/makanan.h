@@ -6,7 +6,7 @@
 
 #include "../Boolean/boolean.h"
 #include "../Time/time.h"
-#include "mesinkata.h"
+#include "../Mesin_Kata/mesinkata.h"
 
 typedef struct
 {
