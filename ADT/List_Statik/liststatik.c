@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "liststatik.h"
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create List kosong  */
