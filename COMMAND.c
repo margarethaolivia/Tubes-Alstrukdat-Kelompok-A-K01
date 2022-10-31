@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "utility.h"
-#include "prioqueue.h"
-#include "liststatik.h"
-#include "stack.h"
+#include "ADT/Utility/utility.h"
+#include "ADT/PrioQueue/prioqueue.h"
+#include "ADT/List_Statik/liststatik.h"
+#include "ADT/Stack/stack.h"
 
 void INVERTORY(PQueue daftarInvertory)
 {
