@@ -18,15 +18,6 @@ typedef struct
     time delivTime; /* lama pengiriman */
 } Makanan;
 
-#define IDX_UNDEF -1
-
-typedef struct
-{
-    Makanan *content;        
-    int capacity;
-    int nEff;
-    int lastIdx;
-} listMakanan
 
 /* *** Notasi Akses: Selektor Makanan *** */
 #define Id(m) (m).id
@@ -34,11 +25,6 @@ typedef struct
 #define Expired(m) (m).expired
 #define Aksi(m) (m).aksi
 #define DelivTime(m) (m).delivTime
-
-#define LASTIDX(l) (l).lastIdx
-#define MAKANAN(l, i) (l).content[i]
-#define CAPACITY(l) (l).capacity
-#define CONTENT(l) (l).content
 
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 

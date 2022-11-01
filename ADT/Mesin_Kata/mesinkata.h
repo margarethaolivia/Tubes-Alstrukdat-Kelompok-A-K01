@@ -8,7 +8,6 @@
 #include "../Mesin_Karakter/mesinkarakter.h"
 
 #define NMax 50
-#define BLANK ' '
 
 typedef struct
 {
@@ -22,7 +21,6 @@ void createKata(Kata* s,const char* string);
 /* State Mesin Word */
 extern Kata currentKata;
 extern char MARK;
-boolean EndWord;
 
 void ignoreBlanks();
 /* Mengabaikan satu atau beberapa BLANK
@@ -52,18 +50,4 @@ void salinKata();
 void shutdownKata();
    //berhenti membaca IO terminal
 
-void WordToInt(int *x);
-
-void ADVNEWLINE1();
-void ADVNEWLINE2();
-void CopyWord1();
-void CopyWord2();
-/* Mengakuisisi kata, menyimpan dalam currentWord
-   I.S. : currentChar adalah karakter pertama dari kata
-   F.S. : currentWord berisi kata yang sudah diakuisisi;
-          currentChar = BLANK atau currentChar = MARK;
-          currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
-          Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
-void ADVWORD1();
-void ADVWORD2();
 #endif

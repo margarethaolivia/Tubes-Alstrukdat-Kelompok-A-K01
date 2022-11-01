@@ -34,14 +34,3 @@ time minToTime(int min){
     createTime(&T,min/24/60,min/60%24,min%60);
     return T;
 }
-
-void BacaTIME (TIME * T) {
-    int D, H, M;
-    WordToInt(&D);
-    ADVWORD1();
-    WordToInt(&H);
-    ADVWORD1();
-    WordToInt(&M);
-    // scanf("%d %d %d", &D, &H, &M);
-    createTime(T, D, H, M);
-}

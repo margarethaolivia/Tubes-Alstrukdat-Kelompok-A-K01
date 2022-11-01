@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "../makanan.h"
-#include "../mesinkata.h"
-#include "../mesinkarakter.h"
+#include "../ADT/Makanan/makanan.h"
+#include "../ADT/Mesin_Kata/mesinkata.h"
+#include "../ADT/Mesin_Karakter/mesinkarakter.h"
 
 extern boolean EOP;
 extern Kata currentKata;
