@@ -27,7 +27,7 @@ typedef struct
 
 typedef struct
 {
-    Makanan contents[CAPACITY];
+    Makanan contents[CAPACITYSTATIC];
 } listMakanan; 
 
 
