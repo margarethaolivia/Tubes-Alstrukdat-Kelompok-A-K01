@@ -4,6 +4,7 @@
 #include "../Boolean/boolean.h"
 #include "../Mesin_Kata/mesinkata.h"
 #include "../Makanan/makanan.h"
+#include "../Time/time.h"
 
 #define IDX_UNDEF -1
 #define CAPACITYSTATIC 100
