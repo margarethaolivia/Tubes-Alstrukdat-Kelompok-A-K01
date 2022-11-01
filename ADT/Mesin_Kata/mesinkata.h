@@ -33,7 +33,7 @@ void startKata(const char* PATH,boolean rFile,char endOfKataMark1,char endOfKata
    //isi empty string saja jika hanya ingin MARK = \n, atau isi salah satu dengan MARK
    //yang diingingkan dan empty string untuk yg lainnya
 
-void advKata();
+void advKata(char endOfKataMark1,char endOfKataMark2);
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
    F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
           currentChar adalah karakter pertama dari kata berikutnya, 

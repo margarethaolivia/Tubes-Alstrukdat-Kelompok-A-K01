@@ -196,7 +196,7 @@ void readMatrixFile(Matrix *m, char* path){
         k++;
     }
     
-    advKata();
+    advKata(' ','\n');
     k=0;
     int col=0;
     while (k<currentKata.length)

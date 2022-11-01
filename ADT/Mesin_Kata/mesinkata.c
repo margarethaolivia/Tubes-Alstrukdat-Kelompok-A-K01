@@ -38,6 +38,14 @@ void startKata(const char* PATH,boolean rFile,char endOfKataMark1,char endOfKata
     currentKata.buffer[0]='\0';
     currentKata.length = -1;
 
+    START(PATH, rFile);     //mulai menyalin kata
+    advKata(endOfKataMark1,endOfKataMark2);
+}
+
+void advKata(char endOfKataMark1,char endOfKataMark2){
+    currentKata.buffer[0]='\0';
+    currentKata.length = 0;
+
     MARK1 = endOfKataMark1;
     MARK2 = endOfKataMark2;
 
@@ -47,13 +55,6 @@ void startKata(const char* PATH,boolean rFile,char endOfKataMark1,char endOfKata
         else if(endOfKataMark2=='\0'){MARK2 = MARK1;}
     }
 
-    START(PATH, rFile);     //mulai menyalin kata
-    advKata();
-}
-
-void advKata(){
-    currentKata.buffer[0]='\0';
-    currentKata.length = 0;
     if(!EOP){
         ignoreBlanks();     //adv kata
         salinKata();
@@ -62,6 +63,6 @@ void advKata(){
 
 void shutdownKata(){
     QUIT();
-    advKata();
+    advKata("","");
 }
 
