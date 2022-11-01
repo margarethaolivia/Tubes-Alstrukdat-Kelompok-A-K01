@@ -7,7 +7,6 @@
 #include "../Boolean/boolean.h"
 #include "../Time/time.h"
 #include "../Mesin_Kata/mesinkata.h"
-#include "../PrioQueue/prioqueue.h"
 
 typedef struct
 {

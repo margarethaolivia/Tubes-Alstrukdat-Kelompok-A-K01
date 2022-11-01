@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "mesinkata.h"
-#include "utility.h"
-#include "simulator.h"
-#include "matrix.h"
-#include "point.h"
+#include "ADT/Mesin_Kata/mesinkata.h"
+#include "ADT/Utility/utility.h"
+#include "ADT/Simulator/simulator.h"
+#include "ADT/Matrix/matrix.h"
+#include "ADT/Point/point.h"
 
 
 int main()
@@ -22,7 +22,7 @@ int main()
     if (strcmp(currentKata.buffer,"START"))
     {
         isRun=true;
-        readMatrixFile(&map,"map.txt");
+        readMatrixFile(&map,"Config/map.txt");
         map=matrixtoMap(map);
         createSim(&sim);
         initiatePoint(map,&sim);
