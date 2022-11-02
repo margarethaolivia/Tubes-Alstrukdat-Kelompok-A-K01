@@ -4,11 +4,16 @@
 int main(){
     Tree t;
     createTree(&t);
-    assignMother(&t,3);
+    assignMotherEve(&t,3);
     assignChildTo(&t,3,createChild(4));
     assignChildTo(&t,4,createChild(6));
     assignChildTo(&t,3,createChild(7));
-    t = motherAddress(&t,8);
-    if(t == NULL){printf("o");}
     printf("%d",Mother(t));
+    Tree p = motherAddress(&t,4);
+    destroyTree(&t);
+    int i;
+    // for(i=0;i<ChildCount(t);i++){
+    //     printf("%d",getNthChildOf(t,3,i));
+    // }
+    if(p==NULL){printf("p");}
 }

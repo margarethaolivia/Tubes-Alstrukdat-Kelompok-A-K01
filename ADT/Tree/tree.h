@@ -26,11 +26,11 @@ void destroyTree(Tree* t);
 
 Tree createChild(ElTypeTree value);
 
-void assignMother(Tree* t, ElTypeTree mother);
+void assignMotherEve(Tree* t, ElTypeTree mother);
 
 Tree motherAddress(Tree* t, ElTypeTree mother);
 
-int childrenAmountOf(Tree t, ElTypeTree mother);
+int amountOfChildren(Tree t, ElTypeTree mother);
 ElTypeTree getNthChildOf(Tree t,ElTypeTree mother, int idx);
 
 void assignChildTo(Tree* t, ElTypeTree mother, Tree child);

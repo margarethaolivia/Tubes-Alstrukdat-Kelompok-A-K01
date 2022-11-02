@@ -14,15 +14,20 @@ Tree createChild(ElTypeTree value){
 Tree motherAddress(Tree* t, ElTypeTree mother){
     Tree result;
     result = NULL;
-    if(Mother(*t) == mother){
-        return *t;
-    } else {
-        Tree tempt;
-        tempt = *t;
-        int i = 0;
-        while(i<ChildCount(tempt)&&result==NULL){
-            result = motherAddress(&(ChildBase(tempt))[i],mother);
-            i++;
+    if(*t!=NULL){
+        if(Mother(*t) == mother){
+            return *t;
+        } else {
+            
+            Tree tempt;
+            tempt = *t;
+            if(ChildBase(tempt)!=NULL){
+                int i = 0;
+                while(i<ChildCount(tempt)&&result==NULL){
+                    result = motherAddress(&(ChildBase(tempt))[i],mother);
+                    i++;
+                }
+            }
         }
     }
     return result;
@@ -32,7 +37,7 @@ void createTree(Tree* t){
     *t = NULL;
 }
 
-void assignMother(Tree* t, ElTypeTree mother){
+void assignMotherEve(Tree* t, ElTypeTree mother){
     *t = createChild(mother);
 }
 
@@ -47,4 +52,35 @@ void assignChildTo(Tree* t, ElTypeTree mother, Tree child){
     }
     ChildBase(motherData)[ChildCount(motherData)] = child;
     ChildCount(motherData) = ChildCount(motherData) + 1;
+}
+
+int amountOfChildren(Tree t, ElTypeTree mother) {
+    Tree motherData;
+    motherData = motherAddress(&t,mother);
+    return ChildCount(motherData);
+}
+
+ElTypeTree getNthChildOf(Tree t,ElTypeTree mother, int idx){
+
+    Tree motherData;
+    motherData = motherAddress(&t,mother);
+
+    return Mother(ChildBase(motherData)[idx]);
+}
+
+void destroyTree(Tree* t){
+    if(*t!=NULL){
+        if(ChildBase(*t)==NULL){
+            free(*t);
+            return;
+        } 
+        int i = 0;
+        while(i<ChildCount(*t)){
+            destroyTree(&(ChildBase(*t)[i]));
+            i++;
+        }
+        free(ChildBase(*t));
+        free(*t);
+    }
+    *t = NULL;
 }
