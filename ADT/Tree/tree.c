@@ -84,3 +84,23 @@ void destroyTree(Tree* t){
     }
     *t = NULL;
 }
+
+void printTreeBody(Tree t){
+    if(t!=NULL){
+        int i;
+        for(i=0;i<ChildCount(t);i++){
+            printf("%d",Mother(ChildBase(t)[i]));
+            if(i==ChildCount(t)-1){
+                printf("\n");
+            }
+        }
+        for(i=0;i<ChildCount(t);i++){
+            printTreeBody(ChildBase(t)[i]);
+        }
+    }
+}
+
+void printTree(Tree t){
+    printf("%d\n",Mother(t));
+    printTreeBody(t);
+}

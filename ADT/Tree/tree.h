@@ -35,5 +35,7 @@ ElTypeTree getNthChildOf(Tree t,ElTypeTree mother, int idx);
 
 void assignChildTo(Tree* t, ElTypeTree mother, Tree child);
 
+void printTree(Tree t);
+
 
 #endif
