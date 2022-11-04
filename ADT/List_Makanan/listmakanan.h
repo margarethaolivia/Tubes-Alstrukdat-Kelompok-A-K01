@@ -10,14 +10,14 @@
 #define CAPACITYSTATIC 100
 #define MARKSTATIC -69
 
-typedef struct
-{
-    int id;         /* id makanan   */
-    Kata nama;      /* nama makanan */
-    time expired;   /* waktu kadaluwarsa */
-    char aksi;      /* aksi */
-    time delivTime; /* lama pengiriman */
-} Makanan;
+// typedef struct
+// {
+//     int id;         /* id makanan   */
+//     Kata nama;      /* nama makanan */
+//     time expired;   /* waktu kadaluwarsa */
+//     char aksi;      /* aksi */
+//     time delivTime; /* lama pengiriman */
+// } Makanan;
 
 /* *** Notasi Akses: Selektor Makanan *** */
 #define Id(m) (m).id

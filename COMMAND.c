@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include "ADT/Utility/utility.h"
 #include "ADT/PrioQueue/prioqueue.h"
-#include "ADT/List_Statik/liststatik.h"
+#include "ADT/Mesin_Kata/mesinkata.h"
 #include "ADT/Stack/stack.h"
+#include "ADT/Tree/tree.h"
+#include "ADT/List_Resep/listresep.h"
+#include "ADT/List_Makanan/listmakanan.h"
 
 void INVERTORY(PQueue daftarInvertory)
 {
@@ -114,18 +117,18 @@ void wait(time *current_time, int jam, int menit)
     *current_time = minToTime(n);
 }
 
-void catalog(listMakanan lm)
-{
-    int i;
-    printf("List Makanan\n");
-    printf("(nama - durasi kedaluwarsa - aksi yang diperlukan - delivery time)\n");
-    for (i = 0; i < lm.nEff; i++)
-    {
-        printf("%d. ", i + 1);
-        printMakanan(MAKANAN(lm, i));
-        printf("\n");
-    }
-}
+// void catalog(listMakanan lm)
+// {
+//     int i;
+//     printf("List Makanan\n");
+//     printf("(nama - durasi kedaluwarsa - aksi yang diperlukan - delivery time)\n");
+//     for (i = 0; i < lm.nEff; i++)
+//     {
+//         printf("%d. ", i + 1);
+//         printMakanan(MAKANAN(lm, i));
+//         printf("\n");
+//     }
+// }
 
 boolean undo(Stack *stackSim, Stack *stackSimState)
 {
@@ -157,47 +160,79 @@ boolean redo(Stack *stackSim, Stack *stackSimState)
     }
 }
 
+void READ_RESEP(const char* PATH, ListResep* l){
+    startKata(PATH,true,'\n',"");
+    int n = stoi(currentKata);
+    int i;
+    for(i=0;i<n;i++){
+        int id,nchild;
+        advKata(' ','\n');
+        id = stoi(currentKata);
+        advKata(' ','\n');
+        nchild = stoi(currentKata);
+        Tree t;
+        createTree(&t);
+        assignMotherEve(&t, id);
+        int j;
+        for(j=0;j<nchild;j++){
+            int idChild;
+            advKata(' ','\n');
+            idChild = stoi(currentKata);
+            assignChildTo(&t,id,createChild(idChild));
+        }
+        insertLastListResep(l,t);
+    }
+
+}
+
 int main()
 {
-    PQueue daftarInvertory;
-    createPQueue(&daftarInvertory, 7);
-    Makanan man;
-    time kadaluarsa;
-    createTime(&kadaluarsa, 0, 0, 1);
-    Kata nama;
-    createKata(&nama, "ASU GORENG");
-    createMakanan(&man, 1, nama, kadaluarsa, 'n', kadaluarsa);
+//     PQueue daftarInvertory;
+//     createPQueue(&daftarInvertory, 7);
+//     Makanan man;
+//     time kadaluarsa;
+//     createTime(&kadaluarsa, 0, 0, 1);
+//     Kata nama;
+//     createKata(&nama, "ASU GORENG");
+//     createMakanan(&man, 1, nama, kadaluarsa, 'n', kadaluarsa);
 
-    enqueue(&daftarInvertory, man);
+//     enqueue(&daftarInvertory, man);
 
-    Makanan man1;
-    time kadaluarsa1;
-    createTime(&kadaluarsa1, 0, 0, 2);
-    Kata nama1;
-    createKata(&nama1, "ASU REBUS");
-    createMakanan(&man1, 4, nama1, kadaluarsa1, 'f', kadaluarsa1);
+//     Makanan man1;
+//     time kadaluarsa1;
+//     createTime(&kadaluarsa1, 0, 0, 2);
+//     Kata nama1;
+//     createKata(&nama1, "ASU REBUS");
+//     createMakanan(&man1, 4, nama1, kadaluarsa1, 'f', kadaluarsa1);
 
-    enqueue(&daftarInvertory, man1);
-    enqueue(&daftarInvertory, man);
-    enqueue(&daftarInvertory, man1);
-    enqueue(&daftarInvertory, man1);
-    enqueue(&daftarInvertory, man);
+//     enqueue(&daftarInvertory, man1);
+//     enqueue(&daftarInvertory, man);
+//     enqueue(&daftarInvertory, man1);
+//     enqueue(&daftarInvertory, man1);
+//     enqueue(&daftarInvertory, man);
 
-    PQueue daftarNotif;
-    createPQueue(&daftarNotif, 7);
+//     PQueue daftarNotif;
+//     createPQueue(&daftarNotif, 7);
 
-    PQueue daftarDeliv;
-    createPQueue(&daftarDeliv, 7);
+//     PQueue daftarDeliv;
+//     createPQueue(&daftarDeliv, 7);
 
-    enqueue(&daftarDeliv, man);
-    enqueue(&daftarDeliv, man);
-    enqueue(&daftarDeliv, man1);
+//     enqueue(&daftarDeliv, man);
+//     enqueue(&daftarDeliv, man);
+//     enqueue(&daftarDeliv, man1);
 
-    UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
+//     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
 
-    INVERTORY(daftarInvertory);
+//     INVERTORY(daftarInvertory);
 
-    UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
+//     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
 
-    INVERTORY(daftarInvertory);
+//     INVERTORY(daftarInvertory);
+
+    ListResep l;
+    createListResep(&l);
+
+    READ_RESEP("tes.txt", &l);
+    printTree(getElmtListResep(l,2));
+    //printf("%d",lengthListResep(l));
 }
