@@ -117,18 +117,18 @@ void wait(time *current_time, int jam, int menit)
     *current_time = minToTime(n);
 }
 
-// void catalog(listMakanan lm)
-// {
-//     int i;
-//     printf("List Makanan\n");
-//     printf("(nama - durasi kedaluwarsa - aksi yang diperlukan - delivery time)\n");
-//     for (i = 0; i < lm.nEff; i++)
-//     {
-//         printf("%d. ", i + 1);
-//         printMakanan(MAKANAN(lm, i));
-//         printf("\n");
-//     }
-// }
+void catalog(listMakanan lm)
+{
+    int i;
+    printf("List Makanan\n");
+    printf("(nama - durasi kedaluwarsa - aksi yang diperlukan - delivery time)\n");
+    for (i = 0; i < lengthLlistMakanan(lm); i++)
+    {
+        printf("%d. ", i + 1);
+        printMakanan(MAKANAN(lm, i));
+        printf("\n");
+    }
+}
 
 boolean undo(Stack *stackSim, Stack *stackSimState)
 {
@@ -160,79 +160,109 @@ boolean redo(Stack *stackSim, Stack *stackSimState)
     }
 }
 
-void READ_RESEP(const char* PATH, ListResep* l){
-    startKata(PATH,true,'\n',"");
+void READ_RESEP(const char *PATH, ListResep *l)
+{
+    startKata(PATH, true, '\n', "");
     int n = stoi(currentKata);
     int i;
-    for(i=0;i<n;i++){
-        int id,nchild;
-        advKata(' ','\n');
+    for (i = 0; i < n; i++)
+    {
+        int id, nchild;
+        advKata(' ', '\n');
         id = stoi(currentKata);
-        advKata(' ','\n');
+        advKata(' ', '\n');
         nchild = stoi(currentKata);
         Tree t;
         createTree(&t);
         assignMotherEve(&t, id);
         int j;
-        for(j=0;j<nchild;j++){
+        for (j = 0; j < nchild; j++)
+        {
             int idChild;
-            advKata(' ','\n');
+            advKata(' ', '\n');
             idChild = stoi(currentKata);
-            assignChildTo(&t,id,createChild(idChild));
+            assignChildTo(&t, id, createChild(idChild));
         }
-        insertLastListResep(l,t);
+        insertLastListResep(l, t);
     }
-
 }
 
 int main()
 {
-//     PQueue daftarInvertory;
-//     createPQueue(&daftarInvertory, 7);
-//     Makanan man;
-//     time kadaluarsa;
-//     createTime(&kadaluarsa, 0, 0, 1);
-//     Kata nama;
-//     createKata(&nama, "ASU GORENG");
-//     createMakanan(&man, 1, nama, kadaluarsa, 'n', kadaluarsa);
 
-//     enqueue(&daftarInvertory, man);
+    // --- TESTING CATALOG ---
+    // Makanan m;
+    // time exp, deliv;
+    // Kata nama;
+    // char aksi;
+    // int len, i;
 
-//     Makanan man1;
-//     time kadaluarsa1;
-//     createTime(&kadaluarsa1, 0, 0, 2);
-//     Kata nama1;
-//     createKata(&nama1, "ASU REBUS");
-//     createMakanan(&man1, 4, nama1, kadaluarsa1, 'f', kadaluarsa1);
+    // listMakanan lm;
+    // createListMakanan(&lm);
 
-//     enqueue(&daftarInvertory, man1);
-//     enqueue(&daftarInvertory, man);
-//     enqueue(&daftarInvertory, man1);
-//     enqueue(&daftarInvertory, man1);
-//     enqueue(&daftarInvertory, man);
+    // createKata(&nama, "Ayam Goreng");
+    // aksi = 'F';
+    // createTime(&exp, 0, 0, 5);
+    // createTime(&deliv, 0, 0, 12);
+    // createMakanan(&m, 0, nama, exp, aksi, deliv);
+    // insertMakanan(&lm, m);
 
-//     PQueue daftarNotif;
-//     createPQueue(&daftarNotif, 7);
+    // createKata(&nama, "Bawang");
+    // aksi = 'C';
+    // createTime(&exp, 0, 0, 7);
+    // createTime(&deliv, 0, 0, 3);
+    // createMakanan(&m, 1, nama, exp, aksi, deliv);
+    // insertMakanan(&lm, m);
 
-//     PQueue daftarDeliv;
-//     createPQueue(&daftarDeliv, 7);
+    // catalog(lm);
+    // --- END TESTING CATALOG ---
 
-//     enqueue(&daftarDeliv, man);
-//     enqueue(&daftarDeliv, man);
-//     enqueue(&daftarDeliv, man1);
+    //     PQueue daftarInvertory;
+    //     createPQueue(&daftarInvertory, 7);
+    //     Makanan man;
+    //     time kadaluarsa;
+    //     createTime(&kadaluarsa, 0, 0, 1);
+    //     Kata nama;
+    //     createKata(&nama, "ASU GORENG");
+    //     createMakanan(&man, 1, nama, kadaluarsa, 'n', kadaluarsa);
 
-//     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
+    //     enqueue(&daftarInvertory, man);
 
-//     INVERTORY(daftarInvertory);
+    //     Makanan man1;
+    //     time kadaluarsa1;
+    //     createTime(&kadaluarsa1, 0, 0, 2);
+    //     Kata nama1;
+    //     createKata(&nama1, "ASU REBUS");
+    //     createMakanan(&man1, 4, nama1, kadaluarsa1, 'f', kadaluarsa1);
 
-//     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
+    //     enqueue(&daftarInvertory, man1);
+    //     enqueue(&daftarInvertory, man);
+    //     enqueue(&daftarInvertory, man1);
+    //     enqueue(&daftarInvertory, man1);
+    //     enqueue(&daftarInvertory, man);
 
-//     INVERTORY(daftarInvertory);
+    //     PQueue daftarNotif;
+    //     createPQueue(&daftarNotif, 7);
+
+    //     PQueue daftarDeliv;
+    //     createPQueue(&daftarDeliv, 7);
+
+    //     enqueue(&daftarDeliv, man);
+    //     enqueue(&daftarDeliv, man);
+    //     enqueue(&daftarDeliv, man1);
+
+    //     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
+
+    //     INVERTORY(daftarInvertory);
+
+    //     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
+
+    //     INVERTORY(daftarInvertory);
 
     ListResep l;
     createListResep(&l);
 
     READ_RESEP("tes.txt", &l);
-    printTree(getElmtListResep(l,2));
-    //printf("%d",lengthListResep(l));
+    printTree(getElmtListResep(l, 2));
+    // printf("%d",lengthListResep(l));
 }
