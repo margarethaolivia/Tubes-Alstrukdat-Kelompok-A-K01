@@ -4,6 +4,8 @@
 #include "ADT/Simulator/simulator.h"
 #include "ADT/Matrix/matrix.h"
 #include "ADT/Point/point.h"
+#include "ADT/List_Resep/listresep.h"
+#include "ADT/List_Makanan/listmakanan.h"
 
 
 int main()
@@ -16,6 +18,9 @@ int main()
     boolean isRun=false;
     simulator sim;
     Matrix map;
+    ListResep listresep;
+    listMakanan listmakanan;
+    
     
     startKata("",false,'\0','\n');
     printf("%s\n",currentKata.buffer);
@@ -26,6 +31,8 @@ int main()
         map=matrixtoMap(map);
         createSim(&sim);
         initiatePoint(map,&sim);
+        createListResep(&listresep);
+        createListMakanan(&listmakanan);
         printf("selamat datang di bnmo\n");
         printf("masukkan nama:\n");
         startKata("",false,'\0','\n');
