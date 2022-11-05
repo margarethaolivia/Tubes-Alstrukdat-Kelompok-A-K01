@@ -117,6 +117,7 @@ void wait(time *current_time, int jam, int menit)
     *current_time = minToTime(n);
 }
 
+// command CATALOG
 void catalog(listMakanan lm)
 {
     int i;
@@ -126,6 +127,27 @@ void catalog(listMakanan lm)
     {
         printf("%d. ", i + 1);
         printMakanan(MAKANAN(lm, i));
+        printf("\n");
+    }
+}
+
+// command INVENTORY
+void inventory(PQueue inv)
+{
+    Makanan m;
+
+    int i;
+    printf("List Makanan di Inventory\n");
+    printf("(nama - waktu sisa kedaluwarsa)\n");
+    for (i = 0; i < lengthPQueue(inv); i++)
+    {
+        // ngambil makanannya
+        m = ElmtPQueue(inv, i);
+
+        printf("%d. ", i + 1);
+        printf("%s ", Nama(m));
+        printf("-");
+        printTimeHJM(Expired(m));
         printf("\n");
     }
 }
@@ -190,7 +212,7 @@ void READ_RESEP(const char *PATH, ListResep *l)
 int main()
 {
 
-    // --- TESTING CATALOG ---
+    // --- TESTING COMMAND CATALOG ---
     // Makanan m;
     // time exp, deliv;
     // Kata nama;
@@ -215,7 +237,7 @@ int main()
     // insertMakanan(&lm, m);
 
     // catalog(lm);
-    // --- END TESTING CATALOG ---
+    // --- END TESTING COMMAND CATALOG ---
 
     //     PQueue daftarInvertory;
     //     createPQueue(&daftarInvertory, 7);
@@ -235,11 +257,8 @@ int main()
     //     createKata(&nama1, "ASU REBUS");
     //     createMakanan(&man1, 4, nama1, kadaluarsa1, 'f', kadaluarsa1);
 
-    //     enqueue(&daftarInvertory, man1);
-    //     enqueue(&daftarInvertory, man);
-    //     enqueue(&daftarInvertory, man1);
-    //     enqueue(&daftarInvertory, man1);
-    //     enqueue(&daftarInvertory, man);
+    // --- TESTING COMMAND INVENTORY ---
+    // inventory(daftarInvertory);
 
     //     PQueue daftarNotif;
     //     createPQueue(&daftarNotif, 7);
