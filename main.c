@@ -37,7 +37,7 @@ int main()
         printf("BNMO di posisi: ");
         printPoint(sim.currentPos);
         printf("\n");
-        displayMatrix(map);
+        displayMapBasedOnCurrentPos(map,sim);
         printf("Enter command: \n");
         advKata('\0','\n');
         // printf("%s\n",currentKata.buffer);
@@ -59,6 +59,9 @@ int main()
         }
         else if(strcmp(currentKata.buffer,"MOVE SOUTH")){
             moveBawah(&sim,&map);
+        }
+        else if(strcmp(currentKata.buffer,"INVENTORY")){
+            
         }
         
     }

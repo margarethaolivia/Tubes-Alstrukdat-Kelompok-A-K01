@@ -52,8 +52,8 @@ void moveKanan(simulator *sim, Matrix *map){
     char x=ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+2);
     if ( x!='*' && x!='X' && x!='T' && x!='M' && x!='C' && x!='F' && x!='B' )
     {
-        ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
-        ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+2)='S';
+        // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
+        // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+2)='S';
         (sim)->currentPos.x=(sim)->currentPos.x+1;
     }
     else{
@@ -64,8 +64,8 @@ void moveKiri(simulator *sim, Matrix *map){
     char x=ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x);
     if ( x!='*' && x!='X' && x!='T' && x!='M' && x!='C' && x!='F' && x!='B' )
     {
-        ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
-        ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x)='S';
+        // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
+        // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x)='S';
         (sim)->currentPos.x=(sim)->currentPos.x-1;
     }
     else{
@@ -77,8 +77,8 @@ void moveAtas(simulator *sim, Matrix *map){
     
     if ( x!='*' && x!='X' && x!='T' && x!='M' && x!='C' && x!='F' && x!='B' )
     {
-        ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
-        ELMT(*map,(sim)->currentPos.y,(sim)->currentPos.x+1)='S';
+        // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
+        // ELMT(*map,(sim)->currentPos.y,(sim)->currentPos.x+1)='S';
         (sim)->currentPos.y=(sim)->currentPos.y-1;
     }
     else{
@@ -90,8 +90,8 @@ void moveBawah(simulator *sim, Matrix *map){
     char x=ELMT(*map,(sim)->currentPos.y+2,(sim)->currentPos.x+1);
     if ( x!='*' && x!='X' && x!='T' && x!='M' && x!='C' && x!='F' && x!='B' )
     {
-        ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
-        ELMT(*map,(sim)->currentPos.y+2,(sim)->currentPos.x+1)='S';
+        // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
+        // ELMT(*map,(sim)->currentPos.y+2,(sim)->currentPos.x+1)='S';
         (sim)->currentPos.y=(sim)->currentPos.y+1;
     }
     else{
@@ -118,6 +118,47 @@ boolean isAdjacentTo(simulator sim, char object,Matrix map){
         i++;
     }
     return isAdjacent;
+}
+
+void displayMapBasedOnCurrentPos(Matrix map, simulator sim){
+    int i=0;
+    int j=0;
+    while (i<ROW_EFF(map))
+    {
+        j=0;
+        while (j<COL_EFF(map))
+        {
+            if (i==sim.currentPos.y+1 && j==sim.currentPos.x+1)
+            {
+                printf("%c",'S');
+            }
+            else if (i!=sim.currentPos.y+1 || j!=sim.currentPos.x+1)
+            {
+                if (ELMT(map,i,j)!='S')
+                {
+                    printf("%c",ELMT(map,i,j));
+                }
+                else{
+                    printf("%c",' ');
+                }
+            }
+            
+            
+            if ((j==COL_EFF(map)-1))
+            {
+                /*if (i!=ROW_EFF(m)-1)
+                {
+                    printf("\n");
+                }*/
+                printf("\n");
+            }
+            else{
+                printf(" ");
+            }
+            j++;
+        }
+        i++;
+    }
 }
 
 // void displayInvent(simulator sim){
