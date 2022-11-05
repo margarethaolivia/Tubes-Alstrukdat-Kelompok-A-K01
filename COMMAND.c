@@ -131,27 +131,6 @@ void catalog(listMakanan lm)
     }
 }
 
-// command INVENTORY
-void inventory(PQueue inv)
-{
-    Makanan m;
-
-    int i;
-    printf("List Makanan di Inventory\n");
-    printf("(nama - waktu sisa kedaluwarsa)\n");
-    for (i = 0; i < lengthPQueue(inv); i++)
-    {
-        // ngambil makanannya
-        m = ElmtPQueue(inv, i);
-
-        printf("%d. ", i + 1);
-        printf("%s ", Nama(m));
-        printf("-");
-        printTimeHJM(Expired(m));
-        printf("\n");
-    }
-}
-
 boolean undo(Stack *stackSim, Stack *stackSimState)
 {
     simulator x;
@@ -256,9 +235,6 @@ int main()
     //     Kata nama1;
     //     createKata(&nama1, "ASU REBUS");
     //     createMakanan(&man1, 4, nama1, kadaluarsa1, 'f', kadaluarsa1);
-
-    // --- TESTING COMMAND INVENTORY ---
-    // inventory(daftarInvertory);
 
     //     PQueue daftarNotif;
     //     createPQueue(&daftarNotif, 7);
