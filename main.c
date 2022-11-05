@@ -4,8 +4,10 @@
 #include "ADT/Simulator/simulator.h"
 #include "ADT/Matrix/matrix.h"
 #include "ADT/Point/point.h"
-#include "ADT/List_Resep/listresep.h"
+// #include "ADT/List_Resep/listresep.h"
 #include "ADT/List_Makanan/listmakanan.h"
+#include "ADT/Stack/stack.h"
+#include "COMMAND.c"
 
 
 int main()
@@ -20,7 +22,7 @@ int main()
     Matrix map;
     ListResep listresep;
     listMakanan listmakanan;
-    
+    Stack undoStack;
     
     startKata("",false,'\0','\n');
     printf("%s\n",currentKata.buffer);
@@ -28,15 +30,19 @@ int main()
     {
         isRun=true;
         readMatrixFile(&map,"Config/map.txt");
+        READ_RESEP("Config/resep.txt",&listresep);
         map=matrixtoMap(map);
         createSim(&sim);
         initiatePoint(map,&sim);
         createListResep(&listresep);
         createListMakanan(&listmakanan);
+        CreateEmpty(&undoStack);
         printf("selamat datang di bnmo\n");
         printf("masukkan nama:\n");
         startKata("",false,'\0','\n');
         setNama(&sim,currentKata);
+        Push(&undoStack,sim);
+        printTree(getElmtListResep(listresep, 1));
     }
     
     while (isRun)
@@ -46,7 +52,7 @@ int main()
         printf("\n");
         displayMapBasedOnCurrentPos(map,sim);
         printf("Enter command: \n");
-        advKata('\0','\n');
+        startKata("",false,'\0','\n');
         // printf("%s\n",currentKata.buffer);
         // printf("a\n");
         if (strcmp(currentKata.buffer,"EXIT"))
@@ -57,17 +63,34 @@ int main()
         else if (strcmp(currentKata.buffer,"MOVE WEST"))
         {
             moveKiri(&sim,&map);
+            Push(&undoStack,sim);
         }
         else if(strcmp(currentKata.buffer,"MOVE EAST")){
             moveKanan(&sim,&map);
+            Push(&undoStack,sim);
         }
         else if(strcmp(currentKata.buffer,"MOVE NORTH")){
             moveAtas(&sim,&map);
+            Push(&undoStack,sim);
         }
         else if(strcmp(currentKata.buffer,"MOVE SOUTH")){
             moveBawah(&sim,&map);
+            Push(&undoStack,sim);
         }
         else if(strcmp(currentKata.buffer,"INVENTORY")){
+            
+        }
+        else if (strcmp(currentKata.buffer,"UNDO"))
+        {
+            if (IsEmptyStack(undoStack))
+            {
+                printf("undah mentok\n");
+            }
+            else{
+                Pop(&undoStack,&sim);
+                printf("pop\n");
+                printPoint(sim.currentPos);
+            }
             
         }
         

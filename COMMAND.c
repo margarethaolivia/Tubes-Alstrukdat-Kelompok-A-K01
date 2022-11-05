@@ -188,76 +188,76 @@ void READ_RESEP(const char *PATH, ListResep *l)
     }
 }
 
-int main()
-{
+// int main()
+// {
 
-    // --- TESTING COMMAND CATALOG ---
-    // Makanan m;
-    // time exp, deliv;
-    // Kata nama;
-    // char aksi;
-    // int len, i;
+//     // --- TESTING COMMAND CATALOG ---
+//     // Makanan m;
+//     // time exp, deliv;
+//     // Kata nama;
+//     // char aksi;
+//     // int len, i;
 
-    // listMakanan lm;
-    // createListMakanan(&lm);
+//     // listMakanan lm;
+//     // createListMakanan(&lm);
 
-    // createKata(&nama, "Ayam Goreng");
-    // aksi = 'F';
-    // createTime(&exp, 0, 0, 5);
-    // createTime(&deliv, 0, 0, 12);
-    // createMakanan(&m, 0, nama, exp, aksi, deliv);
-    // insertMakanan(&lm, m);
+//     // createKata(&nama, "Ayam Goreng");
+//     // aksi = 'F';
+//     // createTime(&exp, 0, 0, 5);
+//     // createTime(&deliv, 0, 0, 12);
+//     // createMakanan(&m, 0, nama, exp, aksi, deliv);
+//     // insertMakanan(&lm, m);
 
-    // createKata(&nama, "Bawang");
-    // aksi = 'C';
-    // createTime(&exp, 0, 0, 7);
-    // createTime(&deliv, 0, 0, 3);
-    // createMakanan(&m, 1, nama, exp, aksi, deliv);
-    // insertMakanan(&lm, m);
+//     // createKata(&nama, "Bawang");
+//     // aksi = 'C';
+//     // createTime(&exp, 0, 0, 7);
+//     // createTime(&deliv, 0, 0, 3);
+//     // createMakanan(&m, 1, nama, exp, aksi, deliv);
+//     // insertMakanan(&lm, m);
 
-    // catalog(lm);
-    // --- END TESTING COMMAND CATALOG ---
+//     // catalog(lm);
+//     // --- END TESTING COMMAND CATALOG ---
 
-    //     PQueue daftarInvertory;
-    //     createPQueue(&daftarInvertory, 7);
-    //     Makanan man;
-    //     time kadaluarsa;
-    //     createTime(&kadaluarsa, 0, 0, 1);
-    //     Kata nama;
-    //     createKata(&nama, "ASU GORENG");
-    //     createMakanan(&man, 1, nama, kadaluarsa, 'n', kadaluarsa);
+//     //     PQueue daftarInvertory;
+//     //     createPQueue(&daftarInvertory, 7);
+//     //     Makanan man;
+//     //     time kadaluarsa;
+//     //     createTime(&kadaluarsa, 0, 0, 1);
+//     //     Kata nama;
+//     //     createKata(&nama, "ASU GORENG");
+//     //     createMakanan(&man, 1, nama, kadaluarsa, 'n', kadaluarsa);
 
-    //     enqueue(&daftarInvertory, man);
+//     //     enqueue(&daftarInvertory, man);
 
-    //     Makanan man1;
-    //     time kadaluarsa1;
-    //     createTime(&kadaluarsa1, 0, 0, 2);
-    //     Kata nama1;
-    //     createKata(&nama1, "ASU REBUS");
-    //     createMakanan(&man1, 4, nama1, kadaluarsa1, 'f', kadaluarsa1);
+//     //     Makanan man1;
+//     //     time kadaluarsa1;
+//     //     createTime(&kadaluarsa1, 0, 0, 2);
+//     //     Kata nama1;
+//     //     createKata(&nama1, "ASU REBUS");
+//     //     createMakanan(&man1, 4, nama1, kadaluarsa1, 'f', kadaluarsa1);
 
-    //     PQueue daftarNotif;
-    //     createPQueue(&daftarNotif, 7);
+//     //     PQueue daftarNotif;
+//     //     createPQueue(&daftarNotif, 7);
 
-    //     PQueue daftarDeliv;
-    //     createPQueue(&daftarDeliv, 7);
+//     //     PQueue daftarDeliv;
+//     //     createPQueue(&daftarDeliv, 7);
 
-    //     enqueue(&daftarDeliv, man);
-    //     enqueue(&daftarDeliv, man);
-    //     enqueue(&daftarDeliv, man1);
+//     //     enqueue(&daftarDeliv, man);
+//     //     enqueue(&daftarDeliv, man);
+//     //     enqueue(&daftarDeliv, man1);
 
-    //     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
+//     //     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
 
-    //     INVERTORY(daftarInvertory);
+//     //     INVERTORY(daftarInvertory);
 
-    //     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
+//     //     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
 
-    //     INVERTORY(daftarInvertory);
+//     //     INVERTORY(daftarInvertory);
 
-    ListResep l;
-    createListResep(&l);
+//     ListResep l;
+//     createListResep(&l);
 
-    READ_RESEP("tes.txt", &l);
-    printTree(getElmtListResep(l, 2));
-    // printf("%d",lengthListResep(l));
-}
+//     READ_RESEP("tes.txt", &l);
+//     printTree(getElmtListResep(l, 2));
+//     // printf("%d",lengthListResep(l));
+// }
