@@ -33,6 +33,7 @@ int main()
         isRun=true;
         readMatrixFile(&map,"Config/map.txt");
         READ_RESEP("Config/resep.txt",&listresep);
+        readMakananFile(&listmakanan,"Config/makanan.txt");
         map=matrixtoMap(map);
         createTime(&gTime,0,0,0);
         createSim(&sim);
@@ -46,6 +47,7 @@ int main()
         setNama(&sim,currentKata);
         Push(&undoStack,sim);
         printTree(getElmtListResep(listresep, 1));
+        displayListMakanan(listmakanan);
     }
     
     while (isRun)

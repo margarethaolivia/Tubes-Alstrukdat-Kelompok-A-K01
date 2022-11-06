@@ -74,7 +74,7 @@ void printTimeHJM(time t)
 
     if (hour(t) != 0)
     {
-        printf(" %d jam", day(t));
+        printf(" %d jam", hour(t));
     }
 
     if (minute(t) != 0)

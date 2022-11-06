@@ -29,6 +29,7 @@
 typedef struct
 {
     Makanan contents[CAPACITYSTATIC];
+    int listmakanlen;
 } listMakanan; 
 
 
@@ -43,7 +44,7 @@ void insertMakanan(listMakanan *l, Makanan m);
 
 int lengthLlistMakanan(listMakanan l);
 
-void readMakananFile(listMakanan *lm, Kata path);
+void readMakananFile(listMakanan *lm, char* path);
 
 void displayListMakanan(listMakanan l);
 
