@@ -43,4 +43,8 @@ void insertMakanan(listMakanan *l, Makanan m);
 
 int lengthLlistMakanan(listMakanan l);
 
+void readMakananFile(listMakanan *lm, Kata path);
+
+void displayListMakanan(listMakanan l);
+
 #endif
