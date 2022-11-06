@@ -20,11 +20,11 @@
 // } Makanan;
 
 /* *** Notasi Akses: Selektor Makanan *** */
-#define Id(m) (m).id
-#define Nama(m) (m).nama
-#define Expired(m) (m).expired
-#define Aksi(m) (m).aksi
-#define DelivTime(m) (m).delivTime
+// #define Id(m) (m).id
+// #define Nama(m) (m).nama
+// #define Expired(m) (m).expired
+// #define Aksi(m) (m).aksi
+// #define DelivTime(m) (m).delivTime
 
 typedef struct
 {
