@@ -56,17 +56,19 @@ void readMakananFile(listMakanan *lm, char* path)
     lm->listmakanlen=banyak_makanan;
     i=0;
     int j=0;
-    
+    int idx=0;;
     while (i<banyak_makanan) //proses pembacaan makanan sebanyak n (banyaknya makanan) kali
     {
         advKata(' ','\n');
         //mencari id dari makanan
-        m.id=0;
+        idx=0;
+        j=0;
         while (j<currentKata.length)
         {
-            m.id=m.id*10+currentKata.buffer[j]%48;
+            idx=idx*10+currentKata.buffer[j]%48;
             j++;
         }
+        m.id=idx;
         advKata('\0','\n');
         
         //mencari nama dari makanan
@@ -143,7 +145,6 @@ void readMakananFile(listMakanan *lm, char* path)
         // advKata('\0','\n');
 
         lm->contents[i] = m;
-
         i++;
     }   
 }
@@ -158,4 +159,21 @@ void displayListMakanan(listMakanan l){
         printf("\n");
         i++;
     }
+}
+
+boolean searchListMakananBasedOnID(listMakanan lm,int idx){
+    boolean isFound=false;
+    int i=0;
+    int len=lm.listmakanlen;
+    printf("%d\n",len);
+    while (i<len)
+    {
+        if (lm.contents[i].id==idx)
+        {
+            isFound=true;
+        }
+        printf("%s\n",lm.contents[i].nama.buffer);
+        i++;
+    }
+    return isFound;
 }

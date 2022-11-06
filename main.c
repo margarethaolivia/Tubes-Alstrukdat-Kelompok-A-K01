@@ -31,6 +31,8 @@ int main()
     if (strcmp(currentKata.buffer,"START"))
     {
         isRun=true;
+        createListResep(&listresep);
+        createListMakanan(&listmakanan);
         readMatrixFile(&map,"Config/map.txt");
         READ_RESEP("Config/resep.txt",&listresep);
         readMakananFile(&listmakanan,"Config/makanan.txt");
@@ -38,16 +40,12 @@ int main()
         createTime(&gTime,0,0,0);
         createSim(&sim);
         initiatePoint(map,&sim);
-        createListResep(&listresep);
-        createListMakanan(&listmakanan);
         CreateEmpty(&undoStack);
         printf("selamat datang di bnmo\n");
         printf("masukkan nama:\n");
         startKata("",false,'\0','\n');
         setNama(&sim,currentKata);
         Push(&undoStack,sim);
-        printTree(getElmtListResep(listresep, 1));
-        displayListMakanan(listmakanan);
     }
     
     while (isRun)

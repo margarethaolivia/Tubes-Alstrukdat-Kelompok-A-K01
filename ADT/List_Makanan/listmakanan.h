@@ -47,5 +47,6 @@ int lengthLlistMakanan(listMakanan l);
 void readMakananFile(listMakanan *lm, char* path);
 
 void displayListMakanan(listMakanan l);
+boolean searchListMakananBasedOnID(listMakanan lm,int id);
 
 #endif
