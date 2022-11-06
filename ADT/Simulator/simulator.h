@@ -10,6 +10,7 @@
 typedef struct 
 {
     PQueue inventory;
+    PQueue delivery;
     point currentPos;
     Kata nama;
 

@@ -5,10 +5,11 @@
 void createSim(simulator *sim){
     (sim)->nama.buffer[0]='\0';
     // *sim->currentPos=NULL;
-    PQueue q;
-    createPQueue(&q,1);
-    (sim)->inventory=q;
-    
+    PQueue q,q1;
+    createPQueue(&q,100);
+    createPQueue(&q,100);
+    sim->inventory=q;
+    sim->delivery=q1;
 }
 
 void setNama(simulator *sim,Kata currentKata){
