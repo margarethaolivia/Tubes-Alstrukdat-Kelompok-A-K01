@@ -8,6 +8,7 @@
 #include "ADT/List_Makanan/listmakanan.h"
 #include "ADT/Stack/stack.h"
 #include "COMMAND.c"
+#include "ADT/Time/time.h"
 
 
 int main()
@@ -23,6 +24,7 @@ int main()
     ListResep listresep;
     listMakanan listmakanan;
     Stack undoStack;
+    time gTime;
     
     startKata("",false,'\0','\n');
     printf("%s\n",currentKata.buffer);
@@ -32,6 +34,7 @@ int main()
         readMatrixFile(&map,"Config/map.txt");
         READ_RESEP("Config/resep.txt",&listresep);
         map=matrixtoMap(map);
+        createTime(&gTime,0,0,0);
         createSim(&sim);
         initiatePoint(map,&sim);
         createListResep(&listresep);
@@ -49,6 +52,8 @@ int main()
     {
         printf("BNMO di posisi: ");
         printPoint(sim.currentPos);
+        printf("waktu: ");
+        printTime(gTime);
         printf("\n");
         displayMapBasedOnCurrentPos(map,sim);
         printf("Enter command: \n");
@@ -63,18 +68,22 @@ int main()
         else if (strcmp(currentKata.buffer,"MOVE WEST"))
         {
             moveKiri(&sim,&map);
+            nextMin(&gTime);
             Push(&undoStack,sim);
         }
         else if(strcmp(currentKata.buffer,"MOVE EAST")){
             moveKanan(&sim,&map);
+            nextMin(&gTime);
             Push(&undoStack,sim);
         }
         else if(strcmp(currentKata.buffer,"MOVE NORTH")){
             moveAtas(&sim,&map);
+            nextMin(&gTime);
             Push(&undoStack,sim);
         }
         else if(strcmp(currentKata.buffer,"MOVE SOUTH")){
             moveBawah(&sim,&map);
+            nextMin(&gTime);
             Push(&undoStack,sim);
         }
         else if(strcmp(currentKata.buffer,"INVENTORY")){
@@ -90,6 +99,7 @@ int main()
                 Pop(&undoStack,&sim);
                 printf("pop\n");
                 printPoint(sim.currentPos);
+                prevMin(&gTime);
             }
             
         }
