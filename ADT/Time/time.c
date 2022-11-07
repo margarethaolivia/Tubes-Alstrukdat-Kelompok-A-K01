@@ -24,7 +24,8 @@ void printTime(time t){
     printf("%d.%d\n",hour(t),minute(t));
 }
 boolean isTimeValid(time t){
-    return(day(t)<32 && day(t)>0 && hour(t)>=0 && hour(t) < 24  && minute(t) >= 0 && minute(t) < 60);
+    return(day(t)>=0 && hour(t)>=0 && hour(t) < 24  && minute(t) >= 0 && minute(t) < 60);
+    // Jumlah hari diasumsikan tidak memiliki batas dan dimulai dari hari ke-0
 }
 int timeToMin(time t){
     return(1440*day(t) + 60*hour(t) + minute(t));
