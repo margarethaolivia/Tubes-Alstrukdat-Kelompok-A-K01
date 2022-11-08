@@ -113,6 +113,11 @@ int main()
                 nextMin(&gTime);
             }
         }
+        else if (strcmp(currentKata.buffer, "CATALOG"))
+        {
+            catalog(listmakanan);
+            nextMin(&gTime);
+        }
     }
 
     return 0;
