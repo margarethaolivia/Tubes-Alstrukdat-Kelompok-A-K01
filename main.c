@@ -98,18 +98,53 @@ int main()
         }
         else if (strcmp(currentKata.buffer, "BUY"))
         {
+            if (isAdjacentTo(sim, 'T', map))
+            {
+            }
+            else
+            {
+                printf("BNMO tidak berada di area telepon!\n");
+            }
         }
         else if (strcmp(currentKata.buffer, "MIX"))
         {
+            if (isAdjacentTo(sim, 'M', map))
+            {
+            }
+            else
+            {
+                printf("BNMO tidak berada di area mix!\n");
+            }
         }
         else if (strcmp(currentKata.buffer, "CHOP"))
         {
+            if (isAdjacentTo(sim, 'C', map))
+            {
+            }
+            else
+            {
+                printf("BNMO tidak berada di area chop!\n");
+            }
         }
         else if (strcmp(currentKata.buffer, "FRY"))
         {
+            if (isAdjacentTo(sim, 'F', map))
+            {
+            }
+            else
+            {
+                printf("BNMO tidak berada di area fry!\n");
+            }
         }
         else if (strcmp(currentKata.buffer, "BOIL"))
         {
+            if (isAdjacentTo(sim, 'B', map))
+            {
+            }
+            else
+            {
+                printf("BNMO tidak berada di area boil!\n");
+            }
         }
         else if (strcmp(currentKata.buffer, "COOKBOOK"))
         {
@@ -124,7 +159,6 @@ int main()
             if (valid)
             {
                 sim = InfoTop(undoStack);
-                printPoint(sim.currentPos);
                 prevMin(&gTime);
             }
         }
@@ -133,7 +167,6 @@ int main()
             redo(&undoStack, &stackSimState, &sim, &valid);
             if (valid)
             {
-                printPoint(sim.currentPos);
                 nextMin(&gTime);
             }
         }
