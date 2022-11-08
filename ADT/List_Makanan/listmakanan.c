@@ -162,14 +162,14 @@ void displayListMakanan(listMakanan l){
     }
 }
 
-boolean searchListMakananBasedOnID(listMakanan lm,int idx){
+boolean searchListMakananBasedOnID(listMakanan lm,int ID){
     boolean isFound=false;
     int i=0;
     int len=lm.listmakanlen;
     // printf("%d\n",len);
     while (i<len)
     {
-        if (lm.contents[i].id==idx)
+        if (lm.contents[i].id==ID)
         {
             isFound=true;
         }
@@ -189,7 +189,7 @@ listMakanan searchListMakananBasedOnAksi(listMakanan lm,char aks){
     {
         if (lm.contents[i].aksi==aks)
         {
-            newlm[j]=lm.contents[i];
+            newlm.contents[j]=lm.contents[i];
             j++;
         }
         // printf("%s\n",lm.contents[i].nama.buffer);
