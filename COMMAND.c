@@ -185,14 +185,30 @@ void READ_RESEP(const char *PATH, ListResep *l)
             int idChild;
             advKata(' ', '\n');
             idChild = stoi(currentKata);
-            assignChildTo(&t, id, createChild(idChild));
+            Tree childResep;
+            boolean ada = false;
+            int k = 0;
+            while(!ada&&k<lengthListResep(*l)){
+                if(Mother(getElmtListResep(*l,k))==idChild){
+                    childResep = getElmtListResep(*l,k);
+                    ada = true;
+                }
+                k++;
+            }
+            if(!ada){
+                childResep = createChild(idChild);
+            }
+            assignChildTo(&t, id, childResep);
+        }
+        for(j=0;j<lengthListResep(*l);j++){
+            assignChildTo(getElmtListResepReff(l,j),id,t);
         }
         insertLastListResep(l, t);
     }
 }
 
-// int main()
-// {
+int main()
+{
 
 //     // --- TESTING COMMAND CATALOG ---
 //     // Makanan m;
@@ -257,10 +273,10 @@ void READ_RESEP(const char *PATH, ListResep *l)
 
 //     //     INVERTORY(daftarInvertory);
 
-//     ListResep l;
-//     createListResep(&l);
+    ListResep l;
+    createListResep(&l);
 
-//     READ_RESEP("tes.txt", &l);
-//     printTree(getElmtListResep(l, 2));
-//     // printf("%d",lengthListResep(l));
-// }
+    READ_RESEP("tes.txt", &l);
+    printTree(getElmtListResep(l, 3));
+    // printf("%d",lengthListResep(l));
+}

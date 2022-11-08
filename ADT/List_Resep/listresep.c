@@ -13,6 +13,10 @@ Tree getElmtListResep(ListResep l, int idx){
     return l.container[idx];
 }
 
+Tree* getElmtListResepReff(ListResep* l, int idx){
+    return &(l->container[idx]);
+}
+
 int lengthListResep(ListResep l){
     return l.len;
 }

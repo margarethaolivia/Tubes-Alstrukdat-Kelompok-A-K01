@@ -44,6 +44,15 @@ void assignMotherEve(Tree* t, ElTypeTree mother){
 void assignChildTo(Tree* t, ElTypeTree mother, Tree child){
     Tree motherData;
     motherData = motherAddress(t,mother);
+    if(motherData==NULL){
+        return;
+    }
+
+    if(Mother(motherData)==Mother(child)){
+        destroyTree(motherData);
+        *motherData = *child;
+        return;
+    }
     
     if(ChildBase(motherData)==NULL){
         ChildBase(motherData) = (Tree*)malloc(sizeof(Tree)*(ChildCount(motherData)+1));    

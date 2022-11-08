@@ -13,3 +13,5 @@ void insertLastListResep(ListResep* l, Tree t);
 Tree getElmtListResep(ListResep l, int idx);
 
 int lengthListResep(ListResep l);
+
+Tree* getElmtListResepReff(ListResep* l, int idx);
