@@ -179,21 +179,23 @@ boolean searchListMakananBasedOnID(listMakanan lm,int idx){
     return isFound;
 }
 
-boolean searchListMakananBasedOnAksi(listMakanan lm,char aks){
-    boolean isFound=false;
+listMakanan searchListMakananBasedOnAksi(listMakanan lm,char aks){
     int i=0;
     int len=lm.listmakanlen;
+    listMakanan newlm;
     // printf("%d\n",len);
+    int j=0;
     while (i<len)
     {
         if (lm.contents[i].aksi==aks)
         {
-            isFound=true;
+            newlm[j]=lm.contents[i];
+            j++;
         }
         // printf("%s\n",lm.contents[i].nama.buffer);
         i++;
     }
-    return isFound;
+    return newlm;
 }
 
 boolean searchListMakananBasedOnNama(listMakanan lm,char* name){
