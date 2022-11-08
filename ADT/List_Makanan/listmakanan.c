@@ -195,6 +195,7 @@ listMakanan searchListMakananBasedOnAksi(listMakanan lm,char aks){
         // printf("%s\n",lm.contents[i].nama.buffer);
         i++;
     }
+    newlm.listmakanlen=j;
     return newlm;
 }
 
