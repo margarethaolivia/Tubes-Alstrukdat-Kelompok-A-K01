@@ -7,7 +7,7 @@ void createSim(simulator *sim){
     // *sim->currentPos=NULL;
     PQueue q,q1;
     createPQueue(&q,100);
-    createPQueue(&q,100);
+    createPQueue(&q1,100);
     sim->inventory=q;
     sim->delivery=q1;
 }
