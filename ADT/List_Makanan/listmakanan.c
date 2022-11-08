@@ -3,6 +3,7 @@
 #include "../Boolean/boolean.h"
 #include "listmakanan.h"
 #include "../Time/time.h"
+#include "../Utility/utility.h"
 
 void createListMakanan(listMakanan *l)
 {
@@ -165,14 +166,48 @@ boolean searchListMakananBasedOnID(listMakanan lm,int idx){
     boolean isFound=false;
     int i=0;
     int len=lm.listmakanlen;
-    printf("%d\n",len);
+    // printf("%d\n",len);
     while (i<len)
     {
         if (lm.contents[i].id==idx)
         {
             isFound=true;
         }
-        printf("%s\n",lm.contents[i].nama.buffer);
+        // printf("%s\n",lm.contents[i].nama.buffer);
+        i++;
+    }
+    return isFound;
+}
+
+boolean searchListMakananBasedOnAksi(listMakanan lm,char aks){
+    boolean isFound=false;
+    int i=0;
+    int len=lm.listmakanlen;
+    // printf("%d\n",len);
+    while (i<len)
+    {
+        if (lm.contents[i].aksi==aks)
+        {
+            isFound=true;
+        }
+        // printf("%s\n",lm.contents[i].nama.buffer);
+        i++;
+    }
+    return isFound;
+}
+
+boolean searchListMakananBasedOnNama(listMakanan lm,char* name){
+    boolean isFound=false;
+    int i=0;
+    int len=lm.listmakanlen;
+    // printf("%d\n",len);
+    while (i<len)
+    {
+        if (strcmp(lm.contents[i].nama.buffer,name))
+        {
+            isFound=true;
+        }
+        // printf("%s\n",lm.contents[i].nama.buffer);
         i++;
     }
     return isFound;
