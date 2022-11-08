@@ -93,6 +93,30 @@ int main()
         else if (strcmp(currentKata.buffer, "INVENTORY"))
         {
         }
+        else if (strcmp(currentKata.buffer, "DELIVERY"))
+        {
+        }
+        else if (strcmp(currentKata.buffer, "BUY"))
+        {
+        }
+        else if (strcmp(currentKata.buffer, "MIX"))
+        {
+        }
+        else if (strcmp(currentKata.buffer, "CHOP"))
+        {
+        }
+        else if (strcmp(currentKata.buffer, "FRY"))
+        {
+        }
+        else if (strcmp(currentKata.buffer, "BOIL"))
+        {
+        }
+        else if (strcmp(currentKata.buffer, "COOKBOOK"))
+        {
+        }
+        else if (strcmp(currentKata.buffer, "WAIT"))
+        {
+        }
         else if (strcmp(currentKata.buffer, "UNDO"))
         {
 
