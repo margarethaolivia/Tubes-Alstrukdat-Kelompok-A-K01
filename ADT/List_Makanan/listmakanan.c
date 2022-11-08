@@ -215,3 +215,37 @@ boolean searchListMakananBasedOnNama(listMakanan lm,char* name){
     }
     return isFound;
 }
+
+Makanan getElmakanid(listMakanan lm,int ID){
+    int i=0;
+    int len=lm.listmakanlen;
+    Makanan m;
+    while (i<len)
+    {
+        if (lm.contents[i].id==ID)
+        {
+            m=lm.contents[i];
+            break;
+        }
+        // printf("%s\n",lm.contents[i].nama.buffer);
+        i++;
+    }
+    return m;
+}
+
+Makanan getElmakanNama(listMakanan lm,char* name){
+    int i=0;
+    int len=lm.listmakanlen;
+    Makanan m;
+    while (i<len)
+    {
+        if (strcmp(lm.contents[i].nama.buffer,name))
+        {
+            m=lm.contents[i];
+            break;
+        }
+        // printf("%s\n",lm.contents[i].nama.buffer);
+        i++;
+    }
+    return m;
+}
