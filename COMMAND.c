@@ -131,33 +131,36 @@ void catalog(listMakanan lm)
     }
 }
 
-boolean undo(Stack *stackSim, Stack *stackSimState)
+void undo(Stack *stackSim, Stack *stackSimState, simulator *x, boolean *valid)
 {
-    simulator x;
-
-    if (IsEmptyStack(*stackSim))
+    if (isOneElmtStack(*stackSim))
     {
-        printf("Undo gagal dilakukan (sudah berada di kondisi awal)");
+        printf("Undo gagal dilakukan (sudah berada di kondisi awal)\n");
+        *valid = false;
     }
     else
     {
-        Pop(stackSim, &x);
-        Push(stackSimState, x);
+        Pop(stackSim, x);
+        Push(stackSimState, *x);
+        // *x = InfoTop(stackSim);
+        printf("Berhasil melakukan undo\n");
+        *valid = true;
     }
 }
 
-boolean redo(Stack *stackSim, Stack *stackSimState)
+void redo(Stack *stackSim, Stack *stackSimState, simulator *x, boolean *valid)
 {
-    simulator x;
-
     if (IsEmptyStack(*stackSimState))
     {
-        printf("Redo gagal dilakukan (sudah berada di kondisi akhir)");
+        printf("Redo gagal dilakukan (sudah berada di kondisi akhir)\n");
+        *valid = false;
     }
     else
     {
-        Pop(stackSimState, &x);
-        Push(stackSim, x);
+        Pop(stackSimState, x);
+        Push(stackSim, *x);
+        printf("Berhasil melakukan redo\n");
+        *valid = true;
     }
 }
 

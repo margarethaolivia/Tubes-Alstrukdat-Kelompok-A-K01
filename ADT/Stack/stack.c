@@ -18,6 +18,18 @@ boolean IsEmptyStack(Stack S)
     return (Top(S) == Nil);
 }
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
+
+boolean isOneElmtStack(Stack S)
+{
+    if (!IsEmptyStack(S))
+    {
+        simulator X;
+        Pop(&S, &X);
+        return IsEmptyStack(S);
+    }
+    return false;
+}
+
 boolean IsFullStack(Stack S)
 {
     return (Top(S) == MaxEl - 1);

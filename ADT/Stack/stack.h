@@ -38,6 +38,10 @@ void CreateEmpty(Stack *S);
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
 boolean IsEmptyStack(Stack S);
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
+
+boolean isOneElmtStack(Stack S);
+/* Mengirim true jika Stack hanya berisi satu elemen */
+
 boolean IsFullStack(Stack S);
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 

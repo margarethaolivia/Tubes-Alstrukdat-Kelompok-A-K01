@@ -10,7 +10,6 @@
 #include "COMMAND.c"
 #include "ADT/Time/time.h"
 
-
 int main()
 {
     // Splash Screen - Image
@@ -18,36 +17,38 @@ int main()
 
     // Splash Screen - Title
     printf("\n   ___          _   _            __      ___ _   _      ___ _  _ __  __  ___  \n  / __|___  ___| |_(_)_ _  __ _  \\ \\    / (_) |_| |_   | _ ) \\| |  \\/  |/ _ \\ \n | (__/ _ \\/ _ \\ / / | ' \\/ _` |  \\ \\/\\/ /| |  _| ' \\  | _ \\ .` | |\\/| | (_) |\n  \\___\\___/\\___/_\\_\\_|_||_\\__, |   \\_/\\_/ |_|\\__|_||_| |___/_|\\_|_|  |_|\\___/ \n                          |___/                                               \n");
-    boolean isRun=false;
+    boolean isRun = false;
+    boolean valid;
     simulator sim;
     Matrix map;
     ListResep listresep;
     listMakanan listmakanan;
-    Stack undoStack;
+    Stack undoStack, stackSimState;
     time gTime;
-    
-    startKata("",false,'\0','\n');
-    printf("%s\n",currentKata.buffer);
-    if (strcmp(currentKata.buffer,"START"))
+
+    startKata("", false, '\0', '\n');
+    printf("%s\n", currentKata.buffer);
+    if (strcmp(currentKata.buffer, "START"))
     {
-        isRun=true;
+        isRun = true;
         createListResep(&listresep);
         createListMakanan(&listmakanan);
-        readMatrixFile(&map,"Config/map.txt");
-        READ_RESEP("Config/resep.txt",&listresep);
-        readMakananFile(&listmakanan,"Config/makanan.txt");
-        map=matrixtoMap(map);
-        createTime(&gTime,0,0,0);
+        readMatrixFile(&map, "Config/map.txt");
+        READ_RESEP("Config/resep.txt", &listresep);
+        readMakananFile(&listmakanan, "Config/makanan.txt");
+        map = matrixtoMap(map);
+        createTime(&gTime, 0, 0, 0);
         createSim(&sim);
-        initiatePoint(map,&sim);
+        initiatePoint(map, &sim);
         CreateEmpty(&undoStack);
+        CreateEmpty(&stackSimState);
         printf("selamat datang di bnmo\n");
         printf("masukkan nama:\n");
-        startKata("",false,'\0','\n');
-        setNama(&sim,currentKata);
-        Push(&undoStack,sim);
+        startKata("", false, '\0', '\n');
+        setNama(&sim, currentKata);
+        Push(&undoStack, sim);
     }
-    
+
     while (isRun)
     {
         printf("BNMO di posisi: ");
@@ -55,56 +56,64 @@ int main()
         printf("waktu: ");
         printTime(gTime);
         printf("\n");
-        displayMapBasedOnCurrentPos(map,sim);
+        displayMapBasedOnCurrentPos(map, sim);
         printf("Enter command: \n");
-        startKata("",false,'\0','\n');
+        startKata("", false, '\0', '\n');
         // printf("%s\n",currentKata.buffer);
         // printf("a\n");
-        if (strcmp(currentKata.buffer,"EXIT"))
+        if (strcmp(currentKata.buffer, "EXIT"))
         {
-            isRun=false;
+            isRun = false;
             printf("END");
         }
-        else if (strcmp(currentKata.buffer,"MOVE WEST"))
+        else if (strcmp(currentKata.buffer, "MOVE WEST"))
         {
-            moveKiri(&sim,&map);
+            moveKiri(&sim, &map);
             nextMin(&gTime);
-            Push(&undoStack,sim);
+            Push(&undoStack, sim);
         }
-        else if(strcmp(currentKata.buffer,"MOVE EAST")){
-            moveKanan(&sim,&map);
-            nextMin(&gTime);
-            Push(&undoStack,sim);
-        }
-        else if(strcmp(currentKata.buffer,"MOVE NORTH")){
-            moveAtas(&sim,&map);
-            nextMin(&gTime);
-            Push(&undoStack,sim);
-        }
-        else if(strcmp(currentKata.buffer,"MOVE SOUTH")){
-            moveBawah(&sim,&map);
-            nextMin(&gTime);
-            Push(&undoStack,sim);
-        }
-        else if(strcmp(currentKata.buffer,"INVENTORY")){
-            
-        }
-        else if (strcmp(currentKata.buffer,"UNDO"))
+        else if (strcmp(currentKata.buffer, "MOVE EAST"))
         {
-            if (IsEmptyStack(undoStack))
+            moveKanan(&sim, &map);
+            nextMin(&gTime);
+            Push(&undoStack, sim);
+        }
+        else if (strcmp(currentKata.buffer, "MOVE NORTH"))
+        {
+            moveAtas(&sim, &map);
+            nextMin(&gTime);
+            Push(&undoStack, sim);
+        }
+        else if (strcmp(currentKata.buffer, "MOVE SOUTH"))
+        {
+            moveBawah(&sim, &map);
+            nextMin(&gTime);
+            Push(&undoStack, sim);
+        }
+        else if (strcmp(currentKata.buffer, "INVENTORY"))
+        {
+        }
+        else if (strcmp(currentKata.buffer, "UNDO"))
+        {
+
+            undo(&undoStack, &stackSimState, &sim, &valid);
+            if (valid)
             {
-                printf("undah mentok\n");
-            }
-            else{
-                Pop(&undoStack,&sim);
-                printf("pop\n");
+                sim = InfoTop(undoStack);
                 printPoint(sim.currentPos);
                 prevMin(&gTime);
             }
-            
         }
-        
+        else if (strcmp(currentKata.buffer, "REDO"))
+        {
+            redo(&undoStack, &stackSimState, &sim, &valid);
+            if (valid)
+            {
+                printPoint(sim.currentPos);
+                nextMin(&gTime);
+            }
+        }
     }
-    
+
     return 0;
 }
