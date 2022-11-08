@@ -149,9 +149,6 @@ int main()
         else if (strcmp(currentKata.buffer, "COOKBOOK"))
         {
         }
-        else if (strcmp(currentKata.buffer, "WAIT"))
-        {
-        }
         else if (strcmp(currentKata.buffer, "UNDO"))
         {
 
@@ -174,6 +171,30 @@ int main()
         {
             catalog(listmakanan);
             nextMin(&gTime);
+        }
+        else if (strcmp(currentKata.buffer, "WAIT"))
+        {
+            printf("berapa lama(jam menit):\n");
+            startKata("",false,' ','\n');
+            int jam=0;
+            int mnt=0;
+            int i=0;
+            while (i<currentKata.length)
+            {
+                printf("%s\n",currentKata.buffer);
+                jam=jam*10+currentKata.buffer[i]%48;
+                i++;
+            }
+            advKata(' ','\n');
+            i=0;
+            while (i<currentKata.length)
+            {
+                printf("%s\n",currentKata.buffer);
+                mnt=mnt*10+currentKata.buffer[i]%48;
+                i++;
+            }
+            wait(&gTime,jam,mnt);
+            Push(&undoStack,sim);
         }
     }
 
