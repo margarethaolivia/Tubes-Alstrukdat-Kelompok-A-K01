@@ -38,8 +38,8 @@ void initiatePoint(Matrix map, simulator *sim){
         {
             if (ELMT(map,i,j)=='S')
             {
-                (sim)->currentPos.x=j-1;
-                (sim)->currentPos.y=i-1;
+                (sim)->currentPos.x=i-1;
+                (sim)->currentPos.y=j-1;
             }
             
             j++;
@@ -50,37 +50,37 @@ void initiatePoint(Matrix map, simulator *sim){
 }
 
 void moveKanan(simulator *sim, Matrix *map){
-    char x=ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+2);
+    char x=ELMT(*map,(sim)->currentPos.x+1,(sim)->currentPos.y+2);
     if ( x!='*' && x!='X' && x!='T' && x!='M' && x!='C' && x!='F' && x!='B' )
     {
         // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
         // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+2)='S';
-        (sim)->currentPos.x=(sim)->currentPos.x+1;
+        (sim)->currentPos.y=(sim)->currentPos.y+1;
     }
     else{
         printf("ada rintangan\n");
     }
 }
 void moveKiri(simulator *sim, Matrix *map){
-    char x=ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x);
+    char x=ELMT(*map,(sim)->currentPos.x+1,(sim)->currentPos.y);
     if ( x!='*' && x!='X' && x!='T' && x!='M' && x!='C' && x!='F' && x!='B' )
     {
         // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
         // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x)='S';
-        (sim)->currentPos.x=(sim)->currentPos.x-1;
+        (sim)->currentPos.y=(sim)->currentPos.y-1;
     }
     else{
         printf("ada rintangan\n");
     }
 }
 void moveAtas(simulator *sim, Matrix *map){
-    char x=ELMT(*map,(sim)->currentPos.y,(sim)->currentPos.x+1);
+    char x=ELMT(*map,(sim)->currentPos.x,(sim)->currentPos.y+1);
     
     if ( x!='*' && x!='X' && x!='T' && x!='M' && x!='C' && x!='F' && x!='B' )
     {
         // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
         // ELMT(*map,(sim)->currentPos.y,(sim)->currentPos.x+1)='S';
-        (sim)->currentPos.y=(sim)->currentPos.y-1;
+        (sim)->currentPos.x=(sim)->currentPos.x-1;
     }
     else{
         printf("ada rintangan\n");
@@ -88,12 +88,12 @@ void moveAtas(simulator *sim, Matrix *map){
 }
 
 void moveBawah(simulator *sim, Matrix *map){
-    char x=ELMT(*map,(sim)->currentPos.y+2,(sim)->currentPos.x+1);
+    char x=ELMT(*map,(sim)->currentPos.x+2,(sim)->currentPos.y+1);
     if ( x!='*' && x!='X' && x!='T' && x!='M' && x!='C' && x!='F' && x!='B' )
     {
         // ELMT(*map,(sim)->currentPos.y+1,(sim)->currentPos.x+1)=' ';
         // ELMT(*map,(sim)->currentPos.y+2,(sim)->currentPos.x+1)='S';
-        (sim)->currentPos.y=(sim)->currentPos.y+1;
+        (sim)->currentPos.x=(sim)->currentPos.x+1;
     }
     else{
         printf("ada rintangan\n");
@@ -129,11 +129,11 @@ void displayMapBasedOnCurrentPos(Matrix map, simulator sim){
         j=0;
         while (j<COL_EFF(map))
         {
-            if (i==sim.currentPos.y+1 && j==sim.currentPos.x+1)
+            if (i==sim.currentPos.x+1 && j==sim.currentPos.y+1)
             {
                 printf("%c",'S');
             }
-            else if (i!=sim.currentPos.y+1 || j!=sim.currentPos.x+1)
+            else if (i!=sim.currentPos.x+1 || j!=sim.currentPos.y+1)
             {
                 if (ELMT(map,i,j)!='S')
                 {
