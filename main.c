@@ -24,7 +24,7 @@ int main()
     ListResep listresep;
     listMakanan listmakanan;
     Stack undoStack, stackSimState;
-    time gTime;
+    // time gTime;
 
     startKata("", false, '\0', '\n');
     printf("%s\n", currentKata.buffer);
@@ -37,7 +37,7 @@ int main()
         READ_RESEP("Config/resep.txt", &listresep);
         readMakananFile(&listmakanan, "Config/makanan.txt");
         map = matrixtoMap(map);
-        createTime(&gTime, 0, 0, 0);
+        // createTime(&gTime, 0, 0, 0);
         createSim(&sim);
         initiatePoint(map, &sim);
         CreateEmpty(&undoStack);
@@ -54,7 +54,7 @@ int main()
         printf("BNMO di posisi: ");
         printPoint(sim.currentPos);
         printf("waktu: ");
-        printTime(gTime);
+        printTime(sim.gtime);
         printf("\n");
         displayMapBasedOnCurrentPos(map, sim);
         printf("Enter command: \n");
@@ -69,25 +69,25 @@ int main()
         else if (strcmp(currentKata.buffer, "MOVE WEST"))
         {
             moveKiri(&sim, &map);
-            nextMin(&gTime);
+            nextMin(&sim.gtime);
             Push(&undoStack, sim);
         }
         else if (strcmp(currentKata.buffer, "MOVE EAST"))
         {
             moveKanan(&sim, &map);
-            nextMin(&gTime);
+            nextMin(&sim.gtime);
             Push(&undoStack, sim);
         }
         else if (strcmp(currentKata.buffer, "MOVE NORTH"))
         {
             moveAtas(&sim, &map);
-            nextMin(&gTime);
+            nextMin(&sim.gtime);
             Push(&undoStack, sim);
         }
         else if (strcmp(currentKata.buffer, "MOVE SOUTH"))
         {
             moveBawah(&sim, &map);
-            nextMin(&gTime);
+            nextMin(&sim.gtime);
             Push(&undoStack, sim);
         }
         else if (strcmp(currentKata.buffer, "INVENTORY"))
@@ -156,7 +156,7 @@ int main()
             if (valid)
             {
                 sim = InfoTop(undoStack);
-                prevMin(&gTime);
+                // prevMin(&sim.gtime);
             }
         }
         else if (strcmp(currentKata.buffer, "REDO"))
@@ -164,13 +164,13 @@ int main()
             redo(&undoStack, &stackSimState, &sim, &valid);
             if (valid)
             {
-                nextMin(&gTime);
+                // nextMin(&sim.gtime);
             }
         }
         else if (strcmp(currentKata.buffer, "CATALOG"))
         {
             catalog(listmakanan);
-            nextMin(&gTime);
+            nextMin(&sim.gtime);
         }
         else if (strcmp(currentKata.buffer, "WAIT"))
         {
@@ -193,7 +193,7 @@ int main()
                 mnt=mnt*10+currentKata.buffer[i]%48;
                 i++;
             }
-            wait(&gTime,jam,mnt);
+            wait(&sim.gtime,jam,mnt);
             Push(&undoStack,sim);
         }
     }

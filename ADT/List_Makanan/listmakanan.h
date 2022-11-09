@@ -48,5 +48,9 @@ void readMakananFile(listMakanan *lm, char* path);
 
 void displayListMakanan(listMakanan l);
 boolean searchListMakananBasedOnID(listMakanan lm,int id);
+listMakanan searchListMakananBasedOnAksi(listMakanan lm,char aks);
+boolean searchListMakananBasedOnNama(listMakanan lm,char* name);
+Makanan getElmakanid(listMakanan lm,int ID);
+Makanan getElmakanNama(listMakanan lm,char* name);
 
 #endif

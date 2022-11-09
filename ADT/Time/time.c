@@ -15,10 +15,10 @@ void advTime(time *t, int day, int hour, int minute){
 }
 
 void nextMin(time *t){  
-    advTime(t,t->DD,t->HH,1);
+    advTime(t,0,0,1);
 }
 void prevMin(time *t){
-    advTime(t,t->DD,t->HH,-1);
+    advTime(t,0,0,-1);
 }
 void printTime(time t){
     printf("%d.%d\n",hour(t),minute(t));

@@ -10,6 +10,7 @@ void createSim(simulator *sim){
     createPQueue(&q1,100);
     sim->inventory=q;
     sim->delivery=q1;
+    createTime(&sim->gtime,0,0,0);
 }
 
 void setNama(simulator *sim,Kata currentKata){

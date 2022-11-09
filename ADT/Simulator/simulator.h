@@ -6,6 +6,7 @@
 #include "../Matrix/matrix.h"
 #include "../Mesin_Kata/mesinkata.h"
 #include "../PrioQueue/prioqueue.h"
+#include "../Time/time.h"
 
 typedef struct 
 {
@@ -13,7 +14,7 @@ typedef struct
     PQueue delivery;
     point currentPos;
     Kata nama;
-
+    time gtime;
 } simulator;
 #define nama(simulator) simulator.nama
 
