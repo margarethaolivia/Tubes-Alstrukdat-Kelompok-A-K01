@@ -207,6 +207,276 @@ void READ_RESEP(const char *PATH, ListResep *l)
     }
 }
 
+void MIX(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
+    listMakanan lOpsi = searchListMakananBasedOnAksi(lM,'M');
+    printf("=======================\n");
+    printf("=         MIX         =\n");
+    printf("=======================\n");
+    printf("List Bahan Makanan yang Bisa Dibuat:\n");
+    int i;
+    for(i=0;i<lOpsi.listmakanlen;i++){
+        printf("    %d. ",i+1);
+        printf(Nama(lOpsi.contents[i]).buffer);
+        printf("\n");
+    }
+    printf("\nKirim 0 utuk exit.\n\n");
+    int opsi;
+    do{
+        printf("\nEnter Command: ");
+        scanf("%d",&opsi);
+        if(opsi<0||opsi>lOpsi.listmakanlen){
+            printf("Mainnya hebat!.");
+        }
+        else if(opsi!=0){
+            int requestId = Id(lOpsi.contents[opsi-1]);
+            boolean doable = true;
+            Makanan requestedMakanan = getElmakanid(lM,requestId);
+            Tree resep;
+            int j = 0;
+            while(Mother(getElmtListResep(lR,j))!=requestId&&j<lengthListResep(lR)){
+                j++;
+            }
+            int k;
+            if(Mother(getElmtListResep(lR,j))==requestId){
+                resep = getElmtListResep(lR,j);
+                for(k=0;k<amountOfChildren(resep,requestId);k++){
+                    int neededId = getNthChildOf(resep,requestId,k);
+                    if(!isIdInQueue(*bufferInvertory,neededId)){
+                        doable = false;
+                    }
+                }
+                if(doable){
+                    resep = getElmtListResep(lR,j);
+                    for(k=0;k<amountOfChildren(resep,requestId);k++){
+                        int neededId = getNthChildOf(resep,requestId,k);
+                        removeIdFromQueue(bufferInvertory,neededId);
+                    } 
+                    enqueue(bufferInvertory,requestedMakanan);
+                    printf("\n");
+                    printf(Nama(requestedMakanan).buffer);
+                    printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                } else {
+                    printf("\nGagal membuat ");
+                    printf(Nama(requestedMakanan).buffer);
+                    printf(" karena kamu tidak memiliki bahan berikut:\n");
+                    for(k=0;k<amountOfChildren(resep,requestId);k++){
+                        int neededId = getNthChildOf(resep,requestId,k);
+                        if(!isIdInQueue(*bufferInvertory,neededId)){
+                            Makanan neededMakanan = getElmakanid(lM,neededId);
+                            printf("%d ",i+1);
+                            printf(Nama(neededMakanan).buffer);
+                            printf("\n");
+                        }
+                    }
+                }
+            }
+        }
+    }while(opsi!=0);
+}
+
+void FRY(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
+    listMakanan lOpsi = searchListMakananBasedOnAksi(lM,'F');
+    printf("=======================\n");
+    printf("=         FRY         =\n");
+    printf("=======================\n");
+    printf("List Bahan Makanan yang Bisa Dibuat:\n");
+    int i;
+    for(i=0;i<lOpsi.listmakanlen;i++){
+        printf("    %d. ",i+1);
+        printf(Nama(lOpsi.contents[i]).buffer);
+        printf("\n");
+    }
+    printf("\nKirim 0 utuk exit.\n\n");
+    int opsi;
+    do{
+        printf("\nEnter Command: ");
+        scanf("%d",&opsi);
+        if(opsi<0||opsi>lOpsi.listmakanlen){
+            printf("Mainnya hebat!.");
+        }
+        else if(opsi!=0){
+            int requestId = Id(lOpsi.contents[opsi-1]);
+            boolean doable = true;
+            Makanan requestedMakanan = getElmakanid(lM,requestId);
+            Tree resep;
+            int j = 0;
+            while(Mother(getElmtListResep(lR,j))!=requestId&&j<lengthListResep(lR)){
+                j++;
+            }
+            int k;
+            if(Mother(getElmtListResep(lR,j))==requestId){
+                resep = getElmtListResep(lR,j);
+                for(k=0;k<amountOfChildren(resep,requestId);k++){
+                    int neededId = getNthChildOf(resep,requestId,k);
+                    if(!isIdInQueue(*bufferInvertory,neededId)){
+                        doable = false;
+                    }
+                }
+                if(doable){
+                    resep = getElmtListResep(lR,j);
+                    for(k=0;k<amountOfChildren(resep,requestId);k++){
+                        int neededId = getNthChildOf(resep,requestId,k);
+                        removeIdFromQueue(bufferInvertory,neededId);
+                    } 
+                    enqueue(bufferInvertory,requestedMakanan);
+                    printf("\n");
+                    printf(Nama(requestedMakanan).buffer);
+                    printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                } else {
+                    printf("\nGagal membuat ");
+                    printf(Nama(requestedMakanan).buffer);
+                    printf(" karena kamu tidak memiliki bahan berikut:\n");
+                    for(k=0;k<amountOfChildren(resep,requestId);k++){
+                        int neededId = getNthChildOf(resep,requestId,k);
+                        if(!isIdInQueue(*bufferInvertory,neededId)){
+                            Makanan neededMakanan = getElmakanid(lM,neededId);
+                            printf("%d ",i+1);
+                            printf(Nama(neededMakanan).buffer);
+                            printf("\n");
+                        }
+                    }
+                }
+            }
+        }
+    }while(opsi!=0);
+}
+
+void BOIL(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
+    listMakanan lOpsi = searchListMakananBasedOnAksi(lM,'O');
+    printf("=======================\n");
+    printf("=        BOIL         =\n");
+    printf("=======================\n");
+    printf("List Bahan Makanan yang Bisa Dibuat:\n");
+    int i;
+    for(i=0;i<lOpsi.listmakanlen;i++){
+        printf("    %d. ",i+1);
+        printf(Nama(lOpsi.contents[i]).buffer);
+        printf("\n");
+    }
+    printf("\nKirim 0 utuk exit.\n\n");
+    int opsi;
+    do{
+        printf("\nEnter Command: ");
+        scanf("%d",&opsi);
+        if(opsi<0||opsi>lOpsi.listmakanlen){
+            printf("Mainnya hebat!.");
+        }
+        else if(opsi!=0){
+            int requestId = Id(lOpsi.contents[opsi-1]);
+            boolean doable = true;
+            Makanan requestedMakanan = getElmakanid(lM,requestId);
+            Tree resep;
+            int j = 0;
+            while(Mother(getElmtListResep(lR,j))!=requestId&&j<lengthListResep(lR)){
+                j++;
+            }
+            int k;
+            if(Mother(getElmtListResep(lR,j))==requestId){
+                resep = getElmtListResep(lR,j);
+                for(k=0;k<amountOfChildren(resep,requestId);k++){
+                    int neededId = getNthChildOf(resep,requestId,k);
+                    if(!isIdInQueue(*bufferInvertory,neededId)){
+                        doable = false;
+                    }
+                }
+                if(doable){
+                    resep = getElmtListResep(lR,j);
+                    for(k=0;k<amountOfChildren(resep,requestId);k++){
+                        int neededId = getNthChildOf(resep,requestId,k);
+                        removeIdFromQueue(bufferInvertory,neededId);
+                    } 
+                    enqueue(bufferInvertory,requestedMakanan);
+                    printf("\n");
+                    printf(Nama(requestedMakanan).buffer);
+                    printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                } else {
+                    printf("\nGagal membuat ");
+                    printf(Nama(requestedMakanan).buffer);
+                    printf(" karena kamu tidak memiliki bahan berikut:\n");
+                    for(k=0;k<amountOfChildren(resep,requestId);k++){
+                        int neededId = getNthChildOf(resep,requestId,k);
+                        if(!isIdInQueue(*bufferInvertory,neededId)){
+                            Makanan neededMakanan = getElmakanid(lM,neededId);
+                            printf("%d ",i+1);
+                            printf(Nama(neededMakanan).buffer);
+                            printf("\n");
+                        }
+                    }
+                }
+            }
+        }
+    }while(opsi!=0);
+}
+
+void CHOP(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
+    listMakanan lOpsi = searchListMakananBasedOnAksi(lM,'C');
+    printf("=======================\n");
+    printf("=         CHOP        =\n");
+    printf("=======================\n");
+    printf("List Bahan Makanan yang Bisa Dibuat:\n");
+    int i;
+    for(i=0;i<lOpsi.listmakanlen;i++){
+        printf("    %d. ",i+1);
+        printf(Nama(lOpsi.contents[i]).buffer);
+        printf("\n");
+    }
+    printf("\nKirim 0 utuk exit.\n\n");
+    int opsi;
+    do{
+        printf("\nEnter Command: ");
+        scanf("%d",&opsi);
+        if(opsi<0||opsi>lOpsi.listmakanlen){
+            printf("Mainnya hebat!.");
+        }
+        else if(opsi!=0){
+            int requestId = Id(lOpsi.contents[opsi-1]);
+            boolean doable = true;
+            Makanan requestedMakanan = getElmakanid(lM,requestId);
+            Tree resep;
+            int j = 0;
+            while(Mother(getElmtListResep(lR,j))!=requestId&&j<lengthListResep(lR)){
+                j++;
+            }
+            int k;
+            if(Mother(getElmtListResep(lR,j))==requestId){
+                resep = getElmtListResep(lR,j);
+                for(k=0;k<amountOfChildren(resep,requestId);k++){
+                    int neededId = getNthChildOf(resep,requestId,k);
+                    if(!isIdInQueue(*bufferInvertory,neededId)){
+                        doable = false;
+                    }
+                }
+                if(doable){
+                    resep = getElmtListResep(lR,j);
+                    for(k=0;k<amountOfChildren(resep,requestId);k++){
+                        int neededId = getNthChildOf(resep,requestId,k);
+                        removeIdFromQueue(bufferInvertory,neededId);
+                    } 
+                    enqueue(bufferInvertory,requestedMakanan);
+                    printf("\n");
+                    printf(Nama(requestedMakanan).buffer);
+                    printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                } else {
+                    printf("\nGagal membuat ");
+                    printf(Nama(requestedMakanan).buffer);
+                    printf(" karena kamu tidak memiliki bahan berikut:\n");
+                    for(k=0;k<amountOfChildren(resep,requestId);k++){
+                        int neededId = getNthChildOf(resep,requestId,k);
+                        if(!isIdInQueue(*bufferInvertory,neededId)){
+                            Makanan neededMakanan = getElmakanid(lM,neededId);
+                            printf("%d ",i+1);
+                            printf(Nama(neededMakanan).buffer);
+                            printf("\n");
+                        }
+                    }
+                }
+            }
+        }
+    }while(opsi!=0);
+}
+
+
+
 int main()
 {
 
@@ -277,6 +547,19 @@ int main()
     createListResep(&l);
 
     READ_RESEP("tes.txt", &l);
-    printTree(getElmtListResep(l, 3));
+    //printTree(getElmtListResep(l, 3));
     // printf("%d",lengthListResep(l));
+    listMakanan listmakanan;
+    readMakananFile(&listmakanan, "Config/makanan.txt");
+    PQueue t;
+    createPQueue(&t,10);
+    int i;
+    for(i=0;i<listmakanan.listmakanlen;i++){
+        enqueue(&t,listmakanan.contents[i]);
+    }
+    MIX(listmakanan,l,&t);
+    FRY(listmakanan,l,&t);
+    CHOP(listmakanan,l,&t);
+    BOIL(listmakanan,l,&t);
+
 }

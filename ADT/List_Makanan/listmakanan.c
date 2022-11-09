@@ -142,7 +142,19 @@ void readMakananFile(listMakanan *lm, char* path)
         advKata('\0','\n');
 
         //mencari aksi yang dapat dilakukan pada makanana
-        m.aksi = currentKata.buffer[0];
+        if(strcmp(currentKata.buffer,"Mix")){
+            m.aksi = 'M';
+        } else if(strcmp(currentKata.buffer,"Fry")){
+            m.aksi = 'F';
+        } else if(strcmp(currentKata.buffer,"Boil")){
+            m.aksi = 'O';
+        } else if(strcmp(currentKata.buffer,"Chop")){
+            m.aksi = 'C';
+        } else if(strcmp(currentKata.buffer,"Buy")){
+            m.aksi = 'B';
+        } else {
+            m.aksi = '-';
+        }
         // advKata('\0','\n');
 
         lm->contents[i] = m;

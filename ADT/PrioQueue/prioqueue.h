@@ -61,5 +61,9 @@ ElTypePQueue* getElmtPQueueReff(PQueue* p, int idx); //getElmtPQueue pass by ref
 
 void destroyPQueue(PQueue* p); //free()
 
+//fungsi tambahan
+// hanya berlaku bila ElType Makanan
+boolean isIdInQueue(PQueue p, int id);
+boolean removeIdFromQueue(PQueue* p, int id);
 
 #endif

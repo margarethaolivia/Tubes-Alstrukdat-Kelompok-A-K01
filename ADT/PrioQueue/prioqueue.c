@@ -91,6 +91,49 @@ boolean removeFromQueue(PQueue* p, lambdaPQ fx, CompareType val){
     return false;
 }
 
+boolean removeIdFromQueue(PQueue* p, int id){
+    if(!isEmptyPQueue(*p)){
+        int startTraversal = IdxHead(*p);
+        int endTraversal = IdxTail(*p);
+        if(endTraversal<startTraversal){endTraversal+=SizePQueue(*p);}
+
+        int i = startTraversal;
+        while(i<endTraversal&&!(Id(ElmtPQueue(*p,i%SizePQueue(*p)))==id)){
+            i++;
+        }                                                       //find first matching element
+
+        if(Id(ElmtPQueue(*p,i%SizePQueue(*p)))==id){
+            for(;i<endTraversal;i++){
+                ElmtPQueue(*p,i%SizePQueue(*p)) = ElmtPQueue(*p,(i+1)%SizePQueue(*p));
+            }
+            IdxTail(*p) = (IdxTail(*p)-1)%SizePQueue(*p);               //ser geser
+
+            return true;
+        }
+    }                           //return true bila ada yg ter remove jika tidak false
+
+    return false;
+}
+
+boolean isIdInQueue(PQueue p, int id){
+    if(!isEmptyPQueue(p)){
+        int startTraversal = IdxHead(p);
+        int endTraversal = IdxTail(p);
+        if(endTraversal<startTraversal){endTraversal+=SizePQueue(p);}
+
+        int i = startTraversal;
+        while(i<endTraversal&&!(Id(ElmtPQueue(p,i%SizePQueue(p)))==id)){
+            i++;
+        }                                                       //find first matching element
+
+        if(Id(ElmtPQueue(p,i%SizePQueue(p)))==id){              
+            return true;
+        }
+    }                           //return true bila ada yg ter remove jika tidak false
+
+    return false;
+}
+
 ElTypePQueue getElmtPQueue(PQueue p, int idx){
     return ElmtPQueue(p,(IdxHead(p)+idx)%SizePQueue(p));
 }
