@@ -95,11 +95,13 @@ int main()
         }
         else if (strcmp(currentKata.buffer, "DELIVERY"))
         {
+            DELIVERY(sim.delivery);
         }
         else if (strcmp(currentKata.buffer, "BUY"))
         {
             if (isAdjacentTo(sim, 'T', map))
             {
+                BUY(listmakanan,&sim.delivery);
             }
             else
             {

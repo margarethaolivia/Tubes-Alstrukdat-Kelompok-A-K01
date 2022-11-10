@@ -475,10 +475,86 @@ void CHOP(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
     }while(opsi!=0);
 }
 
+void BUY(listMakanan lM, PQueue* bufferDelivery){
+    listMakanan lOpsi = searchListMakananBasedOnAksi(lM,'B');
+    printf("=======================\n");
+    printf("=         BUY         =\n");
+    printf("=======================\n");
+    printf("List Bahan Makanan yang Bisa Dibeli:\n");
+    int i;
+    for(i=0;i<lOpsi.listmakanlen;i++){
+        printf("    %d. ",i+1);
+        printf(Nama(lOpsi.contents[i]).buffer);
+        printf(" (");
+        // printTime(lOpsi.contents[i].delivTime);
+        if (lOpsi.contents[i].delivTime.DD>0)
+        {
+            printf(" %d hari ",lOpsi.contents[i].delivTime.DD);
+        }
+        if (lOpsi.contents[i].delivTime.HH>0)
+        {
+            printf(" %d jam ",lOpsi.contents[i].delivTime.HH);
+        }
+        if (lOpsi.contents[i].delivTime.MM>0)
+        {
+            printf(" %d menit ",lOpsi.contents[i].delivTime.MM);
+        }
+        printf(")");
+        printf("\n");
+    }
+    printf("\nKirim 0 utuk exit.\n\n");
+    int opsi=-1;
+    while (opsi!=0)
+    {
+        startKata("",false,' ','\n');
+        opsi =stoi(currentKata);
+        if(opsi<0||opsi>lOpsi.listmakanlen){
+            printf("Mainnya hebat!.");
+        }
+        else{
+            enqueue(&*bufferDelivery,lOpsi.contents[opsi-1]);
+            printf("berhasil membeli ");
+            printf(lOpsi.contents[opsi-1].nama.buffer);
+            printf("\n");
+        }
+    }
+}
+
+void DELIVERY(PQueue bufferDelivery){
+    int i=0;
+    int len=lengthPQueue(bufferDelivery);
+    printf("List makanan di perjalanan\n");
+    printf("(nama - waktu sisa pengantaran)\n");
+    if (len==0)
+    {
+        printf("Tidak ada makanan yang sedang diantar\n");
+    }
+    else{
+        while (i<len)
+        {
+            printf(bufferDelivery.queue[i].nama.buffer);
+            printf(" - ");
+            if (bufferDelivery.queue[i].delivTime.DD>0)
+            {
+                printf("%d hari ",bufferDelivery.queue[i].delivTime.DD);
+            }
+            if (bufferDelivery.queue[i].delivTime.HH>0)
+            {
+                printf("%d jam ",bufferDelivery.queue[i].delivTime.HH);
+            }
+            if (bufferDelivery.queue[i].delivTime.MM>0)
+            {
+                printf("%d menit ",bufferDelivery.queue[i].delivTime.MM);
+            }
+            printf("\n");
+            i++;
+        }
+    }
+}
 
 
-int main()
-{
+// int main()
+// {
 
 //     // --- TESTING COMMAND CATALOG ---
 //     // Makanan m;
@@ -543,23 +619,23 @@ int main()
 
 //     //     INVERTORY(daftarInvertory);
 
-    ListResep l;
-    createListResep(&l);
+//     ListResep l;
+//     createListResep(&l);
 
-    READ_RESEP("tes.txt", &l);
-    //printTree(getElmtListResep(l, 3));
-    // printf("%d",lengthListResep(l));
-    listMakanan listmakanan;
-    readMakananFile(&listmakanan, "Config/makanan.txt");
-    PQueue t;
-    createPQueue(&t,10);
-    int i;
-    for(i=0;i<listmakanan.listmakanlen;i++){
-        enqueue(&t,listmakanan.contents[i]);
-    }
-    MIX(listmakanan,l,&t);
-    FRY(listmakanan,l,&t);
-    CHOP(listmakanan,l,&t);
-    BOIL(listmakanan,l,&t);
+//     READ_RESEP("tes.txt", &l);
+//     //printTree(getElmtListResep(l, 3));
+//     // printf("%d",lengthListResep(l));
+//     listMakanan listmakanan;
+//     readMakananFile(&listmakanan, "Config/makanan.txt");
+//     PQueue t;
+//     createPQueue(&t,10);
+//     int i;
+//     for(i=0;i<listmakanan.listmakanlen;i++){
+//         enqueue(&t,listmakanan.contents[i]);
+//     }
+//     MIX(listmakanan,l,&t);
+//     FRY(listmakanan,l,&t);
+//     CHOP(listmakanan,l,&t);
+//     BOIL(listmakanan,l,&t);
 
-}
+// }
