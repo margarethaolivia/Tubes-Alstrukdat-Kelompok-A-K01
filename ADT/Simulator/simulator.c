@@ -103,17 +103,18 @@ void moveBawah(simulator *sim, Matrix *map){
 
 boolean isAdjacentTo(simulator sim, char object,Matrix map){
     boolean isAdjacent=false;
-    int i=sim.currentPos.y;
-    int j=sim.currentPos.x;
-    while (i<sim.currentPos.y+3 && !isAdjacent)
+    int i=sim.currentPos.x;
+    int j=sim.currentPos.y;
+    while (i<sim.currentPos.x+3 && !isAdjacent)
     {
-        j=sim.currentPos.x;
-        while (j<sim.currentPos.x+3 && !isAdjacent)
+        j=sim.currentPos.y;
+        while (j<sim.currentPos.y+3 && !isAdjacent)
         {
             if (ELMT(map,i,j)==object)
             {
                 isAdjacent=true;
             }
+            // printf("%c i%d j%d\n",ELMT(map,i,j),i,j);
             j++;
         }
         

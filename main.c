@@ -110,6 +110,7 @@ int main()
         {
             if (isAdjacentTo(sim, 'M', map))
             {
+                MIX(listmakanan,listresep,&sim.inventory);
             }
             else
             {
@@ -120,6 +121,7 @@ int main()
         {
             if (isAdjacentTo(sim, 'C', map))
             {
+                CHOP(listmakanan,listresep,&sim.inventory);
             }
             else
             {
@@ -130,6 +132,7 @@ int main()
         {
             if (isAdjacentTo(sim, 'F', map))
             {
+                FRY(listmakanan,listresep,&sim.inventory);
             }
             else
             {
@@ -140,6 +143,7 @@ int main()
         {
             if (isAdjacentTo(sim, 'B', map))
             {
+                BOIL(listmakanan,listresep,&sim.inventory);
             }
             else
             {
