@@ -92,6 +92,7 @@ int main()
         }
         else if (strcmp(currentKata.buffer, "INVENTORY"))
         {
+            INVERTORY(sim.inventory);
         }
         else if (strcmp(currentKata.buffer, "DELIVERY"))
         {

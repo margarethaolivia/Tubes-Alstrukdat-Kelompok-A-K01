@@ -11,16 +11,24 @@ void INVERTORY(PQueue daftarInvertory)
 {
     printf("List Makanan di Invertory\n(nama - waktu sisa kadaluwarsa)\n");
     int i;
-    for (i = 0; i < lengthPQueue(daftarInvertory); i++)
+    int len=lengthPQueue(daftarInvertory);
+    if (len==0)
     {
-        char *namaMakanan = Nama(getElmtPQueue(daftarInvertory, i)).buffer;
-        time kadaluwarsa = Expired(getElmtPQueue(daftarInvertory, i));
-        printf("    %d. ", i + 1);
-        printf(namaMakanan);
-        printf(" -");
-        printTimeHJM(kadaluwarsa);
-        printf("\n");
+        printf("Tidak ada makanan di dalam inventory\n");
     }
+    else{
+        for (i = 0; i < lengthPQueue(daftarInvertory); i++)
+        {
+            char *namaMakanan = Nama(getElmtPQueue(daftarInvertory, i)).buffer;
+            time kadaluwarsa = Expired(getElmtPQueue(daftarInvertory, i));
+            printf("    %d. ", i + 1);
+            printf(namaMakanan);
+            printf(" -");
+            printTimeHJM(kadaluwarsa);
+            printf("\n");
+        }
+    }
+    
 }
 
 void pesan_(PQueue *bufferPesanan, Makanan makanan)
@@ -551,6 +559,38 @@ void DELIVERY(PQueue bufferDelivery){
         }
     }
 }
+
+// void INVENTORY(PQueue bufferInventory){
+//     int i=0;
+//     int len=lengthPQueue(bufferInventory);
+//     printf("List makanan di inventoru\n");
+//     printf("(nama - waktu kadaluwarsa)\n");
+//     if (len==0)
+//     {
+//         printf("Tidak ada makanan di dalam Inventory\n");
+//     }
+//     else{
+//         while (i<len)
+//         {
+//             printf(bufferInventory.queue[i].nama.buffer);
+//             printf(" - ");
+//             if (bufferInventory.queue[i].expired.DD>0)
+//             {
+//                 printf("%d hari ",bufferInventory.queue[i].expired.DD);
+//             }
+//             if (bufferInventory.queue[i].expired.HH>0)
+//             {
+//                 printf("%d jam ",bufferInventory.queue[i].expired.HH);
+//             }
+//             if (bufferInventory.queue[i].expired.MM>0)
+//             {
+//                 printf("%d menit ",bufferInventory.queue[i].expired.MM);
+//             }
+//             printf("\n");
+//             i++;
+//         }
+//     }
+// }
 
 
 // int main()

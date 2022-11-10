@@ -30,7 +30,7 @@ void moveKiri(simulator *sim, Matrix *map);
 void moveAtas(simulator *sim, Matrix *map);
 void moveBawah(simulator *sim, Matrix *map);
 boolean isAdjacentTo(simulator sim, char object,Matrix map);
-void displayInvent(simulator sim);
+// void displayInvent(simulator sim);
 void displayMapBasedOnCurrentPos(Matrix map, simulator sim);
 
 #endif
