@@ -560,6 +560,40 @@ void DELIVERY(PQueue bufferDelivery){
     }
 }
 
+void COOKBOOK(ListResep lr, listMakanan lm){
+    int i=0;
+    int j=0;
+    int len=lengthListResep(lr);
+    int currentChildAmount;
+    printf("List Resep\n(aksi yang diperlukan - bahan...)\n");
+    while (i<len)
+    {
+        currentChildAmount=amountOfChildren(lr.container[i],lr.container[i]->motherValue);
+        printf("    %d. ",i+1);
+        printf(getElmakanid(lm,lr.container[i]->motherValue).nama.buffer);
+        printf("\n");
+        printf("        ");
+        printAksi(getElmakanid(lm,lr.container[i]->motherValue).aksi);
+        printf(" - ");
+        // printf("cmt c%d\n",currentChildAmount);
+        j=0;
+        while (j<currentChildAmount)
+        {
+            printf(getElmakanid(lm,getNthChildOf(lr.container[i],lr.container[i]->motherValue,j)).nama.buffer);
+            // printf(" ");
+            if (j!=currentChildAmount-1)
+            {
+                printf(" - ");
+            }
+            
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+    
+}
+
 // void INVENTORY(PQueue bufferInventory){
 //     int i=0;
 //     int len=lengthPQueue(bufferInventory);

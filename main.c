@@ -155,6 +155,7 @@ int main()
         }
         else if (strcmp(currentKata.buffer, "COOKBOOK"))
         {
+            COOKBOOK(listresep,listmakanan);
         }
         else if (strcmp(currentKata.buffer, "UNDO"))
         {
@@ -188,7 +189,7 @@ int main()
             int i=0;
             while (i<currentKata.length)
             {
-                printf("%s\n",currentKata.buffer);
+                // printf("%s\n",currentKata.buffer);
                 jam=jam*10+currentKata.buffer[i]%48;
                 i++;
             }
@@ -196,12 +197,15 @@ int main()
             i=0;
             while (i<currentKata.length)
             {
-                printf("%s\n",currentKata.buffer);
+                // printf("%s\n",currentKata.buffer);
                 mnt=mnt*10+currentKata.buffer[i]%48;
                 i++;
             }
             wait(&sim.gtime,jam,mnt);
             Push(&undoStack,sim);
+        }
+        else{
+            printf("Command tidak dikenal\n");
         }
     }
 
