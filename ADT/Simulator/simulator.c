@@ -6,8 +6,8 @@ void createSim(simulator *sim){
     (sim)->nama.buffer[0]='\0';
     // *sim->currentPos=NULL;
     PQueue q,q1;
-    createPQueue(&q,100);
-    createPQueue(&q1,100);
+    createPQueue(&q,2);
+    createPQueue(&q1,2);
     sim->inventory=q;
     sim->delivery=q1;
     createTime(&sim->gtime,0,0,0);
@@ -191,3 +191,12 @@ void displayMapBasedOnCurrentPos(Matrix map, simulator sim){
 //     }
     
 // }
+
+simulator copySim(simulator sim){
+    simulator s2;
+    s2 = sim;
+    s2.inventory = copyQ(sim.inventory);
+    s2.delivery = copyQ(sim.delivery);
+
+    return s2;
+}

@@ -33,4 +33,6 @@ boolean isAdjacentTo(simulator sim, char object,Matrix map);
 // void displayInvent(simulator sim);
 void displayMapBasedOnCurrentPos(Matrix map, simulator sim);
 
+simulator copySim(simulator sim);
+
 #endif
