@@ -105,21 +105,38 @@ boolean isAdjacentTo(simulator sim, char object,Matrix map){
     boolean isAdjacent=false;
     int i=sim.currentPos.x;
     int j=sim.currentPos.y;
-    while (i<sim.currentPos.x+3 && !isAdjacent)
-    {
-        j=sim.currentPos.y;
-        while (j<sim.currentPos.y+3 && !isAdjacent)
-        {
-            if (ELMT(map,i,j)==object)
-            {
-                isAdjacent=true;
-            }
-            // printf("%c i%d j%d\n",ELMT(map,i,j),i,j);
-            j++;
-        }
+    // while (i<sim.currentPos.x+3 && !isAdjacent)
+    // {
+    //     j=sim.currentPos.y;
+    //     while (j<sim.currentPos.y+3 && !isAdjacent)
+    //     {
+    //         if (ELMT(map,i,j)==object)
+    //         {
+    //             isAdjacent=true;
+    //         }
+    //         // printf("%c i%d j%d\n",ELMT(map,i,j),i,j);
+    //         j++;
+    //     }
         
-        i++;
+    //     i++;
+    // }
+    if (ELMT(map,sim.currentPos.x,sim.currentPos.y+1)==object)
+    {
+        isAdjacent=true;
     }
+    if (ELMT(map,sim.currentPos.x+2,sim.currentPos.y+1)==object)
+    {
+        isAdjacent=true;
+    }
+    if (ELMT(map,sim.currentPos.x+1,sim.currentPos.y)==object)
+    {
+        isAdjacent=true;
+    }
+    if (ELMT(map,sim.currentPos.x+1,sim.currentPos.y+2)==object)
+    {
+        isAdjacent=true;
+    }
+    
     return isAdjacent;
 }
 
