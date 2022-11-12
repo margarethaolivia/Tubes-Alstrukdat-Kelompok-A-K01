@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include "prioqueue.h"
 
+// reducedMakanan mToRM(Makanan m, time prio){
+//     reducedMakanan rM;
+//     rM.id = Id(m);
+//     rM.prio = timeToMin(prio);
+
+//     return rM;
+// }
+
 void createPQueue(PQueue* p, int nMax){
     Queue(*p) = (ElTypePQueue*)malloc(sizeof(ElTypePQueue)*nMax);
     IdxHead(*p) = IDX_UNDEFF;
@@ -51,6 +59,38 @@ void enqueue(PQueue* p, ElTypePQueue val){
     else if(isFullPQueue(*p)){
         resizePQueue(p);                  //full? resizePQueue
         enqueue(p,val);
+    }
+}
+
+void enqueue2(PQueue* p, ElTypePQueue val){
+    if(isEmptyPQueue(*p)){
+        ElmtPQueue(*p,0) = val;
+        IdxTail(*p) = 0;            //is empty? enqu
+        IdxHead(*p) = 0;
+    }
+    else if(!isFullPQueue(*p)){
+        int startTraversal = IdxHead(*p);
+        int endTraversal = IdxTail(*p);
+        if(endTraversal<startTraversal){endTraversal+=SizePQueue(*p);}
+
+        int i = startTraversal;
+        while(i<=endTraversal&&GetPrio2(ElmtPQueue(*p,i%SizePQueue(*p)))<=GetPrio2(val)){
+            i++;
+        }
+        if(GetPrio2(ElmtPQueue(*p,i%SizePQueue(*p)))==GetPrio2(val)){i++;}   //sortby prio
+
+        int j;
+        for(j=endTraversal+1;j>i;j--){
+            ElmtPQueue(*p,j%SizePQueue(*p)) = ElmtPQueue(*p,(j-1)%SizePQueue(*p));      //ser geser
+        }
+
+        ElmtPQueue(*p,i%SizePQueue(*p)) = val;
+        
+        IdxTail(*p) = (endTraversal+1)%SizePQueue(*p);
+    }
+    else if(isFullPQueue(*p)){
+        resizePQueue(p);                  //full? resizePQueue
+        enqueue2(p,val);
     }
 }
 
@@ -163,8 +203,8 @@ int lengthPQueue(PQueue p){
 
 PQueue copyQ(PQueue p){
     PQueue q;
-    n = lengthPQueue(p);
-    createPQueue(&q,n);
+    int n = lengthPQueue(p);
+    createPQueue(&q,n+2);
     int i;
     for(i=0;i<n;i++){
         enqueue(&q,getElmtPQueue(p,i));

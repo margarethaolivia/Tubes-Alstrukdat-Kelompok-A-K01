@@ -493,6 +493,7 @@ void CHOP(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
 
 void BUY(listMakanan lM, PQueue* bufferDelivery){
     listMakanan lOpsi = searchListMakananBasedOnAksi(lM,'B');
+    printf("%d\n",lengthPQueue(*bufferDelivery));
     printf("=======================\n");
     printf("=         BUY         =\n");
     printf("=======================\n");
@@ -528,7 +529,9 @@ void BUY(listMakanan lM, PQueue* bufferDelivery){
             printf("Mainnya hebat!.");
         }
         else if(opsi!=0){
-            enqueue(&*bufferDelivery,lOpsi.contents[opsi-1]);
+            enqueue2(bufferDelivery,lOpsi.contents[opsi-1]);
+            printf("%d",isFullPQueue(*bufferDelivery));
+            printf("%d",lengthPQueue(*bufferDelivery));
             printf("berhasil membeli ");
             printf(lOpsi.contents[opsi-1].nama.buffer);
             printf("\n");
@@ -539,6 +542,7 @@ void BUY(listMakanan lM, PQueue* bufferDelivery){
 void DELIVERY(PQueue bufferDelivery){
     int i=0;
     int len=lengthPQueue(bufferDelivery);
+    printf("%d",len);
     printf("List makanan di perjalanan\n");
     printf("(nama - waktu sisa pengantaran)\n");
     if (len==0)
@@ -550,17 +554,17 @@ void DELIVERY(PQueue bufferDelivery){
         {
             printf(getElmtPQueue(bufferDelivery,i).nama.buffer);
             printf(" - ");
-            if (bufferDelivery.queue[i].delivTime.DD>0)
+            if (getElmtPQueue(bufferDelivery,i).delivTime.DD>0)
             {
-                printf("%d hari ",bufferDelivery.queue[i].delivTime.DD);
+                printf("%d hari ",getElmtPQueue(bufferDelivery,i).delivTime.DD);
             }
-            if (bufferDelivery.queue[i].delivTime.HH>0)
+            if (getElmtPQueue(bufferDelivery,i).delivTime.HH>0)
             {
-                printf("%d jam ",bufferDelivery.queue[i].delivTime.HH);
+                printf("%d jam ",getElmtPQueue(bufferDelivery,i).delivTime.HH);
             }
-            if (bufferDelivery.queue[i].delivTime.MM>0)
+            if (getElmtPQueue(bufferDelivery,i).delivTime.MM>0)
             {
-                printf("%d menit ",bufferDelivery.queue[i].delivTime.MM);
+                printf("%d menit ",getElmtPQueue(bufferDelivery,i).delivTime.MM);
             }
             printf("\n");
             i++;
@@ -638,68 +642,68 @@ void COOKBOOK(ListResep lr, listMakanan lm){
 // int main()
 // {
 
-//     // --- TESTING COMMAND CATALOG ---
-//     // Makanan m;
-//     // time exp, deliv;
-//     // Kata nama;
-//     // char aksi;
-//     // int len, i;
+// //     // --- TESTING COMMAND CATALOG ---
+// //     // Makanan m;
+// //     // time exp, deliv;
+// //     // Kata nama;
+// //     // char aksi;
+// //     // int len, i;
 
-//     // listMakanan lm;
-//     // createListMakanan(&lm);
+// //     // listMakanan lm;
+// //     // createListMakanan(&lm);
 
-//     // createKata(&nama, "Ayam Goreng");
-//     // aksi = 'F';
-//     // createTime(&exp, 0, 0, 5);
-//     // createTime(&deliv, 0, 0, 12);
-//     // createMakanan(&m, 0, nama, exp, aksi, deliv);
-//     // insertMakanan(&lm, m);
+// //     // createKata(&nama, "Ayam Goreng");
+// //     // aksi = 'F';
+// //     // createTime(&exp, 0, 0, 5);
+// //     // createTime(&deliv, 0, 0, 12);
+// //     // createMakanan(&m, 0, nama, exp, aksi, deliv);
+// //     // insertMakanan(&lm, m);
 
-//     // createKata(&nama, "Bawang");
-//     // aksi = 'C';
-//     // createTime(&exp, 0, 0, 7);
-//     // createTime(&deliv, 0, 0, 3);
-//     // createMakanan(&m, 1, nama, exp, aksi, deliv);
-//     // insertMakanan(&lm, m);
+// //     // createKata(&nama, "Bawang");
+// //     // aksi = 'C';
+// //     // createTime(&exp, 0, 0, 7);
+// //     // createTime(&deliv, 0, 0, 3);
+// //     // createMakanan(&m, 1, nama, exp, aksi, deliv);
+// //     // insertMakanan(&lm, m);
 
-//     // catalog(lm);
-//     // --- END TESTING COMMAND CATALOG ---
+// //     // catalog(lm);
+// //     // --- END TESTING COMMAND CATALOG ---
 
-//     //     PQueue daftarInvertory;
-//     //     createPQueue(&daftarInvertory, 7);
-//     //     Makanan man;
-//     //     time kadaluarsa;
-//     //     createTime(&kadaluarsa, 0, 0, 1);
-//     //     Kata nama;
-//     //     createKata(&nama, "ASU GORENG");
-//     //     createMakanan(&man, 1, nama, kadaluarsa, 'n', kadaluarsa);
+// //     //     PQueue daftarInvertory;
+// //     //     createPQueue(&daftarInvertory, 7);
+// //     //     Makanan man;
+// //     //     time kadaluarsa;
+// //     //     createTime(&kadaluarsa, 0, 0, 1);
+// //     //     Kata nama;
+// //     //     createKata(&nama, "ASU GORENG");
+// //     //     createMakanan(&man, 1, nama, kadaluarsa, 'n', kadaluarsa);
 
-//     //     enqueue(&daftarInvertory, man);
+// //     //     enqueue(&daftarInvertory, man);
 
-//     //     Makanan man1;
-//     //     time kadaluarsa1;
-//     //     createTime(&kadaluarsa1, 0, 0, 2);
-//     //     Kata nama1;
-//     //     createKata(&nama1, "ASU REBUS");
-//     //     createMakanan(&man1, 4, nama1, kadaluarsa1, 'f', kadaluarsa1);
+// //     //     Makanan man1;
+// //     //     time kadaluarsa1;
+// //     //     createTime(&kadaluarsa1, 0, 0, 2);
+// //     //     Kata nama1;
+// //     //     createKata(&nama1, "ASU REBUS");
+// //     //     createMakanan(&man1, 4, nama1, kadaluarsa1, 'f', kadaluarsa1);
 
-//     //     PQueue daftarNotif;
-//     //     createPQueue(&daftarNotif, 7);
+// //     //     PQueue daftarNotif;
+// //     //     createPQueue(&daftarNotif, 7);
 
-//     //     PQueue daftarDeliv;
-//     //     createPQueue(&daftarDeliv, 7);
+// //     //     PQueue daftarDeliv;
+// //     //     createPQueue(&daftarDeliv, 7);
 
-//     //     enqueue(&daftarDeliv, man);
-//     //     enqueue(&daftarDeliv, man);
-//     //     enqueue(&daftarDeliv, man1);
+// //     //     enqueue(&daftarDeliv, man);
+// //     //     enqueue(&daftarDeliv, man);
+// //     //     enqueue(&daftarDeliv, man1);
 
-//     //     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
+// //     //     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
 
-//     //     INVERTORY(daftarInvertory);
+// //     //     INVERTORY(daftarInvertory);
 
-//     //     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
+// //     //     UPDATE_INVERTORY_DELIVERY(&daftarInvertory, &daftarDeliv, &daftarNotif);
 
-//     //     INVERTORY(daftarInvertory);
+// //     //     INVERTORY(daftarInvertory);
 
 //     ListResep l;
 //     createListResep(&l);
@@ -715,9 +719,11 @@ void COOKBOOK(ListResep lr, listMakanan lm){
 //     for(i=0;i<listmakanan.listmakanlen;i++){
 //         enqueue(&t,listmakanan.contents[i]);
 //     }
-//     MIX(listmakanan,l,&t);
-//     FRY(listmakanan,l,&t);
-//     CHOP(listmakanan,l,&t);
-//     BOIL(listmakanan,l,&t);
+//     PQueue b = copyQ(t);
+//     DELIVERY(t);
+//     ElTypePQueue* z = getElmtPQueueReff(&t,3);
+//     z->delivTime = minToTime(timeToMin(z->delivTime)+1);
+//     DELIVERY(b);
+//     DELIVERY(t);    
 
 // }
