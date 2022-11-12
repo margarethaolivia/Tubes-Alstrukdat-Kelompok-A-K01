@@ -160,3 +160,14 @@ int lengthPQueue(PQueue p){
         return IdxTail(p)+SizePQueue(p)-IdxHead(p)+1;
     }
 }
+
+PQueue copyQ(PQueue p){
+    PQueue q;
+    n = lengthPQueue(p);
+    createPQueue(&q,n);
+    int i;
+    for(i=0;i<n;i++){
+        enqueue(&q,getElmtPQueue(p,i));
+    }
+    return q;
+}

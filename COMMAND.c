@@ -231,7 +231,8 @@ void MIX(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
     int opsi;
     do{
         printf("\nEnter Command: ");
-        scanf("%d",&opsi);
+        startKata("",false,' ','\n');
+        opsi =stoi(currentKata);
         if(opsi<0||opsi>lOpsi.listmakanlen){
             printf("Mainnya hebat!.");
         }
@@ -263,6 +264,7 @@ void MIX(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
                     printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                    return;
                 } else {
                     printf("\nGagal membuat ");
                     printf(Nama(requestedMakanan).buffer);
@@ -298,7 +300,8 @@ void FRY(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
     int opsi;
     do{
         printf("\nEnter Command: ");
-        scanf("%d",&opsi);
+        startKata("",false,' ','\n');
+        opsi =stoi(currentKata);
         if(opsi<0||opsi>lOpsi.listmakanlen){
             printf("Mainnya hebat!.");
         }
@@ -330,6 +333,7 @@ void FRY(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
                     printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                    return;
                 } else {
                     printf("\nGagal membuat ");
                     printf(Nama(requestedMakanan).buffer);
@@ -365,7 +369,8 @@ void BOIL(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
     int opsi;
     do{
         printf("\nEnter Command: ");
-        scanf("%d",&opsi);
+        startKata("",false,' ','\n');
+        opsi =stoi(currentKata);
         if(opsi<0||opsi>lOpsi.listmakanlen){
             printf("Mainnya hebat!.");
         }
@@ -397,6 +402,7 @@ void BOIL(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
                     printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                    return;
                 } else {
                     printf("\nGagal membuat ");
                     printf(Nama(requestedMakanan).buffer);
@@ -432,7 +438,8 @@ void CHOP(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
     int opsi;
     do{
         printf("\nEnter Command: ");
-        scanf("%d",&opsi);
+        startKata("",false,' ','\n');
+        opsi =stoi(currentKata);
         if(opsi<0||opsi>lOpsi.listmakanlen){
             printf("Mainnya hebat!.");
         }
@@ -464,6 +471,7 @@ void CHOP(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
                     printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                    return;
                 } else {
                     printf("\nGagal membuat ");
                     printf(Nama(requestedMakanan).buffer);
@@ -512,20 +520,20 @@ void BUY(listMakanan lM, PQueue* bufferDelivery){
     }
     printf("\nKirim 0 utuk exit.\n\n");
     int opsi=-1;
-    while (opsi!=0)
+    do
     {
         startKata("",false,' ','\n');
         opsi =stoi(currentKata);
         if(opsi<0||opsi>lOpsi.listmakanlen){
             printf("Mainnya hebat!.");
         }
-        else{
+        else if(opsi!=0){
             enqueue(&*bufferDelivery,lOpsi.contents[opsi-1]);
             printf("berhasil membeli ");
             printf(lOpsi.contents[opsi-1].nama.buffer);
             printf("\n");
         }
-    }
+    }while (opsi!=0);
 }
 
 void DELIVERY(PQueue bufferDelivery){
@@ -540,7 +548,7 @@ void DELIVERY(PQueue bufferDelivery){
     else{
         while (i<len)
         {
-            printf(bufferDelivery.queue[i].nama.buffer);
+            printf(getElmtPQueue(bufferDelivery,i).nama.buffer);
             printf(" - ");
             if (bufferDelivery.queue[i].delivTime.DD>0)
             {

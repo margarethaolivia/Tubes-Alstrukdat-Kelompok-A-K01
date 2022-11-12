@@ -17,3 +17,23 @@ int stoi(Kata s){
     }
     return buff;
 }
+
+Kata concat(const char* s1, const char* s2){
+    Kata s;
+    char sBuffer[100];
+    int i = 0;
+    while(s1[i]!='\0'){
+        sBuffer[i]=s1[i];
+        i++;
+    }
+    int j = 0;
+    while(s2[j]!='\0'){
+        sBuffer[i]=s2[j];
+        i++;
+        j++;
+    }
+    sBuffer[i] = '\0';
+    createKata(&s,sBuffer);
+
+    return s;
+}

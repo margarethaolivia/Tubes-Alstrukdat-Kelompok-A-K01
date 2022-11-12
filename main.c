@@ -24,6 +24,8 @@ int main()
     ListResep listresep;
     listMakanan listmakanan;
     Stack undoStack, stackSimState;
+    PQueue o;
+    createPQueue(&o,3);
     // time gTime;
 
     startKata("", false, '\0', '\n');
@@ -58,7 +60,7 @@ int main()
         printf("\n");
         displayMapBasedOnCurrentPos(map, sim);
         printf("Enter command: \n");
-        startKata("", false, '\0', '\n');
+        startKata("", false, ' ', '\n');
         // printf("%s\n",currentKata.buffer);
         // printf("a\n");
         if (strcmp(currentKata.buffer, "EXIT"))
@@ -66,29 +68,32 @@ int main()
             isRun = false;
             printf("END");
         }
-        else if (strcmp(currentKata.buffer, "MOVE WEST"))
+        else if (strcmp(currentKata.buffer, "MOVE"))
         {
-            moveKiri(&sim, &map);
-            nextMin(&sim.gtime);
-            Push(&undoStack, sim);
-        }
-        else if (strcmp(currentKata.buffer, "MOVE EAST"))
-        {
-            moveKanan(&sim, &map);
-            nextMin(&sim.gtime);
-            Push(&undoStack, sim);
-        }
-        else if (strcmp(currentKata.buffer, "MOVE NORTH"))
-        {
-            moveAtas(&sim, &map);
-            nextMin(&sim.gtime);
-            Push(&undoStack, sim);
-        }
-        else if (strcmp(currentKata.buffer, "MOVE SOUTH"))
-        {
-            moveBawah(&sim, &map);
-            nextMin(&sim.gtime);
-            Push(&undoStack, sim);
+            advKata(' ','\n');
+            if(strcmp(currentKata.buffer, "WEST")){
+                moveKiri(&sim, &map);
+                nextMin(&sim.gtime);
+                Push(&undoStack, sim);
+                UPDATE_INVERTORY_DELIVERY(&sim.inventory,&sim.delivery,&o);
+            } else if(strcmp(currentKata.buffer, "EAST")){
+                moveKanan(&sim, &map);
+                nextMin(&sim.gtime);
+                Push(&undoStack, sim);
+                UPDATE_INVERTORY_DELIVERY(&sim.inventory,&sim.delivery,&o);    
+            } else if(strcmp(currentKata.buffer, "NORTH")){
+                moveAtas(&sim, &map);
+                nextMin(&sim.gtime);
+                Push(&undoStack, sim);
+                UPDATE_INVERTORY_DELIVERY(&sim.inventory,&sim.delivery,&o);
+            } else if (strcmp(currentKata.buffer, "SOUTH")) {
+                moveBawah(&sim, &map);
+                nextMin(&sim.gtime);
+                Push(&undoStack, sim);
+                UPDATE_INVERTORY_DELIVERY(&sim.inventory,&sim.delivery,&o);    
+            } else{
+                printf("Command tidak dikenal\n");
+            }
         }
         else if (strcmp(currentKata.buffer, "INVENTORY"))
         {
@@ -103,6 +108,9 @@ int main()
             if (isAdjacentTo(sim, 'T', map))
             {
                 BUY(listmakanan,&sim.delivery);
+                nextMin(&sim.gtime);
+                Push(&undoStack, sim);
+                UPDATE_INVERTORY_DELIVERY(&sim.inventory,&sim.delivery,&o);
             }
             else
             {
@@ -114,6 +122,9 @@ int main()
             if (isAdjacentTo(sim, 'M', map))
             {
                 MIX(listmakanan,listresep,&sim.inventory);
+                nextMin(&sim.gtime);
+                Push(&undoStack, sim);
+                UPDATE_INVERTORY_DELIVERY(&sim.inventory,&sim.delivery,&o);
             }
             else
             {
@@ -125,6 +136,9 @@ int main()
             if (isAdjacentTo(sim, 'C', map))
             {
                 CHOP(listmakanan,listresep,&sim.inventory);
+                nextMin(&sim.gtime);
+                Push(&undoStack, sim);
+                UPDATE_INVERTORY_DELIVERY(&sim.inventory,&sim.delivery,&o);
             }
             else
             {
@@ -136,6 +150,9 @@ int main()
             if (isAdjacentTo(sim, 'F', map))
             {
                 FRY(listmakanan,listresep,&sim.inventory);
+                nextMin(&sim.gtime);
+                Push(&undoStack, sim);
+                UPDATE_INVERTORY_DELIVERY(&sim.inventory,&sim.delivery,&o);
             }
             else
             {
@@ -147,6 +164,9 @@ int main()
             if (isAdjacentTo(sim, 'B', map))
             {
                 BOIL(listmakanan,listresep,&sim.inventory);
+                nextMin(&sim.gtime);
+                Push(&undoStack, sim);
+                UPDATE_INVERTORY_DELIVERY(&sim.inventory,&sim.delivery,&o);
             }
             else
             {
@@ -182,27 +202,18 @@ int main()
         }
         else if (strcmp(currentKata.buffer, "WAIT"))
         {
-            printf("berapa lama(jam menit):\n");
-            startKata("",false,' ','\n');
-            int jam=0;
-            int mnt=0;
-            int i=0;
-            while (i<currentKata.length)
-            {
-                // printf("%s\n",currentKata.buffer);
-                jam=jam*10+currentKata.buffer[i]%48;
-                i++;
-            }
             advKata(' ','\n');
-            i=0;
-            while (i<currentKata.length)
-            {
-                // printf("%s\n",currentKata.buffer);
-                mnt=mnt*10+currentKata.buffer[i]%48;
-                i++;
-            }
+            int jam=stoi(currentKata);
+            advKata(' ','\n');
+            int mnt= stoi(currentKata);
+
             wait(&sim.gtime,jam,mnt);
             Push(&undoStack,sim);
+
+            int i;
+            for(i=0;i<jam*60+mnt;i++){
+                UPDATE_INVERTORY_DELIVERY(&sim.inventory,&sim.delivery,&o);
+            }
         }
         else{
             printf("Command tidak dikenal\n");
