@@ -9,7 +9,7 @@
 
 void INVERTORY(PQueue daftarInvertory)
 {
-    printf("List Makanan di Invertory\n(nama - waktu sisa kadaluwarsa)\n");
+    printf("List Makanan di Inventory\n(nama - waktu sisa kadaluwarsa)\n");
     int i;
     int len = lengthPQueue(daftarInvertory);
     if (len == 0)
@@ -29,6 +29,7 @@ void INVERTORY(PQueue daftarInvertory)
             printf("\n");
         }
     }
+    printf("\n");
 }
 
 void pesan_(PQueue *bufferPesanan, Makanan makanan)
@@ -78,6 +79,7 @@ void printNotifikasi_(PQueue *bufferNotifikasi, int jumlahKadaluwarsa, int jumla
     {
         dequeue(bufferNotifikasi, &bufferMakanan);
         // printf("    %d. ", i + 1);
+        printf(" - ");
         printf(Nama(bufferMakanan).buffer);
         printf(" Kedaluwarsa.. : (\n");
     }
@@ -85,6 +87,7 @@ void printNotifikasi_(PQueue *bufferNotifikasi, int jumlahKadaluwarsa, int jumla
     {
         dequeue(bufferNotifikasi, &bufferMakanan);
         // printf("    %d. ", i + 1);
+        printf(" - ");
         printf(Nama(bufferMakanan).buffer);
         printf(" sudah diterima oleh BNMO!\n");
     }
@@ -234,11 +237,11 @@ void MIX(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
         printf(Nama(lOpsi.contents[i]).buffer);
         printf("\n");
     }
-    printf("\nKirim 0 utuk exit.");
     int opsi;
     do
     {
-        printf("\nEnter Command: ");
+        printf("Kirim 0 utuk exit.\n");
+        printf("Enter Command: ");
         startKata("", false, ' ', '\n');
         opsi = stoi(currentKata);
         if (opsi < 0 || opsi > lOpsi.listmakanlen)
@@ -279,7 +282,7 @@ void MIX(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
                     enqueue(bufferInvertory, requestedMakanan);
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
-                    printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                    printf(" selesai dibuat dan sudah masuk ke inventory!\n");
                     return;
                 }
                 else
@@ -319,11 +322,11 @@ void FRY(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
         printf(Nama(lOpsi.contents[i]).buffer);
         printf("\n");
     }
-    printf("\nKirim 0 utuk exit.\n\n");
     int opsi;
     do
     {
-        printf("\nEnter Command: ");
+        printf("Kirim 0 utuk exit.\n");
+        printf("Enter Command: ");
         startKata("", false, ' ', '\n');
         opsi = stoi(currentKata);
         if (opsi < 0 || opsi > lOpsi.listmakanlen)
@@ -364,7 +367,7 @@ void FRY(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
                     enqueue(bufferInvertory, requestedMakanan);
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
-                    printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                    printf(" selesai dibuat dan sudah masuk ke inventory!\n");
                     return;
                 }
                 else
@@ -378,7 +381,7 @@ void FRY(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
                         if (!isIdInQueue(*bufferInvertory, neededId))
                         {
                             Makanan neededMakanan = getElmakanid(lM, neededId);
-                            printf("%d ", i + 1);
+                            printf("%d. ", k + 1);
                             printf(Nama(neededMakanan).buffer);
                             printf("\n");
                         }
@@ -403,11 +406,11 @@ void BOIL(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
         printf(Nama(lOpsi.contents[i]).buffer);
         printf("\n");
     }
-    printf("\nKirim 0 utuk exit.\n\n");
     int opsi;
     do
     {
-        printf("\nEnter Command: ");
+        printf("Kirim 0 utuk exit.\n");
+        printf("Enter Command: ");
         startKata("", false, ' ', '\n');
         opsi = stoi(currentKata);
         if (opsi < 0 || opsi > lOpsi.listmakanlen)
@@ -448,7 +451,7 @@ void BOIL(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
                     enqueue(bufferInvertory, requestedMakanan);
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
-                    printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                    printf(" selesai dibuat dan sudah masuk ke inventory!\n");
                     return;
                 }
                 else
@@ -487,11 +490,11 @@ void CHOP(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
         printf(Nama(lOpsi.contents[i]).buffer);
         printf("\n");
     }
-    printf("\nKirim 0 utuk exit.\n\n");
     int opsi;
     do
     {
-        printf("\nEnter Command: ");
+        printf("Kirim 0 utuk exit.\n");
+        printf("Enter Command: ");
         startKata("", false, ' ', '\n');
         opsi = stoi(currentKata);
         if (opsi < 0 || opsi > lOpsi.listmakanlen)
@@ -532,7 +535,7 @@ void CHOP(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
                     enqueue(bufferInvertory, requestedMakanan);
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
-                    printf(" selesai dibuat dan sudah masuk ke invertory!\n");
+                    printf(" selesai dibuat dan sudah masuk ke inventory!\n");
                     return;
                 }
                 else
@@ -616,9 +619,9 @@ void DELIVERY(PQueue bufferDelivery)
 {
     int i = 0;
     int len = lengthPQueue(bufferDelivery);
-    printf("%d", len);
-    printf("List makanan di perjalanan\n");
-    printf("(nama - waktu sisa pengantaran)\n");
+
+    printf("List Makanan di Perjalanan\n");
+    printf("(nama - waktu sisa delivery)\n");
     if (len == 0)
     {
         printf("Tidak ada makanan yang sedang diantar\n");
@@ -627,6 +630,7 @@ void DELIVERY(PQueue bufferDelivery)
     {
         while (i < len)
         {
+            printf("    %d. ", i + 1);
             printf(getElmtPQueue(bufferDelivery, i).nama.buffer);
             printf(" - ");
             if (getElmtPQueue(bufferDelivery, i).delivTime.DD > 0)
@@ -679,6 +683,7 @@ void COOKBOOK(ListResep lr, listMakanan lm)
         printf("\n");
         i++;
     }
+    printf("\n");
 }
 
 // void INVENTORY(PQueue bufferInventory){
