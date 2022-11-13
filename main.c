@@ -19,6 +19,8 @@ int main()
     printf("\n   ___          _   _            __      ___ _   _      ___ _  _ __  __  ___  \n  / __|___  ___| |_(_)_ _  __ _  \\ \\    / (_) |_| |_   | _ ) \\| |  \\/  |/ _ \\ \n | (__/ _ \\/ _ \\ / / | ' \\/ _` |  \\ \\/\\/ /| |  _| ' \\  | _ \\ .` | |\\/| | (_) |\n  \\___\\___/\\___/_\\_\\_|_||_\\__, |   \\_/\\_/ |_|\\__|_||_| |___/_|\\_|_|  |_|\\___/ \n                          |___/                                               \n");
     boolean isRun = false;
     boolean valid;
+    int countNotif;
+    simulator dump;
     simulator sim;
     Matrix map;
     ListResep listresep;
@@ -55,7 +57,7 @@ int main()
 
     while (isRun)
     {
-        // printf("Notifikasi: \n");
+        countNotif = 0;
         printf("BNMO di posisi: ");
         printPoint(sim.currentPos);
         printf("Waktu: ");
@@ -74,11 +76,20 @@ int main()
         }
         else if (strcmp(currentKata.buffer, "MOVE"))
         {
+            while (!IsEmptyStack(stackSimState))
+            {
+                Pop(&stackSimState, &dump);
+            }
             advKata(' ', '\n');
             if (strcmp(currentKata.buffer, "WEST"))
             {
                 moveKiri(&sim, &map);
                 nextMin(&sim.gtime);
+                if (countNotif == 0)
+                {
+                    printf("Notifikasi: \n");
+                    countNotif += 1;
+                }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
                 simulator x = copySim(sim);
                 Push(&undoStack, x);
@@ -87,6 +98,11 @@ int main()
             {
                 moveKanan(&sim, &map);
                 nextMin(&sim.gtime);
+                if (countNotif == 0)
+                {
+                    printf("Notifikasi: \n");
+                    countNotif += 1;
+                }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
                 simulator x = copySim(sim);
                 Push(&undoStack, x);
@@ -95,6 +111,11 @@ int main()
             {
                 moveAtas(&sim, &map);
                 nextMin(&sim.gtime);
+                if (countNotif == 0)
+                {
+                    printf("Notifikasi: \n");
+                    countNotif += 1;
+                }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
                 simulator x = copySim(sim);
                 Push(&undoStack, x);
@@ -103,6 +124,11 @@ int main()
             {
                 moveBawah(&sim, &map);
                 nextMin(&sim.gtime);
+                if (countNotif == 0)
+                {
+                    printf("Notifikasi: \n");
+                    countNotif += 1;
+                }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
                 simulator x = copySim(sim);
                 Push(&undoStack, x);
@@ -124,6 +150,15 @@ int main()
         {
             if (isAdjacentTo(sim, 'T', map))
             {
+                while (!IsEmptyStack(stackSimState))
+                {
+                    Pop(&stackSimState, &dump);
+                }
+                if (countNotif == 0)
+                {
+                    printf("Notifikasi: \n");
+                    countNotif += 1;
+                }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
                 BUY(listmakanan, &(sim.delivery));
                 nextMin(&sim.gtime);
@@ -139,8 +174,17 @@ int main()
         {
             if (isAdjacentTo(sim, 'M', map))
             {
+                while (!IsEmptyStack(stackSimState))
+                {
+                    Pop(&stackSimState, &dump);
+                }
                 MIX(listmakanan, listresep, &(sim.inventory));
                 nextMin(&sim.gtime);
+                if (countNotif == 0)
+                {
+                    printf("Notifikasi: \n");
+                    countNotif += 1;
+                }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
                 simulator x = copySim(sim);
                 Push(&undoStack, x);
@@ -154,8 +198,17 @@ int main()
         {
             if (isAdjacentTo(sim, 'C', map))
             {
+                while (!IsEmptyStack(stackSimState))
+                {
+                    Pop(&stackSimState, &dump);
+                }
                 CHOP(listmakanan, listresep, &(sim.inventory));
                 nextMin(&sim.gtime);
+                if (countNotif == 0)
+                {
+                    printf("Notifikasi: \n");
+                    countNotif += 1;
+                }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
                 simulator x = copySim(sim);
                 Push(&undoStack, x);
@@ -169,8 +222,17 @@ int main()
         {
             if (isAdjacentTo(sim, 'F', map))
             {
+                while (!IsEmptyStack(stackSimState))
+                {
+                    Pop(&stackSimState, &dump);
+                }
                 FRY(listmakanan, listresep, &(sim.inventory));
                 nextMin(&sim.gtime);
+                if (countNotif == 0)
+                {
+                    printf("Notifikasi: \n");
+                    countNotif += 1;
+                }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
                 simulator x = copySim(sim);
                 Push(&undoStack, x);
@@ -184,8 +246,17 @@ int main()
         {
             if (isAdjacentTo(sim, 'B', map))
             {
+                while (!IsEmptyStack(stackSimState))
+                {
+                    Pop(&stackSimState, &dump);
+                }
                 BOIL(listmakanan, listresep, &(sim.inventory));
                 nextMin(&sim.gtime);
+                if (countNotif == 0)
+                {
+                    printf("Notifikasi: \n");
+                    countNotif += 1;
+                }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
                 simulator x = copySim(sim);
                 Push(&undoStack, x);
@@ -201,21 +272,17 @@ int main()
         }
         else if (strcmp(currentKata.buffer, "UNDO"))
         {
-
             undo(&undoStack, &stackSimState, &sim, &valid);
             if (valid)
             {
                 sim = InfoTop(undoStack);
-                // prevMin(&sim.gtime);
             }
+            UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
         }
         else if (strcmp(currentKata.buffer, "REDO"))
         {
             redo(&undoStack, &stackSimState, &sim, &valid);
-            if (valid)
-            {
-                // nextMin(&sim.gtime);
-            }
+            UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
         }
         else if (strcmp(currentKata.buffer, "CATALOG"))
         {
@@ -236,6 +303,11 @@ int main()
             int i;
             for (i = 0; i < jam * 60 + mnt; i++)
             {
+                if (countNotif == 0)
+                {
+                    printf("Notifikasi: \n");
+                    countNotif += 1;
+                }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
             }
         }
