@@ -273,13 +273,13 @@ void MIX(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
                 }
                 if (doable)
                 {
-                    enqueue(bufferInvertory, requestedMakanan);
                     resep = getElmtListResep(lR, j);
                     for (k = 0; k < amountOfChildren(resep, requestId); k++)
                     {
                         int neededId = getNthChildOf(resep, requestId, k);
                         removeIdFromQueue(bufferInvertory, neededId);
                     }
+                    enqueue(bufferInvertory, requestedMakanan);
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
                     printf(" selesai dibuat dan sudah masuk ke inventory!\n");
@@ -358,13 +358,13 @@ void FRY(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
                 }
                 if (doable)
                 {
-                    enqueue(bufferInvertory, requestedMakanan);
                     resep = getElmtListResep(lR, j);
                     for (k = 0; k < amountOfChildren(resep, requestId); k++)
                     {
                         int neededId = getNthChildOf(resep, requestId, k);
                         removeIdFromQueue(bufferInvertory, neededId);
                     }
+                    enqueue(bufferInvertory, requestedMakanan);
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
                     printf(" selesai dibuat dan sudah masuk ke inventory!\n");
@@ -442,13 +442,13 @@ void BOIL(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
                 }
                 if (doable)
                 {
-                    enqueue(bufferInvertory, requestedMakanan);
                     resep = getElmtListResep(lR, j);
                     for (k = 0; k < amountOfChildren(resep, requestId); k++)
                     {
                         int neededId = getNthChildOf(resep, requestId, k);
                         removeIdFromQueue(bufferInvertory, neededId);
                     }
+                    enqueue(bufferInvertory, requestedMakanan);
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
                     printf(" selesai dibuat dan sudah masuk ke inventory!\n");
@@ -526,13 +526,13 @@ void CHOP(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
                 }
                 if (doable)
                 {
-                    enqueue(bufferInvertory, requestedMakanan);
                     resep = getElmtListResep(lR, j);
                     for (k = 0; k < amountOfChildren(resep, requestId); k++)
                     {
                         int neededId = getNthChildOf(resep, requestId, k);
                         removeIdFromQueue(bufferInvertory, neededId);
                     }
+                    enqueue(bufferInvertory, requestedMakanan);
                     printf("\n");
                     printf(Nama(requestedMakanan).buffer);
                     printf(" selesai dibuat dan sudah masuk ke inventory!\n");

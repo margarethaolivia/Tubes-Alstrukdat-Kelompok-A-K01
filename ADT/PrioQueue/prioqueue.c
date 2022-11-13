@@ -122,8 +122,13 @@ boolean removeFromQueue(PQueue* p, lambdaPQ fx, CompareType val){
             for(;i<endTraversal;i++){
                 ElmtPQueue(*p,i%SizePQueue(*p)) = ElmtPQueue(*p,(i+1)%SizePQueue(*p));
             }
-            IdxTail(*p) = (IdxTail(*p)-1)%SizePQueue(*p);               //ser geser
-
+            if(IdxHead(*p)==IdxTail(*p)){      //pop head??
+                IdxHead(*p)=IDX_UNDEFF;
+                IdxTail(*p)=IDX_UNDEFF;
+            } else {
+                IdxTail(*p) = (IdxTail(*p)-1)%SizePQueue(*p);               //ser geser
+            }
+            
             return true;
         }
     }                           //return true bila ada yg ter remove jika tidak false
@@ -146,8 +151,12 @@ boolean removeIdFromQueue(PQueue* p, int id){
             for(;i<endTraversal;i++){
                 ElmtPQueue(*p,i%SizePQueue(*p)) = ElmtPQueue(*p,(i+1)%SizePQueue(*p));
             }
-            IdxTail(*p) = (IdxTail(*p)-1)%SizePQueue(*p);               //ser geser
-
+            if(IdxHead(*p)==IdxTail(*p)){      //pop head??
+                IdxHead(*p)=IDX_UNDEFF;
+                IdxTail(*p)=IDX_UNDEFF;
+            } else {
+                IdxTail(*p) = (IdxTail(*p)-1)%SizePQueue(*p);               //ser geser
+            }
             return true;
         }
     }                           //return true bila ada yg ter remove jika tidak false
