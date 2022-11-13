@@ -25,11 +25,11 @@ int main()
     listMakanan listmakanan;
     Stack undoStack, stackSimState;
     PQueue o;
-    createPQueue(&o,3);
+    createPQueue(&o, 3);
     // time gTime;
 
     startKata("", false, '\0', '\n');
-    printf("%s\n", currentKata.buffer);
+    // printf("%s\n", currentKata.buffer);
     if (strcmp(currentKata.buffer, "START"))
     {
         isRun = true;
@@ -44,26 +44,29 @@ int main()
         initiatePoint(map, &sim);
         CreateEmpty(&undoStack);
         CreateEmpty(&stackSimState);
-        printf("selamat datang di bnmo\n");
-        printf("masukkan nama:\n");
+        printf("\nSELAMAT DATANG DI 'COOKING WITH BNMO'\n");
+        printf("Masukkan nama: ");
         startKata("", false, '\0', '\n');
         setNama(&sim, currentKata);
         simulator x = copySim(sim);
         Push(&undoStack, x);
+        printf("\n");
     }
 
     while (isRun)
     {
+        // printf("Notifikasi: \n");
         printf("BNMO di posisi: ");
         printPoint(sim.currentPos);
-        printf("waktu: ");
+        printf("Waktu: ");
         printTime(sim.gtime);
         printf("\n");
+
         displayMapBasedOnCurrentPos(map, sim);
-        printf("Enter command: \n");
+        printf("Enter Command: ");
         startKata("", false, ' ', '\n');
         // printf("%s\n",currentKata.buffer);
-        // printf("a\n");
+        printf("\n");
         if (strcmp(currentKata.buffer, "EXIT"))
         {
             isRun = false;
@@ -71,28 +74,41 @@ int main()
         }
         else if (strcmp(currentKata.buffer, "MOVE"))
         {
-            advKata(' ','\n');
-            if(strcmp(currentKata.buffer, "WEST")){
+            advKata(' ', '\n');
+            if (strcmp(currentKata.buffer, "WEST"))
+            {
                 moveKiri(&sim, &map);
                 nextMin(&sim.gtime);
-                UPDATE_INVERTORY_DELIVERY(&(sim.inventory),&(sim.delivery),&o);
-                simulator x = copySim(sim);Push(&undoStack, x);
-            } else if(strcmp(currentKata.buffer, "EAST")){
+                UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
+            }
+            else if (strcmp(currentKata.buffer, "EAST"))
+            {
                 moveKanan(&sim, &map);
                 nextMin(&sim.gtime);
-                UPDATE_INVERTORY_DELIVERY(&(sim.inventory),&(sim.delivery),&o);    
-                simulator x = copySim(sim);Push(&undoStack, x);
-            } else if(strcmp(currentKata.buffer, "NORTH")){
+                UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
+            }
+            else if (strcmp(currentKata.buffer, "NORTH"))
+            {
                 moveAtas(&sim, &map);
                 nextMin(&sim.gtime);
-                UPDATE_INVERTORY_DELIVERY(&(sim.inventory),&(sim.delivery),&o);
-                simulator x = copySim(sim);Push(&undoStack, x);
-            } else if (strcmp(currentKata.buffer, "SOUTH")) {
+                UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
+            }
+            else if (strcmp(currentKata.buffer, "SOUTH"))
+            {
                 moveBawah(&sim, &map);
                 nextMin(&sim.gtime);
-                UPDATE_INVERTORY_DELIVERY(&(sim.inventory),&(sim.delivery),&o);    
-                simulator x = copySim(sim);Push(&undoStack, x);
-            } else{
+                UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
+            }
+            else
+            {
                 printf("Command tidak dikenal\n");
             }
         }
@@ -108,10 +124,11 @@ int main()
         {
             if (isAdjacentTo(sim, 'T', map))
             {
-                UPDATE_INVERTORY_DELIVERY(&(sim.inventory),&(sim.delivery),&o);
-                BUY(listmakanan,&(sim.delivery));
+                UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
+                BUY(listmakanan, &(sim.delivery));
                 nextMin(&sim.gtime);
-                simulator x = copySim(sim);Push(&undoStack, x);
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
             }
             else
             {
@@ -122,10 +139,11 @@ int main()
         {
             if (isAdjacentTo(sim, 'M', map))
             {
-                MIX(listmakanan,listresep,&(sim.inventory));
+                MIX(listmakanan, listresep, &(sim.inventory));
                 nextMin(&sim.gtime);
-                UPDATE_INVERTORY_DELIVERY(&(sim.inventory),&(sim.delivery),&o);
-                simulator x = copySim(sim);Push(&undoStack, x);
+                UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
             }
             else
             {
@@ -136,10 +154,11 @@ int main()
         {
             if (isAdjacentTo(sim, 'C', map))
             {
-                CHOP(listmakanan,listresep,&(sim.inventory));
+                CHOP(listmakanan, listresep, &(sim.inventory));
                 nextMin(&sim.gtime);
-                UPDATE_INVERTORY_DELIVERY(&(sim.inventory),&(sim.delivery),&o);
-                simulator x = copySim(sim);Push(&undoStack, x);
+                UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
             }
             else
             {
@@ -150,10 +169,11 @@ int main()
         {
             if (isAdjacentTo(sim, 'F', map))
             {
-                FRY(listmakanan,listresep,&(sim.inventory));
+                FRY(listmakanan, listresep, &(sim.inventory));
                 nextMin(&sim.gtime);
-                UPDATE_INVERTORY_DELIVERY(&(sim.inventory),&(sim.delivery),&o);
-                simulator x = copySim(sim);Push(&undoStack, x);
+                UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
             }
             else
             {
@@ -164,10 +184,11 @@ int main()
         {
             if (isAdjacentTo(sim, 'B', map))
             {
-                BOIL(listmakanan,listresep,&(sim.inventory));
+                BOIL(listmakanan, listresep, &(sim.inventory));
                 nextMin(&sim.gtime);
-                UPDATE_INVERTORY_DELIVERY(&(sim.inventory),&(sim.delivery),&o);
-                simulator x = copySim(sim);Push(&undoStack, x);
+                UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
             }
             else
             {
@@ -176,7 +197,7 @@ int main()
         }
         else if (strcmp(currentKata.buffer, "COOKBOOK"))
         {
-            COOKBOOK(listresep,listmakanan);
+            COOKBOOK(listresep, listmakanan);
         }
         else if (strcmp(currentKata.buffer, "UNDO"))
         {
@@ -203,21 +224,23 @@ int main()
         }
         else if (strcmp(currentKata.buffer, "WAIT"))
         {
-            advKata(' ','\n');
-            int jam=stoi(currentKata);
-            advKata(' ','\n');
-            int mnt= stoi(currentKata);
+            advKata(' ', '\n');
+            int jam = stoi(currentKata);
+            advKata(' ', '\n');
+            int mnt = stoi(currentKata);
 
-            wait(&sim.gtime,jam,mnt);
+            wait(&sim.gtime, jam, mnt);
             simulator x = copySim(sim);
-            Push(&undoStack,x);
+            Push(&undoStack, x);
 
             int i;
-            for(i=0;i<jam*60+mnt;i++){
-                UPDATE_INVERTORY_DELIVERY(&(sim.inventory),&(sim.delivery),&o);
+            for (i = 0; i < jam * 60 + mnt; i++)
+            {
+                UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
             }
         }
-        else{
+        else
+        {
             printf("Command tidak dikenal\n");
         }
     }

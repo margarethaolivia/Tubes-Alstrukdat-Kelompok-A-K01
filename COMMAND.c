@@ -73,6 +73,11 @@ void printNotifikasi_(PQueue *bufferNotifikasi, int jumlahKadaluwarsa, int jumla
 {
     ElTypePQueue bufferMakanan;
     int i;
+
+    if (jumlahDelivered > 0 || jumlahKadaluwarsa > 0) {
+        printf("Notifikasi: \n");
+    }
+
     for (i = 0; i < jumlahKadaluwarsa; i++)
     {
         dequeue(bufferNotifikasi, &bufferMakanan);
@@ -493,7 +498,7 @@ void CHOP(listMakanan lM, ListResep lR, PQueue* bufferInvertory){
 
 void BUY(listMakanan lM, PQueue* bufferDelivery){
     listMakanan lOpsi = searchListMakananBasedOnAksi(lM,'B');
-    printf("%d\n",lengthPQueue(*bufferDelivery));
+    // printf("%d\n",lengthPQueue(*bufferDelivery));
     printf("=======================\n");
     printf("=         BUY         =\n");
     printf("=======================\n");
@@ -519,22 +524,25 @@ void BUY(listMakanan lM, PQueue* bufferDelivery){
         printf(")");
         printf("\n");
     }
-    printf("\nKirim 0 utuk exit.\n\n");
+    printf("\n");
     int opsi=-1;
     do
     {
+        printf("Kirim 0 utuk exit.\n");
+        printf("Enter Command: ");
         startKata("",false,' ','\n');
         opsi =stoi(currentKata);
+        printf("\n");
         if(opsi<0||opsi>lOpsi.listmakanlen){
             printf("Mainnya hebat!.");
         }
         else if(opsi!=0){
             enqueue2(bufferDelivery,lOpsi.contents[opsi-1]);
-            printf("%d",isFullPQueue(*bufferDelivery));
-            printf("%d",lengthPQueue(*bufferDelivery));
-            printf("berhasil membeli ");
+            // printf("%d",isFullPQueue(*bufferDelivery));
+            // printf("%d",lengthPQueue(*bufferDelivery));
+            printf("Berhasil membeli ");
             printf(lOpsi.contents[opsi-1].nama.buffer);
-            printf("\n");
+            printf("\n\n");
         }
     }while (opsi!=0);
 }
