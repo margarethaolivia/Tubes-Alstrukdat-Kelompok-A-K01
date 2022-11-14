@@ -237,6 +237,7 @@ void MIX(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
         printf(Nama(lOpsi.contents[i]).buffer);
         printf("\n");
     }
+    printf("\n");
     int opsi;
     do
     {
@@ -322,6 +323,7 @@ void FRY(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
         printf(Nama(lOpsi.contents[i]).buffer);
         printf("\n");
     }
+    printf("\n");
     int opsi;
     do
     {
@@ -406,6 +408,7 @@ void BOIL(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
         printf(Nama(lOpsi.contents[i]).buffer);
         printf("\n");
     }
+    printf("\n");
     int opsi;
     do
     {
@@ -465,7 +468,7 @@ void BOIL(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
                         if (!isIdInQueue(*bufferInvertory, neededId))
                         {
                             Makanan neededMakanan = getElmakanid(lM, neededId);
-                            printf("%d ", i + 1);
+                            printf("%d ", k + 1);
                             printf(Nama(neededMakanan).buffer);
                             printf("\n");
                         }
@@ -490,6 +493,7 @@ void CHOP(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
         printf(Nama(lOpsi.contents[i]).buffer);
         printf("\n");
     }
+    printf("\n");
     int opsi;
     do
     {
@@ -549,7 +553,7 @@ void CHOP(listMakanan lM, ListResep lR, PQueue *bufferInvertory)
                         if (!isIdInQueue(*bufferInvertory, neededId))
                         {
                             Makanan neededMakanan = getElmakanid(lM, neededId);
-                            printf("%d ", i + 1);
+                            printf("%d ", k + 1);
                             printf(Nama(neededMakanan).buffer);
                             printf("\n");
                         }
