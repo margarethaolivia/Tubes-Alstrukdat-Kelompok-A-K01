@@ -21,7 +21,7 @@ void prevMin(time *t){
     advTime(t,0,0,-1);
 }
 void printTime(time t){
-    printf("%d.%d\n",hour(t),minute(t));
+    printf("%d.%d.%d\n",day(t),hour(t),minute(t));
 }
 boolean isTimeValid(time t){
     return(day(t)>=0 && hour(t)>=0 && hour(t) < 24  && minute(t) >= 0 && minute(t) < 60);
