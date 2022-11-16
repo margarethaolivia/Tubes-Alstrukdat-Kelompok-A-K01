@@ -220,3 +220,14 @@ PQueue copyQ(PQueue p){
     }
     return q;
 }
+
+PQueue copyQ2(PQueue p){
+    PQueue q;
+    int n = lengthPQueue(p);
+    createPQueue(&q,n+2);
+    int i;
+    for(i=0;i<n;i++){
+        enqueue2(&q,getElmtPQueue(p,i));
+    }
+    return q;
+}

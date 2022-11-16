@@ -72,6 +72,8 @@ void destroyPQueue(PQueue* p); //free()
 
 PQueue copyQ(PQueue p);
 
+PQueue copyQ2(PQueue p);
+
 //fungsi tambahan
 // hanya berlaku bila ElType Makanan
 boolean isIdInQueue(PQueue p, int id);

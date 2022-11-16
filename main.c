@@ -277,12 +277,12 @@ int main()
             {
                 sim = InfoTop(undoStack);
             }
-            UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
+            //UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
         }
         else if (strcmp(currentKata.buffer, "REDO"))
         {
             redo(&undoStack, &stackSimState, &sim, &valid);
-            UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
+            //UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
         }
         else if (strcmp(currentKata.buffer, "CATALOG"))
         {

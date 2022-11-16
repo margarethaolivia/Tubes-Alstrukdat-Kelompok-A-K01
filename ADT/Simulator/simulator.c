@@ -196,7 +196,7 @@ simulator copySim(simulator sim){
     simulator s2;
     s2 = sim;
     s2.inventory = copyQ(sim.inventory);
-    s2.delivery = copyQ(sim.delivery);
+    s2.delivery = copyQ2(sim.delivery);
 
     return s2;
 }

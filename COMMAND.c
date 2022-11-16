@@ -152,8 +152,9 @@ void undo(Stack *stackSim, Stack *stackSimState, simulator *x, boolean *valid)
     }
     else
     {
+        simulator y = copySim(*x);
         Pop(stackSim, x);
-        Push(stackSimState, *x);
+        Push(stackSimState, y);
         // *x = InfoTop(stackSim);
         printf("Berhasil melakukan undo\n\n");
         *valid = true;
@@ -170,7 +171,8 @@ void redo(Stack *stackSim, Stack *stackSimState, simulator *x, boolean *valid)
     else
     {
         Pop(stackSimState, x);
-        Push(stackSim, *x);
+        simulator y = copySim(*x);
+        Push(stackSim, y);
         printf("Berhasil melakukan redo\n\n");
         *valid = true;
     }
