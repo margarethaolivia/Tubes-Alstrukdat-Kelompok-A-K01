@@ -145,7 +145,7 @@ void catalog(listMakanan lm)
 
 void undo(Stack *stackSim, Stack *stackSimState, simulator *x, boolean *valid)
 {
-    if (isOneElmtStack(*stackSim))
+    if (IsEmptyStack(*stackSim))
     {
         printf("Undo gagal dilakukan\n\n");
         *valid = false;
@@ -170,8 +170,8 @@ void redo(Stack *stackSim, Stack *stackSimState, simulator *x, boolean *valid)
     }
     else
     {
-        Pop(stackSimState, x);
         simulator y = copySim(*x);
+        Pop(stackSimState, x);
         Push(stackSim, y);
         printf("Berhasil melakukan redo\n\n");
         *valid = true;

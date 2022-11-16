@@ -51,7 +51,7 @@ int main()
         startKata("", false, '\0', '\n');
         setNama(&sim, currentKata);
         simulator x = copySim(sim);
-        Push(&undoStack, x);
+        //Push(&undoStack, x);
         printf("\n");
     }
 
@@ -83,6 +83,8 @@ int main()
             advKata(' ', '\n');
             if (strcmp(currentKata.buffer, "WEST"))
             {
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
                 moveKiri(&sim, &map);
                 nextMin(&sim.gtime);
                 if (countNotif == 0)
@@ -91,11 +93,11 @@ int main()
                     countNotif += 1;
                 }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
-                simulator x = copySim(sim);
-                Push(&undoStack, x);
             }
             else if (strcmp(currentKata.buffer, "EAST"))
             {
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
                 moveKanan(&sim, &map);
                 nextMin(&sim.gtime);
                 if (countNotif == 0)
@@ -104,11 +106,11 @@ int main()
                     countNotif += 1;
                 }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
-                simulator x = copySim(sim);
-                Push(&undoStack, x);
             }
             else if (strcmp(currentKata.buffer, "NORTH"))
             {
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
                 moveAtas(&sim, &map);
                 nextMin(&sim.gtime);
                 if (countNotif == 0)
@@ -117,11 +119,11 @@ int main()
                     countNotif += 1;
                 }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
-                simulator x = copySim(sim);
-                Push(&undoStack, x);
             }
             else if (strcmp(currentKata.buffer, "SOUTH"))
             {
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
                 moveBawah(&sim, &map);
                 nextMin(&sim.gtime);
                 if (countNotif == 0)
@@ -130,8 +132,6 @@ int main()
                     countNotif += 1;
                 }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
-                simulator x = copySim(sim);
-                Push(&undoStack, x);
             }
             else
             {
@@ -150,6 +150,8 @@ int main()
         {
             if (isAdjacentTo(sim, 'T', map))
             {
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
                 while (!IsEmptyStack(stackSimState))
                 {
                     Pop(&stackSimState, &dump);
@@ -162,8 +164,6 @@ int main()
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
                 BUY(listmakanan, &(sim.delivery));
                 nextMin(&sim.gtime);
-                simulator x = copySim(sim);
-                Push(&undoStack, x);
             }
             else
             {
@@ -174,6 +174,8 @@ int main()
         {
             if (isAdjacentTo(sim, 'M', map))
             {
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
                 while (!IsEmptyStack(stackSimState))
                 {
                     Pop(&stackSimState, &dump);
@@ -186,8 +188,6 @@ int main()
                     countNotif += 1;
                 }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
-                simulator x = copySim(sim);
-                Push(&undoStack, x);
             }
             else
             {
@@ -198,6 +198,8 @@ int main()
         {
             if (isAdjacentTo(sim, 'C', map))
             {
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
                 while (!IsEmptyStack(stackSimState))
                 {
                     Pop(&stackSimState, &dump);
@@ -210,8 +212,6 @@ int main()
                     countNotif += 1;
                 }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
-                simulator x = copySim(sim);
-                Push(&undoStack, x);
             }
             else
             {
@@ -222,6 +222,8 @@ int main()
         {
             if (isAdjacentTo(sim, 'F', map))
             {
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
                 while (!IsEmptyStack(stackSimState))
                 {
                     Pop(&stackSimState, &dump);
@@ -234,8 +236,6 @@ int main()
                     countNotif += 1;
                 }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
-                simulator x = copySim(sim);
-                Push(&undoStack, x);
             }
             else
             {
@@ -246,6 +246,8 @@ int main()
         {
             if (isAdjacentTo(sim, 'B', map))
             {
+                simulator x = copySim(sim);
+                Push(&undoStack, x);
                 while (!IsEmptyStack(stackSimState))
                 {
                     Pop(&stackSimState, &dump);
@@ -258,8 +260,6 @@ int main()
                     countNotif += 1;
                 }
                 UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
-                simulator x = copySim(sim);
-                Push(&undoStack, x);
             }
             else
             {
@@ -273,9 +273,9 @@ int main()
         else if (strcmp(currentKata.buffer, "UNDO"))
         {
             undo(&undoStack, &stackSimState, &sim, &valid);
-            if (valid)
+            if (!valid)
             {
-                sim = InfoTop(undoStack);
+                //sim = InfoTop(undoStack);
             }
             //UPDATE_INVERTORY_DELIVERY(&(sim.inventory), &(sim.delivery), &o);
         }
@@ -291,14 +291,14 @@ int main()
         }
         else if (strcmp(currentKata.buffer, "WAIT"))
         {
+            simulator x = copySim(sim);
+            Push(&undoStack, x);
             advKata(' ', '\n');
             int jam = stoi(currentKata);
             advKata(' ', '\n');
             int mnt = stoi(currentKata);
 
             wait(&sim.gtime, jam, mnt);
-            simulator x = copySim(sim);
-            Push(&undoStack, x);
 
             int i;
             for (i = 0; i < jam * 60 + mnt; i++)
