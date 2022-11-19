@@ -141,6 +141,7 @@ void catalog(listMakanan lm)
         printMakanan(MAKANAN(lm, i));
         printf("\n");
     }
+    printf("\n");
 }
 
 void undo(Stack *stackSim, Stack *stackSimState, simulator *x, boolean *valid)
