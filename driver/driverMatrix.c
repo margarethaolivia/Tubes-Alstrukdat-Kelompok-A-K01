@@ -1,10 +1,10 @@
-#include "../matrix.c"
+#include "../ADT/Matrix/matrix.h"
 
 int main(int argc, char const *argv[])
 {
     Matrix m;
     Matrix map;
-    readMatrixFile(&m,"map.txt");
+    readMatrixFile(&m,"../Config/map.txt");
     displayMatrix(m);
     map=matrixtoMap(m);
     displayMap(map);
