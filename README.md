@@ -23,8 +23,17 @@ This is a project in order to fulfill the requirements of the study of Alstrukda
 ## Program Installation
 
 ## How to Compile
-### Untuk melakukan kompilasi, kita hanya perlu menjalankan perintah berikut
+Untuk melakukan kompilasi, kita hanya perlu menjalankan perintah berikut
 > gcc -o a main.c ADT/Mesin_Karakter/mesinkarakter.c ADT/Mesin_Kata/mesinkata.c ADT/Matrix/matrix.c ADT/Simulator/simulator.c ADT/Makanan/makanan.c ADT/Time/time.c ADT/Point/point.c ADT/PrioQueue/prioqueue.c ADT/Utility/utility.c ADT/List_Makanan/listmakanan.c ADT/List_Resep/listresep.c ADT/Stack/stack.c ADT/Tree/tree.c
 
 ## How to Run
-### Untuk menjalankan program, kita dapat melakukan run pada main.exe
+Untuk menjalankan program, kita dapat melakukan run pada main.exe
+
+## Pembagian Kerja Kelompok
+| Nama | NIM | Pembagian Tugas |
+| ------| ---- | ---- |
+| Tobias Natalio Sianipar | 13521090 | ADT List Statik, ADT Mesin Kata, ADT Queue, ADT Tree, Laporan |
+| Haidar Hamda | 13521105 | ADT Time, ADT Simulator, ADT List Statik, ADT Matriks, Laporan |
+| Margaretha Olivia Haryono | 13521071 | Splash Screen, ADT Makanan, ADT Stack, Laporan |
+| Shidqi indy Izhari | 13521097 | ADT Point, ADT Time, ADT List Statik, Laporan |
+| Ilham Akbar | 13521068 | ADT List Statik, ADT Tree, Laporan |
