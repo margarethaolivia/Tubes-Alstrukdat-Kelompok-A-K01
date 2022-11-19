@@ -24,6 +24,6 @@ This is a project in order to fulfill the requirements of the study of Alstrukda
 
 ## How to Compile
 ### Untuk melakukan kompilasi, kita hanya perlu menjalankan perintah berikut
-gcc -o a main.c ADT/Mesin_Karakter/mesinkarakter.c ADT/Mesin_Kata/mesinkata.c ADT/Matrix/matrix.c ADT/Simulator/simulator.c ADT/Makanan/makanan.c ADT/Time/time.c ADT/Point/point.c ADT/PrioQueue/prioqueue.c ADT/Utility/utility.c ADT/List_Makanan/listmakanan.c ADT/List_Resep/listresep.c ADT/Stack/stack.c ADT/Tree/tree.c
+>> gcc -o a main.c ADT/Mesin_Karakter/mesinkarakter.c ADT/Mesin_Kata/mesinkata.c ADT/Matrix/matrix.c ADT/Simulator/simulator.c ADT/Makanan/makanan.c ADT/Time/time.c ADT/Point/point.c ADT/PrioQueue/prioqueue.c ADT/Utility/utility.c ADT/List_Makanan/listmakanan.c ADT/List_Resep/listresep.c ADT/Stack/stack.c ADT/Tree/tree.c
 
 ## How to Run
