@@ -36,7 +36,7 @@ Program ini merupakan permainan simulator memasak yang menggunakan implementasi 
 
 ## How to Compile
 Untuk melakukan kompilasi, kita hanya perlu menjalankan perintah berikut
-> gcc -o a main.c ADT/Mesin_Karakter/mesinkarakter.c ADT/Mesin_Kata/mesinkata.c ADT/Matrix/matrix.c ADT/Simulator/simulator.c ADT/Makanan/makanan.c ADT/Time/time.c ADT/Point/point.c ADT/PrioQueue/prioqueue.c ADT/Utility/utility.c ADT/List_Makanan/listmakanan.c ADT/List_Resep/listresep.c ADT/Stack/stack.c ADT/Tree/tree.c
+> gcc -o main main.c ADT/Mesin_Karakter/mesinkarakter.c ADT/Mesin_Kata/mesinkata.c ADT/Matrix/matrix.c ADT/Simulator/simulator.c ADT/Makanan/makanan.c ADT/Time/time.c ADT/Point/point.c ADT/PrioQueue/prioqueue.c ADT/Utility/utility.c ADT/List_Makanan/listmakanan.c ADT/List_Resep/listresep.c ADT/Stack/stack.c ADT/Tree/tree.c
 
 ## How to Run
 Untuk menjalankan program, kita dapat melakukan run pada main.exe
